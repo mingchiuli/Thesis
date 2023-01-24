@@ -16,7 +16,7 @@ lapply(c('tidyverse', 'stargazer', 'plm', 'sandwich', 'lmtest', 'ggpubr', 'showt
 ```"
  
 title <- '---
-title: "台湾地区“南向政策”效果评估"
+title: "戒急用忍：台湾地区的南向经济"
 author:
   - 李鸣玖
 documentclass: ctexart
@@ -27,19 +27,17 @@ output:
   rticles::ctex:
     fig_caption: yes
     number_sections: yes
-    toc: no
+    toc: yes
 bibliography: bibliography.bib
 ---'
  
 rmd <- list.files(pattern = '*.Rmd', recursive = T)
+
 chunk <- str_c(title, "\n", init, "\n")
-chunks <- str_c("```{r child = '", rmd, "'}\n```" ,"\n")
+chunks <- str_c("```{r child = '", rmd, "'}\n```" ,"\n", "\\newpage")
 
 chunks <- c(chunk, chunks, "# 参考文献\n")
 
 writeLines(chunks, "out.rmd")
 
 rmarkdown::render("out.rmd")
-
-
-

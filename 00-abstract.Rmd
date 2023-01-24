@@ -1,0 +1,21 @@
+\newpage
+
+# 摘要
+
+**摘要**
+
+基于1990-2019年台湾进出口贸易与对外直接投资数据，运用双重差分法对台湾地区两次南向政策的实施进行了实证研究。结果表明：李登辉当局提出的"南向政策"与蔡英文当局提出的"新南向政策"对台湾进出口及对外直接投资的比例分布没有作用。南向经济为台湾提供了中国大陆之外新的经济发展思路，但对台湾地区的实际经济增长并无帮助。台湾当局应审时度势，加强与祖国大陆的经济文化交流，推动两岸经贸关系和谐发展。
+
+**关键词**
+
+南向政策；双重差分法; 事件研究法；台湾贸易
+
+\newpage
+
+**Abstract**
+
+Based on the database of Taiwan's export, import and foreign direct investment, the research used "difference and differences" econometrics method to make empirical research for Taiwan's "Go South Policy" which happened in two different periods. The results shown that "Southern Policy" of Lee Teng-hui government and "New Southbound Policy" of Tsai Ing-wen government are useless for the percentage of distribution Taiwan's export, import and foreign direct investment. Though the economic of southern provides some new economic development ideas for Taiwan, the "Go South Policy" can't promote the growth of Taiwan's economic. Taiwan authorities should judge the hour and size up the situation and enhance the economic and culture exchanges which can promote the harmonious development of cross-strait economic and trade relations.
+
+**Key Words**
+
+"Go South Policy", difference in differences, event study method, Taiwan's trade
