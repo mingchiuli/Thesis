@@ -20,6 +20,7 @@ title: "戒急用忍：台湾地区的南向政策"
 author:
   - 李鸣玖
 documentclass: ctexart
+papersize: "a4"
 keywords:
   - 南向政策
   - 台湾经贸
@@ -27,6 +28,7 @@ output:
   rticles::ctex:
     fig_caption: yes
     number_sections: yes
+    toc_depth: 3
     toc: yes
 bibliography: bibliography.bib
 ---'
