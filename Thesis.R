@@ -10,9 +10,9 @@ lapply(c('tidyverse', 'stargazer', 'plm', 'sandwich', 'lmtest', 'ggpubr', 'showt
      install.packages(pkg)
    }
    library(pkg, character.only = TRUE)
- })
- showtext_auto()
- twData <- read_csv('data.csv')
+})
+showtext_auto()
+twData <- read_csv('data.csv')
 ```"
  
 title <- '---
@@ -28,7 +28,7 @@ output:
   rticles::ctex:
     fig_caption: yes
     number_sections: yes
-    toc_depth: 3
+    toc_depth: 2
     toc: yes
 bibliography: bibliography.bib
 ---'
