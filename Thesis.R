@@ -12,7 +12,7 @@ lapply(c('tidyverse', 'stargazer', 'plm', 'sandwich', 'lmtest', 'ggpubr', 'showt
    library(pkg, character.only = TRUE)
 })
 showtext_auto()
-twData <- read_csv('data.csv')
+twData <- read_csv('data/data.csv')
 ```"
  
 title <- '---
