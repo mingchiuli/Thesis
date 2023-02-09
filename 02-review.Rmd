@@ -47,3 +47,46 @@ read_csv("data/twannualgdp.csv", show_col_types = FALSE) %>%
     ylab("成长百分位点") +
     xlab("年份")
 ```
+
+\begin{landscape}
+
+```{r, echo=FALSE, fig.cap='1993年和2016年台湾地区出口占比差', out.width='150%',out.height='100%', fig.width=11, fig.height=6.5, fig.}
+world <- map_data("world") %>% 
+  filter(region != "Antarctica")
+twData1993 <- twData %>% 
+  filter(Year == 1993, !is.na(Export)) %>% 
+  select(State, Export, Year) %>% 
+  mutate(百分比 = (Export / sum(Export)) * 100)
+
+twData2016 <- twData %>% 
+  filter(Year == 2016, !is.na(Export)) %>% 
+  select(State, Export, Year) %>% 
+  mutate(百分比 = (Export / sum(Export)) * 100)
+
+twDataTmp2016 <- twData2016 %>% 
+  filter(twData2016$State %in% twData1993$State)
+
+twDataTmp1993 <- twData1993 %>% 
+  filter(twData1993$State %in% twData2016$State)
+
+twData19932016Fin <- cbind(twDataTmp1993$State, twDataTmp2016$百分比 - twDataTmp1993$百分比)
+colnames(twData19932016Fin) <- c("地区", "百分比")
+twData19932016Fin <- as.data.frame(twData19932016Fin)
+twData19932016Fin$百分比 <- round(as.numeric(twData19932016Fin$百分比), 10)
+
+ggplot(twData19932016Fin, aes(map_id = 地区)) +
+  geom_map(aes(fill = 百分比), map = world) +
+  scale_fill_distiller(palette = "Set2",direction= 1) + 
+  expand_limits(x = world$long, y = world$lat) +
+  xlab("经度") +
+  ylab("纬度")
+
+```
+\end{landscape}
+
+
+
+
+
+
+
