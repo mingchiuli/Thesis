@@ -118,13 +118,13 @@ twData1993 <- twData1993 %>%
   filter(twData1993$State %in% twData2016$State)
 
 suppressMessages(bind_cols(twData1993$State, twData2016$百分比 - twData1993$百分比)) %>% 
-  rename(地区 = ...1, 百分比变动 = ...2) %>% 
-ggplot(aes(map_id = 地区)) +
-  geom_map(aes(fill = 百分比变动), map = world) +
-  scale_fill_distiller(palette = "Set2",direction= 1) + 
-  expand_limits(x = world$long, y = world$lat) +
-  xlab("经度") +
-  ylab("纬度")
+  rename(地区 = ...1, 百分比变动 = ...2) %>%
+  ggplot(aes(map_id = 地区)) +
+    geom_map(aes(fill = 百分比变动), map = world) +
+    scale_fill_distiller(palette = "Set2",direction= 1) + 
+    expand_limits(x = world$long, y = world$lat) +
+    xlab("经度") +
+    ylab("纬度")
 
 ```
 \end{landscape}
