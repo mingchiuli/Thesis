@@ -53,7 +53,7 @@ read_csv("data/twannualgdp.csv", show_col_types = FALSE) %>%
 
 1987年，台湾地区领导人蒋经国开放两岸探亲，并大大放松了对外汇的管制，结束了台湾海峡长达38年的隔绝状态，两岸民间交流日益发展。1991年，在北京，成立了海峡两岸关系协会，简称“海协会”。在台北，成立了财团法人海峡交流基金会，简称“海基会”。通过海基会与海协会的斡旋，两岸开始筹划通商、通邮、通航。1992年，海基会和海协会经香港会谈达成了非正式共识，即“九二共识”。此后，两岸经济文化交流日益密切。
 
-在此期间，伴随着冷战结束与大陆的改革开放，台湾的进出口伙伴关系产生了巨大变化。在大陆改革开放以前，台湾出口主要集中于美国和日本，随着中国大陆的经济崛起，如图4^[数据来源：台湾财政部，t年时j地区对i地区贸易依存度计算方法：$\frac {Exp_{i, t} + Inp_{i, t}} {GDP_{j, t}}$，其中$Exp_{i, t}$与$Inp_{i, t}$代表t年j地区对i地区的出口值与进口值。]所示，台湾地区对大陆的经济依赖程度不断加强，贸易依存度一路增长，在2010年前后超过了25%。与此同时，台湾对老牌贸易伙伴日本和美国的贸易依赖程度总体呈现出下降趋势，到2019年均下降到不足15%。无论是台湾对大陆贸易依存度的上升还是台湾对美日贸易依存度的下降，无不显示出大陆对台湾贸易强烈的吸引力。在这期间，大陆为台商营造了良好的营商环境，提供了广阔的市场与廉价的劳动力，另有部分政策扶持，去鼓励台商前往大陆建厂投资，促进大陆就业。同时，台湾对东盟国家的贸易依存度也呈现出上升趋势。
+在此期间，伴随着冷战结束与大陆的改革开放，台湾的进出口伙伴关系产生了巨大变化。在大陆改革开放以前，台湾出口主要集中于美国和日本，随着中国大陆的经济崛起，如图4^[数据来源：台湾财政部，t年时j地区对i地区贸易依存度计算方法：$\frac {Exp_{i, t} + Inp_{i, t}} {GDP_{j, t}} \cdot 100\%$，其中$Exp_{i, t}$与$Inp_{i, t}$代表t年j地区对i地区的出口值与进口值。]所示，台湾地区对大陆的经济依赖程度不断加强，贸易依存度一路增长，在2010年前后超过了25%。与此同时，台湾对老牌贸易伙伴日本和美国的贸易依赖程度总体呈现出下降趋势，到2019年均下降到不足15%。无论是台湾对大陆贸易依存度的上升还是台湾对美日贸易依存度的下降，无不显示出大陆对台湾贸易强烈的吸引力。在这期间，大陆为台商营造了良好的营商环境，提供了广阔的市场与廉价的劳动力，另有部分政策扶持，去鼓励台商前往大陆建厂投资，促进大陆就业。同时，台湾对东盟国家的贸易依存度也呈现出上升趋势。
 
 ```{r, echo=FALSE, fig.cap='台湾地区与各地区贸易依存度', fig.align = 'center'}
 dependence <- twData %>% 
@@ -72,8 +72,20 @@ dependenceASEAN <- dependence %>%
   mutate(Export = sum(Export), Inport = sum(Inport)) %>% 
   filter(State == 'Singapore')
 
-rbind(dependenceChina, dependenceJapan, dependenceUSA, dependenceASEAN) %>% 
-  mutate(State = if_else(State == 'China', '中国大陆', if_else(State == 'Singapore', '东盟', if_else(State == 'Japan', "日本", if_else(State == 'USA', "美国", "其他"))))) %>%
+state_name <- Vectorize(\(state) {
+  if (state == 'China') {
+      return('中国大陆')
+    } else if (state == 'Japan') {
+      return('日本')
+    } else if (state == 'USA') {
+      return('美国')
+    } else if (state == 'Singapore') {
+      return('东盟')
+    }
+})
+
+bind_rows(dependenceChina, dependenceJapan, dependenceUSA, dependenceASEAN) %>% 
+  mutate(State = state_name(State)) %>%
   ggplot() +
     geom_line(aes(Year, (Export + Inport) * 1000 / TWNGDP, color = State)) +
     ylab("贸易依存度") +
@@ -86,7 +98,7 @@ rbind(dependenceChina, dependenceJapan, dependenceUSA, dependenceASEAN) %>%
 在1993年时，台湾对大陆的贸易依存度尚且不足2%，而到了2016年，则超过了20%。贸易依存度的扭转同样在台湾对外出口方面有所体现。如热力地图5^[数据来源：台湾财政部。]所示，2016年台湾对大陆的出口占比比1993年的出口占比高出20%以上，对韩国亦有出口占比的提升，但台湾对英国和德国的出口占比有不同程度的下降，而下降最多的则是美国，超过了10%。与此同时可以发现，台湾对东南亚国家的出口占比均有不同程度的提升，其中对越南、菲律宾和马来西亚的出口占比提升比较明显。从贸易的引力模型来看，这并不难解释。东盟总面积449万平方千米，人口6.6亿，拥有丰富的劳动力和广阔的需求市场，更重要的优势是距台湾的地理距离较近，具有明显的航运优势，这种特性一定程度上影响了台湾潜在的进出口发展方向。
 
 \begin{landscape}
-```{r, echo=FALSE, fig.cap='1993年和2016年台湾地区出口占比差', out.width='150%',out.height='100%', fig.width=11, fig.height=6.5}
+```{r, echo=FALSE, fig.cap='1993年和2016年台湾地区出口占比差', out.width='150%',out.height='100%', fig.width=11, fig.height=6.5, warning=FALSE}
 world <- map_data("world") %>% 
   filter(region != "Antarctica")
 twData1993 <- twData %>% 
@@ -99,18 +111,15 @@ twData2016 <- twData %>%
   select(State, Export, Year) %>% 
   mutate(百分比 = (Export / sum(Export)) * 100)
 
-twDataTmp2016 <- twData2016 %>% 
+twData2016 <- twData2016 %>% 
   filter(twData2016$State %in% twData1993$State)
 
-twDataTmp1993 <- twData1993 %>% 
+twData1993 <- twData1993 %>% 
   filter(twData1993$State %in% twData2016$State)
 
-twData19932016Fin <- cbind(twDataTmp1993$State, twDataTmp2016$百分比 - twDataTmp1993$百分比)
-colnames(twData19932016Fin) <- c("地区", "百分比变动")
-twData19932016Fin <- as.data.frame(twData19932016Fin)
-twData19932016Fin$百分比变动 <- round(as.numeric(twData19932016Fin$百分比变动), 10)
-
-ggplot(twData19932016Fin, aes(map_id = 地区)) +
+suppressMessages(bind_cols(twData1993$State, twData2016$百分比 - twData1993$百分比)) %>% 
+  rename(地区 = ...1, 百分比变动 = ...2) %>% 
+ggplot(aes(map_id = 地区)) +
   geom_map(aes(fill = 百分比变动), map = world) +
   scale_fill_distiller(palette = "Set2",direction= 1) + 
   expand_limits(x = world$long, y = world$lat) +
