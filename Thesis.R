@@ -53,5 +53,5 @@ chunks <- stringr::str_c("```{r child = '", rmd, "'}\n```" ,"\n\n", "\\newpage",
 chunks <- c(chunk, chunks, "# 参考文献 \n")
 writeLines(chunks, "out.rmd")
 rmarkdown::render("out.rmd")
-file.remove('out.rmd', 'out.log')
-system2("open",'out.pdf')
+# file.remove('out.rmd', 'out.log')
+# system2("open",'out.pdf')
