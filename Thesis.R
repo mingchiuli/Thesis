@@ -32,7 +32,7 @@ header-includes:
   - \\usepackage{lscape}
   - \\usepackage{ctex}
 papersize: "a4"
-geometry: "margin=1.5in"
+geometry: "margin=1.75in"
 keywords:
   - 南向政策
   - 台湾经贸
