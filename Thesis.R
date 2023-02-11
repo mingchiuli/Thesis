@@ -1,11 +1,8 @@
-
 if (system.file(package = "stringr") == '') {
   install.packages("stringr")
 }
-library(stringr)
 
 init <- "```{r, include=FALSE}
-library(purrr)
 c('tidyverse', 
   'stargazer', 
   'plm', 
@@ -15,7 +12,8 @@ c('tidyverse',
   'showtext', 
   'rticles', 
   'maps', 
-  'see') |> 
+  'see',
+  'bookdown') |> 
   purrr::map(\\(pkg) {
     if (system.file(package = pkg) == '') {
       install.packages(pkg)
@@ -30,16 +28,18 @@ header <- '---
 title: "戒急用忍：台湾地区的南向政策"
 author:
   - 李鸣玖
-documentclass: ctexart
 header-includes:
   - \\usepackage{lscape}
+  - \\usepackage{ctex}
 papersize: "a4"
+geometry: "margin=1.5in"
 keywords:
   - 南向政策
   - 台湾经贸
 indent: true  
 output:
-  rticles::ctex:
+  bookdown::pdf_document2:
+    latex_engine: xelatex
     fig_caption: yes
     number_sections: yes
     toc_depth: 2
@@ -48,9 +48,9 @@ bibliography: bibliography.bib
 ---'
  
 rmd <- list.files(pattern = '*.Rmd', recursive = T)
-chunk <- str_c(header, "\n", init, "\n")
-chunks <- str_c("```{r child = '", rmd, "'}\n```" ,"\n", "\\newpage")
-chunks <- c(chunk, chunks, "\n# 参考文献\n")
+chunk <- stringr::str_c(header, "\n", init, "\n")
+chunks <- stringr::str_c("```{r child = '", rmd, "'}\n```" ,"\n\n", "\\newpage", "\n")
+chunks <- c(chunk, chunks, "# 参考文献 \n")
 writeLines(chunks, "out.rmd")
 rmarkdown::render("out.rmd")
 file.remove('out.rmd', 'out.log')
