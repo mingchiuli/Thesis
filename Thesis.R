@@ -1,7 +1,3 @@
-if (system.file(package = "stringr") == '') {
-  install.packages("stringr")
-}
-
 init <- "```{r, include=FALSE}
 c('tidyverse', 
   'stargazer', 
@@ -14,7 +10,7 @@ c('tidyverse',
   'maps', 
   'see',
   'bookdown') |> 
-  purrr::map(\\(pkg) {
+  lapply(\\(pkg) {
     if (system.file(package = pkg) == '') {
       install.packages(pkg)
     }
@@ -22,17 +18,18 @@ c('tidyverse',
   })
 showtext_auto()
 twData <- read_csv('data/data.csv')
+ASEAN <- c('Malaysia', 'Indonesia', 'Thailand', 'Philippines', 'Singapore', 'Vietnam', 'Brunei', 'Laos', 'Myanmar', 'Cambodia')
 ```"
  
-header <- '---
-title: "戒急用忍：台湾地区的南向政策"
+header <- "---
+title: '戒急用忍：台湾地区的南向政策'
 author:
   - 李鸣玖
 header-includes:
   - \\usepackage{lscape}
   - \\usepackage{ctex}
-papersize: "a4"
-geometry: "margin=1.75in"
+papersize: 'a4'
+geometry: 'margin=1.75in'
 keywords:
   - 南向政策
   - 台湾经贸
@@ -45,13 +42,16 @@ output:
     toc_depth: 2
     toc: yes
 bibliography: bibliography.bib
----'
- 
-rmd <- list.files(pattern = '*.Rmd', recursive = T)
-chunk <- stringr::str_c(header, "\n", init, "\n")
-chunks <- stringr::str_c("```{r child = '", rmd, "'}\n```" ,"\n\n", "\\newpage", "\n")
-chunks <- c(chunk, chunks, "# 参考文献 \n")
-writeLines(chunks, "out.rmd")
+---"
+
+list.files(pattern = '*.Rmd', recursive = T) |> 
+  lapply(\(file) paste("```{r child = '", file, "'}\n```\n\n\\newpage\n")) |> 
+  as.character() |> 
+  paste(collapse = '') |> 
+  paste(header, '\n',init, '\n',arg = _, "# 参考文献 \n") |> 
+  gsub(' ```', '```', x = _) |> 
+  writeLines('out.rmd')
+
 rmarkdown::render("out.rmd")
-# file.remove('out.rmd', 'out.log')
-# system2("open",'out.pdf')
+file.remove('out.rmd', 'out.log')
+system2("open",'out.pdf')
