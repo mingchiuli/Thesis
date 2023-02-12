@@ -48,7 +48,7 @@ list.files(pattern = '*.Rmd', recursive = T) |>
   lapply(\(file) paste("```{r child = '", file, "'}\n```\n\n\\newpage\n")) |> 
   as.character() |> 
   paste(collapse = '') |> 
-  paste(header, '\n',init, '\n',arg = _, "# 参考文献 \n") |> 
+  paste(header, '\n', init, '\n', arg = _, "# 参考文献 \n") |> 
   gsub(' ```', '```', x = _) |> 
   writeLines('out.rmd')
 
