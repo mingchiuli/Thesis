@@ -6,7 +6,7 @@ c('tidyverse',
   'lmtest', 
   'ggpubr', 
   'showtext', 
-  'rticles', 
+  'rticles',
   'maps', 
   'see',
   'bookdown') |> 
@@ -17,7 +17,7 @@ c('tidyverse',
     library(pkg, character.only = TRUE)
   })
 showtext_auto()
-twData <- read_csv('data/data.csv')
+twData <- read.csv('data/data.csv')
 ASEAN <- c('Malaysia', 'Indonesia', 'Thailand', 'Philippines', 'Singapore', 'Vietnam', 'Brunei', 'Laos', 'Myanmar', 'Cambodia')
 ```"
  
