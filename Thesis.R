@@ -17,8 +17,9 @@ c('tidyverse',
     library(pkg, character.only = TRUE)
   })
 showtext_auto()
-twData <- read.csv('data/data.csv')
+tw_data <- read.csv('data/data.csv')
 ASEAN <- c('Malaysia', 'Indonesia', 'Thailand', 'Philippines', 'Singapore', 'Vietnam', 'Brunei', 'Laos', 'Myanmar', 'Cambodia')
+NSBP <- c('India', 'Pakistan', 'Bangladesh', 'Nepal', 'Sri Lanka', 'Bhutan', 'Laos', 'Myanmar', 'Cambodia', 'Australia', 'New Zealand', 'Thailand', 'Malaysia', 'Indonesia', 'Philippines', 'Singapore', 'Vietnam', 'Brunei')
 ```"
  
 header <- "---
