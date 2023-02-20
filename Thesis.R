@@ -18,7 +18,7 @@ c('tidyverse',
     library(pkg, character.only = TRUE)
   })
 showtext_auto()
-tw_data <- read.csv('data/data.csv')
+tw_data <- read_csv('data/data.csv', show_col_types = FALSE)
 ASEAN <- c('Malaysia', 'Indonesia', 'Thailand', 'Philippines', 'Singapore', 'Vietnam', 'Brunei', 'Laos', 'Myanmar', 'Cambodia')
 NSBP <- c('India', 'Pakistan', 'Bangladesh', 'Nepal', 'Sri Lanka', 'Bhutan', 'Laos', 'Myanmar', 'Cambodia', 'Australia', 'New Zealand', 'Thailand', 'Malaysia', 'Indonesia', 'Philippines', 'Singapore', 'Vietnam', 'Brunei')
 
@@ -46,7 +46,6 @@ gene_state <- Vectorize(\\(cntry) {
 })
 
 ccp_world <- st_read('data/21ESRI/21ESRI.shp') |> 
-  filter(CNTRY_NAME != 'Antarctica') |> 
   mutate(State = gene_state(CNTRY_NAME))
 ```"
  
