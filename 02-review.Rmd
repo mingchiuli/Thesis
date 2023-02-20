@@ -73,16 +73,14 @@ dependence_ASEAN <- dependence |>
   mutate(Export = sum(Export), Inport = sum(Inport)) |> 
   filter(State == 'Singapore')
 
+
 state_name <- Vectorize(\(state) {
-  if (state == 'China') {
-      return('中国大陆')
-    } else if (state == 'Japan') {
-      return('日本')
-    } else if (state == 'USA') {
-      return('美国')
-    } else if (state == 'Singapore') {
-      return('东盟')
-    }
+  switch (state,
+    'China' = '中国大陆',
+    'Japan' = '日本国',
+    'USA' = '美国',
+    'Singapore' = '新加坡'
+  )
 })
 
 bind_rows(dependence_China, dependence_Japan, dependence_USA, dependence_ASEAN) |>  
@@ -101,9 +99,8 @@ bind_rows(dependence_China, dependence_Japan, dependence_USA, dependence_ASEAN) 
 在1993年时，台湾对大陆的贸易依存度尚且不足2%，而到了2016年，则超过了20%。贸易依存度的扭转同样在台湾对外出口方面有所体现。如热力地图\@ref(fig:19932016map)^[数据来源：台湾财政部。]所示，2016年台湾对大陆的出口占比比1993年的出口占比高出20%以上，对韩国亦有出口占比的提升，但台湾对英国和德国的出口占比有不同程度的下降，而下降最多的则是美国，超过了10%。与此同时可以发现，台湾对东南亚国家的出口占比均有不同程度的提升，其中对越南、菲律宾和马来西亚的出口占比提升比较明显。从贸易的引力模型来看，这并不难解释。东盟总面积449万平方千米，人口6.6亿，拥有丰富的劳动力和广阔的需求市场，更重要的优势是贸易双方的地理距离，并且有明显的航运优势，这些特性一定程度上影响了台湾潜在的进出口发展方向。
 
 \begin{landscape}
-```{r 19932016map, echo=FALSE, fig.cap='1993年和2016年台湾地区出口占比差', out.width='150%',out.height='100%', fig.width=11, fig.height=6.5, warning=FALSE}
-world <- map_data("world") |> 
-  filter(region != "Antarctica")
+```{r 19932016map, echo=FALSE, fig.cap='1993年和2016年台湾地区出口占比差', out.width='150%',out.height='100%', fig.width=15, fig.height=8, warning=FALSE}
+
 tw_data_1993 <- tw_data |> 
   filter(Year == 1993, !is.na(Export)) |> 
   select(State, Export, Year) |> 
@@ -120,14 +117,16 @@ tw_data_2016 <- tw_data_2016 |>
 tw_data_1993 <- tw_data_1993 |> 
   filter(tw_data_1993$State %in% tw_data_2016$State)
 
-suppressMessages(bind_cols(tw_data_1993$State, tw_data_2016$百分比 - tw_data_1993$百分比)) |> 
-  rename(地区 = ...1, 百分比变动 = ...2)  |> 
-  ggplot(aes(map_id = 地区)) +
-    geom_map(aes(fill = 百分比变动), map = world) +
-    scale_fill_distiller(palette = "Set2",direction= 1) + 
-    expand_limits(x = world$long, y = world$lat) +
+suppressMessages(bind_cols(tw_data_1993$State, tw_data_2016$百分比 - tw_data_1993$百分比)) |>  
+  rename(State = ...1, 百分比变动 = ...2) |> 
+  right_join(ccp_world, by = 'State') |> 
+  ggplot() +
+    geom_sf(aes(fill = 百分比变动, geometry = geometry)) +
+    scale_fill_distiller(palette = "Set2", direction = 1) +
+    expand_limits(x = ccp_world$long, y = ccp_world$lat) +
     xlab("经度") +
     ylab("纬度")
+
 ```
 \end{landscape}
 
@@ -193,8 +192,8 @@ tw_data |>
 新南向政策将目标市场范围扩大为东盟10国，南亚6国，澳洲2国，包括：印度尼西亚、菲律宾、泰国、马来西亚、新加坡、文莱、越南、缅甸、柬埔寨、老挝、印度、巴基斯坦、孟加拉国、尼泊尔、斯里兰卡、不丹、澳大利亚和新西兰，共计十八国。如图\@ref(fig:NSBPPerc)所示，台湾对越南累计投资占比最大。
 
 ```{r NSBPPerc, echo=FALSE, fig.cap='2016-2019台湾对新南向国家投资积累分布', fig.align = 'center'}
-NSBP_region <- map_data("world") |> 
-  filter(region %in% NSBP)
+NSBP_region <- ccp_world |> 
+  filter(State %in% NSBP)
 
 tw_data |> 
   filter(Year >= 2016, !is.na(FDI), State %in% NSBP) |> 
@@ -203,9 +202,10 @@ tw_data |>
   group_by(State) |> 
   mutate(百分比 = (sum(FDI) / sum_fdi) * 100) |> 
   filter(Year == 2016) |> 
-  ggplot(aes(map_id = State)) +
-    geom_map(aes(fill = 百分比), map = NSBP_region) +
-    scale_fill_distiller(palette = "Set2", direction= 1) + 
+  right_join(NSBP_region, by = 'State') |> 
+  ggplot() +
+    geom_sf(aes(fill = 百分比, geometry = geometry)) +
+    scale_fill_distiller(palette = "Set2", direction= 1) +
     expand_limits(x = NSBP_region$long, y = NSBP_region$lat) +
     xlim(50, 200) +
     ylim(-50, 40) +

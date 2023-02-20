@@ -9,7 +9,8 @@ c('tidyverse',
   'rticles',
   'maps', 
   'see',
-  'bookdown') |> 
+  'bookdown',
+  'sf') |> 
   lapply(\\(pkg) {
     if (system.file(package = pkg) == '') {
       install.packages(pkg)
@@ -20,6 +21,33 @@ showtext_auto()
 tw_data <- read.csv('data/data.csv')
 ASEAN <- c('Malaysia', 'Indonesia', 'Thailand', 'Philippines', 'Singapore', 'Vietnam', 'Brunei', 'Laos', 'Myanmar', 'Cambodia')
 NSBP <- c('India', 'Pakistan', 'Bangladesh', 'Nepal', 'Sri Lanka', 'Bhutan', 'Laos', 'Myanmar', 'Cambodia', 'Australia', 'New Zealand', 'Thailand', 'Malaysia', 'Indonesia', 'Philippines', 'Singapore', 'Vietnam', 'Brunei')
+
+gene_state <- Vectorize(\\(cntry) {
+  switch (cntry,
+    'Trinidad & Tobago' = 'Trinidad',
+    'St. Lucia' = 'Saint Lucia',
+    'St. Vincent & the Grenadines' = 'Saint Vincent',
+    'The Bahamas' = 'Bahamas',
+    'Antigua & Barbuda' = 'Antigua',
+    'St. Kitts & Nevis' = 'Saint Kitts',
+    'United Kingdom' = 'UK',
+    'Cote d\\'Ivoire' = 'Ivory Coast',
+    'The Gambia' = 'Gambia',
+    'Sao Tome & Principe' = 'Sao Tome and Principe',
+    'Bosnia & Herzegovina' = 'Bosnia and Herzegovina',
+    'North Macedonia' = 'Macedonia',
+    'Vatican City' = 'Vatican',
+    'Marshall Is.' = 'Marshall Islands',
+    'United States' = 'USA',
+    'Congo' = 'Republic of Congo',
+    'Congo, DRC' = 'Democratic Republic of the Congo',
+    cntry
+  )
+})
+
+ccp_world <- st_read('data/21ESRI/21ESRI.shp') |> 
+  filter(CNTRY_NAME != 'Antarctica') |> 
+  mutate(State = gene_state(CNTRY_NAME))
 ```"
  
 header <- "---
@@ -56,3 +84,4 @@ list.files(pattern = '*.Rmd', recursive = T) |>
 rmarkdown::render("out.rmd")
 file.remove('out.rmd', 'out.log')
 system2("open",'out.pdf')
+
