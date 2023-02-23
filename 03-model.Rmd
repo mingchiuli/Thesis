@@ -1,0 +1,88 @@
+# 实证研究
+
+## 模型介绍
+
+双重差分法(Difference in Differences,DID)是政策评估的非实验方法中最为常用的一种计量方法。对于某种政策的实施，存在受政策影响的个体和不受政策影响的个体，分别成为实验组和对照组。双重差分法的应用基于这种事实：如果政策影响前，实验组和对照组具有相同的变化趋势，而政策发生后两者产生了不同的变化趋势，则说明政策是有效的。从类别上，对于双重差分的应用，大致可以分为传统DID(Standard DID)和多期DID(Time-varying DID)，前者的应用场景在于，所有实验组个体受政策冲击的时点是一致的，而后者的应用场景在于，不同的实验组个体受到了不同时间的政策影响。
+
+双重差分法的基准模型一般设置为：
+
+\begin{equation}
+Y_{it} = a_{0} + a_{1} \cdot du + a_{2} \cdot dt + a_{3} \cdot du \cdot dt + \epsilon_{it} (\#eq:mean)
+\end{equation}
+
+根据模型\@ref(eq:mean)，$du$为分组虚拟变量，若个体$i$受政策实施影响，则属于实验组，相应的$du$取值为1，若个体$i$不受政策实施的影响，则$i$属于对照组，对应的$i$取值为0。$dt \cdot du$为分组虚拟变量与政策虚拟变量的交互项，其系数$a_{3}$就反映了政策实施的净效应，也是DID研究最为关心的系数。对于回归系数$a_{3}$的作用，可以通过表\@ref(tab:DID)进行分析：
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|c|c|r|}
+\hline{}
+ & 政策实施前 & 政策实施后 & Difference\\
+\cline{1-4}
+实验组 & $a_{0} + a_{1}$ & $a_{0} + a_{1} + a_{2} + a_{3}$ & $a_{2} + a_{3}$\\
+\cline{1-4}
+对照组 & $a_{0}$ & $a_{0} + a_{2}$ & $a_{2}$\\
+\cline{1-4}
+Difference & $a_{1}$ & $a_{1} + a_{3}$ & $a_{3}$ (DID)\\
+\hline
+\end{tabular}
+\end{center}
+\caption{DID分析}
+\label{tab:DID}
+\end{table}
+
+那么，$a_{3}$是实验组和对照组在政策冲击前后分别差分得到的结果之差，一次差分在时间维度，一次差分在个体维度。DID的原理也可以从图形角度进行分析。
+
+```{r DID, echo=FALSE, fig.cap='DID图形表示', fig.align = 'center'}
+fun1 <- \(x) {
+  2 * x + 5
+}
+
+fun2 <- \(x) {
+  2 * x + 1
+}
+
+fun3 <- \(x) {
+  3 * x 
+}
+
+ggplot() +
+  geom_point(aes(x = 10, y = 25)) +
+  geom_point(aes(x = 10, y = 30)) +
+  geom_line(aes(x = 10, y = c(25, 30), col = "实验组")) +
+  stat_function(fun = fun1, xlim = c(0, 5), aes(col = "实验组")) +
+  stat_function(fun = fun1, xlim = c(5, 10), linetype = "dashed", aes(col = "实验组")) +
+  stat_function(fun = fun3, xlim = c(5, 10), aes(col = "实验组")) +
+  stat_function(fun = fun2, xlim = c(0, 10), aes(col = "对照组")) + 
+  geom_vline(xintercept = 5, linetype = "dashed") +
+  scale_colour_manual(name = "分类",values = c("实验组" = "black", "对照组" = "gray")) +
+  ylab("数量值") +
+  xlab("时间")
+
+```
+
+图\@ref(fig:DID)中灰色实线段表示的是假设政策冲击未发生时，实验组"应有"的变化趋势。若政策冲击发生后实验组变化趋势由黑色虚线段所表示，则反映了实验组受政策的影响是区别于对照组的。上图中的红色实线即为DID识别的因果效应。在回归分析中，如果因果效应的回归系数显著，就可以一定程度上说明政策干预对于实验组产生的影响是有别于没有政策干预的对照组的，因为DID方法已经剔除了实验组和对照组共同的变化趋势。
+
+在控制变量的选取中，往往存在和时间相关的变量（在每个个体中均相同）与和个体相关的变量（在每个时间区间均相同）的变量，由此使用双向固定效应来控制回归模型可以得到更为准确的结果。在双向固定效应的基础上，双重差分法的扩展形式是双向固定效应模型(Two-Way Fixed Effects Regression, TWFE)：
+
+\begin{equation}
+Y_{it} = a_{i} + \lambda_{t} + \beta \cdot D_{it} + \epsilon_{it}(\#eq:twfe)
+\end{equation}
+
+在模型\@ref(eq:twfe)中，如果个体i在t期受到干预，则$D_{it}$取1，否则取0。双向固定效应对于传统形式的DID模型而言，控制粒度更细，在控制了时间（年度）和个体的情况下去寻找政策产生的效应，而非仅仅控制政策前后和实验分组，具有更好的准确性。另外，对于非传统形式的DID，即多期DID，也适用于这种情况。故基于双向固定效应模型，我们的DID模型设置如下：
+
+
+\begin{equation}
+Perc_{it} = \beta \cdot Treat_{it} + \gamma \cdot Z + \lambda_{i} + \mu_{t} + \epsilon_{it}(\#eq:twdid)
+\end{equation}
+
+在模型\@ref(eq:twdid)中，$Perc_{it}$表示台湾对$i$地区在$t$年的进口、出口及投资占当年总量的比例，$Treat_{it}$代表当年该国是否受到了南向政策或新南向政策的干预，受到干预取1，否则取0。$\lambda_{i}$和$\mu_{t}$分别为个体固定效应和时间固定效应，$Z$为控制变量，$\epsilon_{it}$为误差项。由于模型中存在时间固定效应和个体固定效应，模型\@ref(eq:mean)中交乘项由于多重共线性，已经被双向固定效应所替代。$\beta$就是我们关心的系数，如果此系数显著，则在平行趋势成立的条件下，南向政策或新南向政策对相关贸易比例变量产生了影响。
+
+双重差分法运用的前提是政策干预组和对照组需要满足平行趋势检验，即处理组和对照组的变化趋势在政策干预前没有显著性差异。参考[@beck2010big]的研究，本文对平行趋势检验回归模型设置如下：
+
+\begin{equation}
+Perc_{it} = \sum_{\tau = -\tau_{0}} ^ {-2} \alpha_{\tau} \cdot D_{it} + \sum_{\tau = 0} ^ {\tau_{1}} \alpha_{\tau} \cdot D_{it} + \gamma \cdot Z_{it} + \lambda_{i} + \mu_{t} + \epsilon_{it}(\#eq:twevent)
+\end{equation}
+
+模型\@ref(eq:twevent)基于事件研究法，将研究范围分为政策干预前共$\tau_{0}$期和政策干预后共$\tau_{1}$期，$\tau=0$代表政策干预当期。$D_{it}$是个体在某年是否受政策干预的虚拟变量，以政策干预的前一年为基期，如果观测值所处年份距离政策干预${k}$年，则$\alpha_{k}$对应的$D_{i,t}$取1，其他所有$D_{i,t}$取0。如果回归结果在95%的置信区间上满足回归系数从$\alpha_{-\tau_{0}}$到$\alpha_{-2}$都不显著异于0，则认为在被解释变量在政策干预前的年份的变化与基期没有显著性差异。在验证平行趋势检验的方法中，本文将回归系数的95%置信区间使用误差棒的形式在图形中绘出，若在基期前所有误差棒都穿过0，则平行趋势假设得到满足。
+
+
