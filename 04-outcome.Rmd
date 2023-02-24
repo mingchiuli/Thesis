@@ -1,0 +1,28 @@
+# 实证结果
+
+\begin{landscape}
+```{r, echo=FALSE, warning=FALSE,results='asis'}
+
+fn_state <- c("China", "India", "Pakistan", "Bangladesh", "Nepal", "Sri Lanka", "Maldives", "Bhutan", "Laos", "Myanmar", "Cambodia", "Australia", "New Zealand", "Papua New Guinea", "Palau", "Kiribati", "Maldives", "Nauru", "New Caledonia", "Vanuatu", "Samoa", "Marshall Islands", "Thailand", "Malaysia", "Indonesia", "Philippines", "Singapore", "Vietnam", "Brunei", "Japan", "South Korea", "Hong Kong", "USA", "Macao", "UK", "France", "Germany", "Spain", "Italy", "Canada", "Netherlands")
+
+fn_data <- tw_data |> 
+  filter(Year < 2003, Year >= 1990, State %in% fn_state) |> 
+  rename(政策干预 = Treat, 出口占比 = ExpPerc)
+
+# vcovHC.plm
+
+reg1.1 <- plm(出口占比 ~ 政策干预, data = fn_data, effect = "twoways", model="within", index =  c("State", "Year"))
+rse1.1 <- sqrt(diag(vcovHC(reg1.1)))
+
+reg1.2 <- plm(InpPerc ~ Treat, data = fn_data, effect = "twoways", model="within", index =  c("State", "Year"))
+rse1.2 <- sqrt(diag(vcovHC(reg1.2, cluster = "group")))
+
+reg1.3 <- plm(FDIPerc ~ Treat, data = fn_data, effect = "twoways", model="within", index =  c("State", "Year"))
+rse1.3 <- sqrt(diag(vcovHC(reg1.3)))
+
+reg1.4 <- plm(ExpPerc ~ Treat + WTO_Y_IN_TW_IN + duDiplomatic + Diplomatic + APEC + Chinese + ECFA + FTA + Openness + LPop + LGDP, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
+
+reg2.3 <- plm(ExpPerc ~ Treat + y1990 + y1991 + y1992 + y1993 + y1994 + y1995 + y1996 + y1997 + y1998 + y1999 + y2000 + y2001 + WTO_Y_IN_TW_IN + y2002 + duDiplomatic + Diplomatic + APEC + Chinese + ECFA + FTA + Openness + LPop + LGDP, data = fn_data, index= c("State"))
+
+```
+\end{landscape}
