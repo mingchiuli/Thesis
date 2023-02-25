@@ -27,7 +27,7 @@ rse1.5 <- sqrt(diag(vcovHC(reg1.5, cluster = "group")))
 reg1.6 <- plm(投资占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
 rse1.6 <- sqrt(diag(vcovHC(reg1.6, cluster = "group")))
 
-stargazer(reg1.1, reg1.2, reg1.3, reg1.4, reg1.5, reg1.6, se=list(rse1.1, rse1.2, rse1.3, rse1.4, rse1.5, rse1.6), type = "latex", no.space=TRUE, omit.stat=c("f", "adj.rsq"), label = "tab:fntable", title = "一次南向基准回归", dep.var.caption = "被解释变量", notes.label = "备注：", header=FALSE)
+stargazer(reg1.1, reg1.2, reg1.3, reg1.4, reg1.5, reg1.6, se=list(rse1.1, rse1.2, rse1.3, rse1.4, rse1.5, rse1.6), type = "latex", no.space=TRUE, omit.stat=c("f", "adj.rsq"), label = "tab:fntable", title = "一次南向基准回归", dep.var.caption = "被解释变量", notes.label = "备注：", header=FALSE, add.lines=list(c('时间固定效应', '是','是', '是','是', '是','是'), c('个体固定效应', '是','是', '是','是', '是','是')), notes = "标准误已经过聚类调整")
 ```
 
 
@@ -51,7 +51,7 @@ rse2.5 <- sqrt(diag(vcovHC(reg2.5, cluster = "group")))
 reg2.6 <- plm(投资占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
 rse2.6 <- sqrt(diag(vcovHC(reg2.6, cluster = "group")))
 
-stargazer(reg2.1, reg2.2, reg2.3, reg2.4, reg2.5, reg2.6, se=list(rse2.1, rse2.2, rse2.3, rse2.4, rse2.5, rse2.6), type = "latex", no.space=TRUE, omit.stat=c("f", "adj.rsq"), label = "tab:NSBPtable", title = "二次南向基准回归", dep.var.caption = "被解释变量", notes.label = "备注：", header=FALSE)
+stargazer(reg2.1, reg2.2, reg2.3, reg2.4, reg2.5, reg2.6, se=list(rse2.1, rse2.2, rse2.3, rse2.4, rse2.5, rse2.6), type = "latex", no.space=TRUE, omit.stat=c("f", "adj.rsq"), label = "tab:NSBPtable", title = "二次南向基准回归", dep.var.caption = "被解释变量", notes.label = "备注：", header=FALSE, add.lines=list(c('时间固定效应', '是','是', '是','是', '是','是'), c('个体固定效应', '是','是', '是','是', '是','是')), notes = "标准误已经过聚类调整")
 
 ```
 
