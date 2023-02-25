@@ -68,17 +68,9 @@ build_d <- Vectorize(\(state, year) {
   }
 })
 
-build_D <- Vectorize(\(state, year) {
-  if (state %in% NSBP) {
-    return(year - 2016)
-  } else {
-    return(NA)
-  }
-})
-
 fn_data <- fn_data |> 
   mutate(fn_d = build_d(State, Year))
-
+  
 fn_data <- purrr::map(na.exclude(unique(fn_data$fn_d)), ~ fn_data |> 
   mutate(!! if_else(. < 0, str_c('d..', -.), str_c('d.', .)) := if_else(. == fn_d, 1, 0), .keep = "none")) |> 
   bind_cols(fn_data, other_table = _) |> 
@@ -86,7 +78,7 @@ fn_data <- purrr::map(na.exclude(unique(fn_data$fn_d)), ~ fn_data |>
 
 
 NSBP_data <- NSBP_data |> 
-  mutate(nsbp_d = build_D(State, Year))
+  mutate(nsbp_d = if_else(State %in% NSBP, Year - 2016, NA))
 
 NSBP_data <- purrr::map(na.exclude(unique(NSBP_data$nsbp_d)), ~ NSBP_data |>
   mutate(!! if_else(. < 0, str_c('D..', -.), str_c('D.', .)) := if_else(. == nsbp_d, 1, 0), .keep = "none")) |> 
