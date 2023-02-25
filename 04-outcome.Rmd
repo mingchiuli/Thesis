@@ -55,7 +55,8 @@ stargazer(reg2.1, reg2.2, reg2.3, reg2.4, reg2.5, reg2.6, se=list(rse2.1, rse2.2
 
 ```
 
-```{r parallel, fig.cap='两次南向平行趋势检验', echo=FALSE, warning=FALSE, fig.height=9}
+
+```{r parallel, fig.cap='两次南向平行趋势检验', echo=FALSE, fig.height=9, warning=FALSE}
 
 build_d <- Vectorize(\(state, year) {
   if (state %in% fn_first_state) {
@@ -106,9 +107,9 @@ coef3.4$up <- coef3.4$Estimate + 1.96 * coef3.4$`Std. Error`
 coef3.4$low <- coef3.4$Estimate - 1.96 * coef3.4$`Std. Error`
 coef3.4$t <- c(-8 : -2, 0 : 3)
 p4 <- ggplot(coef3.4, aes(t, Estimate)) +
-  geom_hline(yintercept = 0, size = 1, color = "white") +
+  geom_hline(yintercept = 0, linewidth = 1, col = "white") +
   geom_point() +
-  geom_point(aes(x=-1, y=0), colour="red") +
+  geom_point(aes(x=-1, y=0), col="red") +
   geom_errorbar(aes(ymin = low, ymax = up), width = 0.2) +
   ylab("系数") +
   xlab("年份") +
@@ -125,9 +126,9 @@ coef3.5$up <- coef3.5$Estimate + 1.96 * coef3.5$`Std. Error`
 coef3.5$low <- coef3.5$Estimate - 1.96 * coef3.5$`Std. Error`
 coef3.5$t <- c(-8 : -2, 0 : 3)
 p5 <- ggplot(coef3.5, aes(t, Estimate)) +
-  geom_hline(yintercept = 0, size = 1, color = "white") +
+  geom_hline(yintercept = 0, linewidth = 1, col = "white") +
   geom_point() +
-  geom_point(aes(x=-1, y=0), colour="red") +
+  geom_point(aes(x=-1, y=0), col="red") +
   geom_errorbar(aes(ymin = low, ymax = up), width = 0.2) +
   ylab("系数") +
   xlab("年份") +
@@ -143,9 +144,9 @@ coef3.6$up <- coef3.6$Estimate + 1.96 * coef3.6$`Std. Error`
 coef3.6$low <- coef3.6$Estimate - 1.96 * coef3.6$`Std. Error`
 coef3.6$t <- c(-8 : -2, 0 : 3)
 p6 <- ggplot(coef3.6, aes(t, Estimate)) +
-  geom_hline(yintercept = 0, size = 1, color = "white") +
+  geom_hline(yintercept = 0, linewidth = 1, col = "white") +
   geom_point() +
-  geom_point(aes(x=-1, y=0), colour="red") +
+  geom_point(aes(x=-1, y=0), col="red") +
   geom_errorbar(aes(ymin = low, ymax = up), width = 0.2) +
   ylab("系数") +
   xlab("年份") +
@@ -168,9 +169,9 @@ coef3.1$up <- coef3.1$Estimate + 1.96 * coef3.1$`Std. Error`
 coef3.1$low <- coef3.1$Estimate - 1.96 * coef3.1$`Std. Error`
 coef3.1$t <- c(-7 : -2, 0 : 8)
 p1 <- ggplot(coef3.1, aes(t, Estimate)) +
-  geom_hline(yintercept = 0, size = 1, color = "white") +
+  geom_hline(yintercept = 0, linewidth = 1, col = "white") +
   geom_point() +
-  geom_point(aes(x=-1, y=0), colour="red") +
+  geom_point(aes(x=-1, y=0), col="red") +
   geom_errorbar(aes(ymin = low, ymax = up), width = 0.2) +
   ylab("系数") +
   xlab("年份") +
@@ -186,9 +187,9 @@ coef3.2$up <- coef3.2$Estimate + 1.96 * coef3.2$`Std. Error`
 coef3.2$low <- coef3.2$Estimate - 1.96 * coef3.2$`Std. Error`
 coef3.2$t <- c(-7 : -2, 0 : 8)
 p2 <- ggplot(coef3.2, aes(t, Estimate)) +
-  geom_hline(yintercept = 0, size = 1, color = "white") +
+  geom_hline(yintercept = 0, linewidth = 1, col = "white") +
   geom_point() +
-  geom_point(aes(x=-1, y=0), colour="red") +
+  geom_point(aes(x=-1, y=0), col="red") +
   geom_errorbar(aes(ymin = low, ymax = up), width = 0.2) +
   ylab("系数") +
   xlab("年份") +
@@ -204,9 +205,9 @@ coef3.3$up <- coef3.3$Estimate + 1.96 * coef3.3$`Std. Error`
 coef3.3$low <- coef3.3$Estimate - 1.96 * coef3.3$`Std. Error`
 coef3.3$t <- c(-7 : -2, 0 : 8)
 p3 <- ggplot(coef3.3, aes(t, Estimate)) +
-  geom_hline(yintercept = 0, size = 1, color = "white") +
+  geom_hline(yintercept = 0, linewidth = 1, color = "white") +
   geom_point() +
-  geom_point(aes(x=-1, y=0), colour="red") +
+  geom_point(aes(x=-1, y=0), col="red") +
   geom_errorbar(aes(ymin = low, ymax = up), width = 0.2) +
   ylab("系数") +
   xlab("年份") +
