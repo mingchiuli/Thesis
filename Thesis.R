@@ -47,6 +47,18 @@ gene_state <- Vectorize(\\(cntry) {
 
 ccp_world <- st_read('data/21ESRI/21ESRI.shp') |> 
   mutate(State = gene_state(CNTRY_NAME))
+  
+fn_state <- c('China', 'India', 'Pakistan', 'Bangladesh', 'Nepal', 'Sri Lanka', 'Maldives', 'Bhutan', 'Laos', 'Myanmar', 'Cambodia', 'Australia', 'New Zealand', 'Papua New Guinea', 'Palau', 'Kiribati', 'Maldives', 'Nauru', 'New Caledonia', 'Vanuatu', 'Samoa', 'Marshall Islands', 'Thailand', 'Malaysia', 'Indonesia', 'Philippines', 'Singapore', 'Vietnam', 'Brunei', 'Japan', 'South Korea', 'Hong Kong', 'USA', 'Macao', 'UK', 'France', 'Germany', 'Spain', 'Italy', 'Canada', 'Netherlands')
+fn_first_state <- c('Thailand','Malaysia', 'Indonesia', 'Philippines', 'Singapore', 'Vietnam', 'Brunei')
+fn_second_state <- c('Laos', 'Myanmar', 'Cambodia', 'Australia', 'New Zealand')
+
+fn_data <- tw_data |> 
+  filter(Year < 2003, Year >= 1990, State %in% fn_state) |> 
+  rename(政策干预 = Treat, 出口占比 = ExpPerc, 进口占比 = InpPerc, 投资占比 = FDIPerc, 外交关系 = Diplomatic, 外交持续 = duDiplomatic, 世贸组织 = WTO_Y_IN_TW_IN, 亚太经合 = APEC, 开放度 = Openness, 人口 = LPop, 生产总值 = LGDP)
+  
+NSBP_data <- tw_data |> 
+  filter(Year >= 2008) |> 
+  rename(政策干预 = Treat, 出口占比 = ExpPerc, 进口占比 = InpPerc, 投资占比 = FDIPerc, 外交关系 = Diplomatic, 外交持续 = duDiplomatic, 世贸组织 = WTO_Y_IN_TW_IN, 两岸协议 = ECFA, 开放度 = Openness, 人口 = LPop, 生产总值 = LGDP, 自贸协定 = FTA)
 ```"
  
 header <- "---
@@ -57,11 +69,11 @@ header-includes:
   - \\usepackage{lscape}
   - \\usepackage{ctex}
 papersize: 'a4'
-geometry: 'margin=1.75in'
+geometry: 'margin=1in'
 keywords:
   - 南向政策
   - 台湾经贸
-indent: true  
+indent: true
 output:
   bookdown::pdf_document2:
     latex_engine: xelatex

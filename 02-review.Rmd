@@ -99,7 +99,7 @@ bind_rows(dependence_China, dependence_Japan, dependence_USA, dependence_ASEAN) 
 在1993年时，台湾对大陆的贸易依存度尚且不足2%，而到了2016年，则超过了20%。贸易依存度的扭转同样在台湾对外出口方面有所体现。如热力地图\@ref(fig:19932016map)^[数据来源：台湾财政部。]所示，2016年台湾对大陆的出口占比比1993年的出口占比高出20%以上，对韩国亦有出口占比的提升，但台湾对英国和德国的出口占比有不同程度的下降，而下降最多的则是美国，超过了10%。与此同时可以发现，台湾对东南亚国家的出口占比均有不同程度的提升，其中对越南、菲律宾和马来西亚的出口占比提升比较明显。从贸易的引力模型来看，这并不难解释。东盟总面积449万平方千米，人口6.6亿，拥有丰富的劳动力和广阔的需求市场，更重要的优势是贸易双方的地理距离，并且有明显的航运优势，这些特性一定程度上影响了台湾潜在的进出口发展方向。
 
 \begin{landscape}
-```{r 19932016map, echo=FALSE, fig.cap='1993年和2016年台湾地区出口占比差',out.width='150%',out.height='100%',  fig.width=15, fig.height=8, warning=FALSE}
+```{r 19932016map, echo=FALSE, fig.cap='1993年和2016年台湾地区出口占比差', warning=FALSE, fig.align='center', fig.width=12, fig.height=7}
 
 tw_data_1993 <- tw_data |> 
   filter(Year == 1993, !is.na(Export)) |> 
@@ -124,7 +124,8 @@ suppressMessages(bind_cols(tw_data_1993$State, tw_data_2016$百分比 - tw_data_
     geom_sf(aes(fill = 百分比变动, geometry = geometry)) +
     scale_fill_distiller(palette = "Set2", direction = 1) +
     xlab("经度") +
-    ylab("纬度")
+    ylab("纬度") +
+    theme(legend.position = "top")
 
 ```
 \end{landscape}
