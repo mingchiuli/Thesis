@@ -1,3 +1,5 @@
+rm(list = ls())
+
 init <- "```{r, include=FALSE}
 c('tidyverse', 
   'stargazer', 

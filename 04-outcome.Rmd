@@ -71,16 +71,23 @@ build_d <- Vectorize(\(state, year) {
 fn_data <- fn_data |> 
   mutate(fn_d = build_d(State, Year))
   
-fn_data <- purrr::map(na.exclude(unique(fn_data$fn_d)), ~ fn_data |> 
+fn_data <- fn_data |> 
+  pull(fn_d) |> 
+  unique() |> 
+  na.omit() |> 
+  purrr::map(~ fn_data |> 
   mutate(!! if_else(. < 0, str_c('d..', -.), str_c('d.', .)) := if_else(. == fn_d, 1, 0), .keep = "none")) |> 
   bind_cols(fn_data, other_table = _) |> 
   mutate(across(starts_with('d.'), ~ if_else(is.na(.), 0, .)))
 
-
 NSBP_data <- NSBP_data |> 
   mutate(nsbp_d = if_else(State %in% NSBP, Year - 2016, NA))
 
-NSBP_data <- purrr::map(na.exclude(unique(NSBP_data$nsbp_d)), ~ NSBP_data |>
+NSBP_data <- NSBP_data |> 
+  pull(nsbp_d) |> 
+  unique() |> 
+  na.omit() |> 
+  purrr::map(~ NSBP_data |>
   mutate(!! if_else(. < 0, str_c('D..', -.), str_c('D.', .)) := if_else(. == nsbp_d, 1, 0), .keep = "none")) |> 
   bind_cols(NSBP_data, other_table = _) |> 
   mutate(across(starts_with('D.'), ~ if_else(is.na(.), 0, .)))
