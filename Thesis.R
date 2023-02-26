@@ -1,4 +1,25 @@
-rm(list = ls())
+header <- "---
+title: '戒急用忍：台湾地区的南向政策'
+author:
+  - 李鸣玖
+header-includes:
+  - \\usepackage{lscape}
+  - \\usepackage{ctex}
+papersize: 'a4'
+geometry: 'margin=1in'
+keywords:
+  - 南向政策
+  - 台湾经贸
+indent: true
+output:
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    fig_caption: yes
+    number_sections: yes
+    toc_depth: 2
+    toc: yes
+bibliography: bibliography.bib
+---"
 
 init <- "```{r, include=FALSE}
 c('tidyverse', 
@@ -55,43 +76,33 @@ fn_state <- c('China', 'India', 'Pakistan', 'Bangladesh', 'Nepal', 'Sri Lanka', 
 fn_first_state <- c('Thailand','Malaysia', 'Indonesia', 'Philippines', 'Singapore', 'Vietnam', 'Brunei')
 fn_second_state <- c('Laos', 'Myanmar', 'Cambodia', 'Australia', 'New Zealand')
 
+build_d <- Vectorize(\\(state, year) {
+  if (state %in% fn_first_state) {
+    return(year - 1994)
+  } else if (state %in% fn_second_state) {
+    return(year - 1997)
+  } else {
+    return(NA)
+  }
+})
+
 fn_data <- tw_data |> 
   filter(Year < 2003, Year >= 1990, State %in% fn_state) |> 
-  rename(政策干预 = Treat, 出口占比 = ExpPerc, 进口占比 = InpPerc, 投资占比 = FDIPerc, 外交关系 = Diplomatic, 外交持续 = duDiplomatic, 世贸组织 = WTO_Y_IN_TW_IN, 亚太经合 = APEC, 开放度 = Openness, 人口 = LPop, 生产总值 = LGDP)
+  rename(政策干预 = Treat, 出口占比 = ExpPerc, 进口占比 = InpPerc, 投资占比 = FDIPerc, 外交关系 = Diplomatic, 外交持续 = duDiplomatic, 世贸组织 = WTO_Y_IN_TW_IN, 亚太经合 = APEC, 开放度 = Openness, 人口 = LPop, 生产总值 = LGDP) |> 
+  mutate(fn_d = build_d(State, Year))
   
 NSBP_data <- tw_data |> 
   filter(Year >= 2008) |> 
-  rename(政策干预 = Treat, 出口占比 = ExpPerc, 进口占比 = InpPerc, 投资占比 = FDIPerc, 外交关系 = Diplomatic, 外交持续 = duDiplomatic, 世贸组织 = WTO_Y_IN_TW_IN, 两岸协议 = ECFA, 开放度 = Openness, 人口 = LPop, 生产总值 = LGDP, 自贸协定 = FTA)
+  rename(政策干预 = Treat, 出口占比 = ExpPerc, 进口占比 = InpPerc, 投资占比 = FDIPerc, 外交关系 = Diplomatic, 外交持续 = duDiplomatic, 世贸组织 = WTO_Y_IN_TW_IN, 两岸协议 = ECFA, 开放度 = Openness, 人口 = LPop, 生产总值 = LGDP, 自贸协定 = FTA) |> 
+  mutate(nsbp_d = if_else(State %in% NSBP, Year - 2016, NA))  
+
 ```"
- 
-header <- "---
-title: '戒急用忍：台湾地区的南向政策'
-author:
-  - 李鸣玖
-header-includes:
-  - \\usepackage{lscape}
-  - \\usepackage{ctex}
-papersize: 'a4'
-geometry: 'margin=1in'
-keywords:
-  - 南向政策
-  - 台湾经贸
-indent: true
-output:
-  bookdown::pdf_document2:
-    latex_engine: xelatex
-    fig_caption: yes
-    number_sections: yes
-    toc_depth: 2
-    toc: yes
-bibliography: bibliography.bib
----"
 
 list.files(pattern = '*.Rmd', recursive = T) |> 
-  lapply(\(file) paste("```{r child = '", file, "'}\n```\n\n\\newpage\n")) |> 
+  lapply(\(file) paste("```{r child = '", file, "'}\n```\n\\newpage\n")) |> 
   as.character() |> 
   paste(collapse = '') |> 
-  paste(header, '\n', init, '\n', arg = _, "# 参考文献 \n") |> 
+  paste(header, '\n', init, '\n', arg = _, "# 参考文献") |> 
   gsub(' ```', '```', x = _) |> 
   writeLines('out.rmd')
 
