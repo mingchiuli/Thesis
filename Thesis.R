@@ -12,7 +12,8 @@ c('tidyverse',
   'maps', 
   'see',
   'bookdown',
-  'sf') |> 
+  'sf',
+  'rlang') |> 
   lapply(\\(pkg) {
     if (system.file(package = pkg) == '') {
       install.packages(pkg)

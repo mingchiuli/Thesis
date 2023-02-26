@@ -33,26 +33,15 @@ Difference & $a_{1}$ & $a_{1} + a_{3}$ & $a_{3}$ (DID)\\
 那么，$a_{3}$是实验组和对照组在政策冲击前后分别差分得到的结果之差，一次差分在时间维度，一次差分在个体维度。DID的原理也可以从图形角度进行分析。
 
 ```{r DID, echo=FALSE, fig.cap='DID图形表示', fig.align = 'center'}
-fun1 <- \(x) {
-  2 * x + 5
-}
-
-fun2 <- \(x) {
-  2 * x + 1
-}
-
-fun3 <- \(x) {
-  3 * x 
-}
 
 ggplot() +
   geom_point(aes(x = 10, y = 25)) +
   geom_point(aes(x = 10, y = 30)) +
   geom_line(aes(x = 10, y = c(25, 30), col = "实验组")) +
-  stat_function(fun = fun1, xlim = c(0, 5), aes(col = "实验组")) +
-  stat_function(fun = fun1, xlim = c(5, 10), linetype = "dashed", aes(col = "实验组")) +
-  stat_function(fun = fun3, xlim = c(5, 10), aes(col = "实验组")) +
-  stat_function(fun = fun2, xlim = c(0, 10), aes(col = "对照组")) + 
+  stat_function(fun = as_function(~ 2 * . + 5), xlim = c(0, 5), aes(col = "实验组")) +
+  stat_function(fun = as_function(~ 2 * . + 5), xlim = c(5, 10), linetype = "dashed", aes(col = "实验组")) +
+  stat_function(fun = as_function(~ 3 * .), xlim = c(5, 10), aes(col = "实验组")) +
+  stat_function(fun = as_function(~ 2 * . + 1), xlim = c(0, 10), aes(col = "对照组")) + 
   geom_vline(xintercept = 5, linetype = "dashed") +
   scale_colour_manual(name = "分类",values = c("实验组" = "black", "对照组" = "gray")) +
   ylab("数量值") +
