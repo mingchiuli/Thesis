@@ -2,4 +2,4 @@
 
 Thesis for my post-graduation and master degree.
 
-After install tingtex, run the Thesis.R.
+After installed tingtex, run the Thesis.R.
