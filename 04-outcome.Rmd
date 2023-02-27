@@ -88,114 +88,37 @@ reg3.5 <- plm(进口占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.
 
 reg3.6 <- plm(投资占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度+ 人口 + 生产总值, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
 
-coef3.1 <- as.data.frame(coeftest(reg3.1, vcov.=vcovHC)[1 : 15, 1 :2])
-coef3.1$up <- NA
-coef3.1$low <- NA
-coef3.1$t <- NA
-coef3.1$up <- coef3.1$Estimate + 1.96 * coef3.1$`Std. Error`
-coef3.1$low <- coef3.1$Estimate - 1.96 * coef3.1$`Std. Error`
-coef3.1$t <- c(-7 : -2, 0 : 8)
-p1 <- ggplot(coef3.1, aes(t, Estimate)) +
-  geom_hline(yintercept = 0, linewidth = 1, col = "white") +
-  geom_point() +
-  geom_point(aes(x=-1, y=0), col="red") +
-  geom_errorbar(aes(ymin = low, ymax = up), width = 0.2) +
-  ylab("系数") +
-  xlab("年份") +
-  scale_x_continuous(breaks = seq(-7, 8, 3)) +
-  geom_vline(xintercept = -1, linetype = "dashed") +
-  labs(title = "一次南向", subtitle = "出口") 
+gene_fig <- \(reg, title, subtitle, seq_1, seq_2, seq_3) {
+  coef <- as.data.frame(coeftest(reg, vcov.=vcovHC)[seq_1, 1 : 2])
+  coef[["up"]] <- NA
+  coef[["low"]] <- NA
+  coef[["t"]] <- NA
+  coef[["up"]] <- coef[["Estimate"]] + 1.96 * coef[["Std. Error"]]
+  coef[["low"]] <- coef[["Estimate"]] - 1.96 * coef[["Std. Error"]]
+  coef[["t"]] <- seq_2
+  p <- ggplot(coef, aes(t, Estimate)) +
+    geom_hline(yintercept = 0, linewidth = 1, col = "white") +
+    geom_point() +
+    geom_point(aes(x=-1, y=0), col="red") +
+    geom_errorbar(aes(ymin = low, ymax = up), width = 0.2) +
+    ylab("系数") +
+    xlab("年份") +
+    scale_x_continuous(breaks = seq_3) +
+    geom_vline(xintercept = -1, linetype = "dashed")
+  if (!is.na(title)) {
+    p <- p + labs(title = title, subtitle = subtitle) 
+  } else {
+    p <- p + labs(subtitle = subtitle) 
+  }
+  return(p)
+}
 
-coef3.2 <- as.data.frame(coeftest(reg3.2, vcov.=vcovHC)[1 : 15, 1 :2])
-coef3.2$up <- NA
-coef3.2$low <- NA
-coef3.2$t <- NA
-coef3.2$up <- coef3.2$Estimate + 1.96 * coef3.2$`Std. Error`
-coef3.2$low <- coef3.2$Estimate - 1.96 * coef3.2$`Std. Error`
-coef3.2$t <- c(-7 : -2, 0 : 8)
-p2 <- ggplot(coef3.2, aes(t, Estimate)) +
-  geom_hline(yintercept = 0, linewidth = 1, col = "white") +
-  geom_point() +
-  geom_point(aes(x=-1, y=0), col="red") +
-  geom_errorbar(aes(ymin = low, ymax = up), width = 0.2) +
-  ylab("系数") +
-  xlab("年份") +
-  scale_x_continuous(breaks = seq(-7, 8, 3)) +
-  geom_vline(xintercept = -1, linetype = "dashed") +
-  labs(subtitle = "进口") 
-
-coef3.3 <- as.data.frame(coeftest(reg3.3, vcov.=vcovHC)[1 : 15, 1 :2])
-coef3.3$up <- NA
-coef3.3$low <- NA
-coef3.3$t <- NA
-coef3.3$up <- coef3.3$Estimate + 1.96 * coef3.3$`Std. Error`
-coef3.3$low <- coef3.3$Estimate - 1.96 * coef3.3$`Std. Error`
-coef3.3$t <- c(-7 : -2, 0 : 8)
-p3 <- ggplot(coef3.3, aes(t, Estimate)) +
-  geom_hline(yintercept = 0, linewidth = 1, color = "white") +
-  geom_point() +
-  geom_point(aes(x=-1, y=0), col="red") +
-  geom_errorbar(aes(ymin = low, ymax = up), width = 0.2) +
-  ylab("系数") +
-  xlab("年份") +
-  scale_x_continuous(breaks = seq(-7, 8, 3)) +
-  geom_vline(xintercept = -1, linetype = "dashed") +
-  labs(subtitle = "投资") 
-
-coef3.4 <- as.data.frame(coeftest(reg3.4, vcov.=vcovHC)[1 : 11, 1 :2])
-coef3.4$up <- NA
-coef3.4$low <- NA
-coef3.4$t <- NA
-coef3.4$up <- coef3.4$Estimate + 1.96 * coef3.4$`Std. Error`
-coef3.4$low <- coef3.4$Estimate - 1.96 * coef3.4$`Std. Error`
-coef3.4$t <- c(-8 : -2, 0 : 3)
-p4 <- ggplot(coef3.4, aes(t, Estimate)) +
-  geom_hline(yintercept = 0, linewidth = 1, col = "white") +
-  geom_point() +
-  geom_point(aes(x=-1, y=0), col="red") +
-  geom_errorbar(aes(ymin = low, ymax = up), width = 0.2) +
-  ylab("系数") +
-  xlab("年份") +
-  scale_x_continuous(breaks = seq(-8, 3, 1)) +
-  geom_vline(xintercept = -1, linetype = "dashed") +
-  labs(title = "二次南向", subtitle = "出口") 
-
-
-coef3.5 <- as.data.frame(coeftest(reg3.5, vcov.=vcovHC)[1 : 11, 1 :2])
-coef3.5$up <- NA
-coef3.5$low <- NA
-coef3.5$t <- NA
-coef3.5$up <- coef3.5$Estimate + 1.96 * coef3.5$`Std. Error`
-coef3.5$low <- coef3.5$Estimate - 1.96 * coef3.5$`Std. Error`
-coef3.5$t <- c(-8 : -2, 0 : 3)
-p5 <- ggplot(coef3.5, aes(t, Estimate)) +
-  geom_hline(yintercept = 0, linewidth = 1, col = "white") +
-  geom_point() +
-  geom_point(aes(x=-1, y=0), col="red") +
-  geom_errorbar(aes(ymin = low, ymax = up), width = 0.2) +
-  ylab("系数") +
-  xlab("年份") +
-  scale_x_continuous(breaks = seq(-8, 3, 1)) +
-  geom_vline(xintercept = -1, linetype = "dashed") +
-  labs(subtitle = "进口") 
-
-coef3.6 <- as.data.frame(coeftest(reg3.6, vcov.=vcovHC)[1 : 11, 1 :2])
-coef3.6$up <- NA
-coef3.6$low <- NA
-coef3.6$t <- NA
-coef3.6$up <- coef3.6$Estimate + 1.96 * coef3.6$`Std. Error`
-coef3.6$low <- coef3.6$Estimate - 1.96 * coef3.6$`Std. Error`
-coef3.6$t <- c(-8 : -2, 0 : 3)
-p6 <- ggplot(coef3.6, aes(t, Estimate)) +
-  geom_hline(yintercept = 0, linewidth = 1, col = "white") +
-  geom_point() +
-  geom_point(aes(x=-1, y=0), col="red") +
-  geom_errorbar(aes(ymin = low, ymax = up), width = 0.2) +
-  ylab("系数") +
-  xlab("年份") +
-  scale_x_continuous(breaks = seq(-8, 3, 1)) +
-  geom_vline(xintercept = -1, linetype = "dashed") +
-  labs(subtitle = "投资")
+p1 <- gene_fig(reg3.1, "一次南向", "出口", 1:15, c(-7:-2, 0:8), seq(-7, 8, 3))
+p2 <- gene_fig(reg3.2, NA, "进口", 1:15, c(-7:-2, 0:8), seq(-7, 8, 3))
+p3 <- gene_fig(reg3.3, NA, "投资", 1:15, c(-7:-2, 0:8), seq(-7, 8, 3))
+p4 <- gene_fig(reg3.4, "二次南向", "出口", 1:11, c(-8:-2, 0:3), seq(-8, 3, 1))
+p5 <- gene_fig(reg3.5, NA, "进口", 1:11, c(-8:-2, 0:3), seq(-8, 3, 1))
+p6 <- gene_fig(reg3.6, NA, "投资", 1:11, c(-8:-2, 0:3), seq(-8, 3, 1))
 
 ggarrange(p1, p4, p2, p5, p3, p6, common.legend = TRUE, nrow = 3, ncol = 2, legend = "top")
 ```
