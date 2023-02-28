@@ -211,7 +211,6 @@ tw_data |>
   select(State, FDI, Year, sum_fdi) |> 
   group_by(State) |> 
   mutate(百分比 = (sum(FDI) / sum_fdi) * 100) |> 
-  filter(Year == 2016) |> 
   right_join(NSBP_region, by = 'State') |> 
   ggplot() +
     geom_sf(aes(fill = 百分比, geometry = geometry)) +
