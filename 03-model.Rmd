@@ -14,7 +14,7 @@ Y_{it} = a_{0} + a_{1} \cdot du + a_{2} \cdot dt + a_{3} \cdot du \cdot dt + \ep
 
 \begin{table}[h]
 \begin{center}
-\begin{tabular}{|l|c|c|r|}
+\begin{tabular}{|c|c|c|c|}
 \hline{}
  & 政策实施前 & 政策实施后 & Difference\\
 \cline{1-4}
@@ -81,10 +81,10 @@ Y_{it} = a_{i} + \lambda_{t} + \beta \cdot D_{it} + \epsilon_{it} (\#eq:twfe)
 于是，基于双向固定效应模型，我们的DID模型设置如下：
 
 \begin{equation}
-Perc_{it} = \beta \cdot Treat_{it} + \gamma \cdot Z + \lambda_{i} + \mu_{t} + \epsilon_{it}(\#eq:twdid)
+Perc_{it} = \beta \cdot SouthboundState_{it} \cdot Post_{it} + \gamma \cdot Z + \lambda_{i} + \mu_{t} + \epsilon_{it}(\#eq:twdid)
 \end{equation}
 
-在模型\@ref(eq:twdid)中，$Perc_{it}$表示台湾对$i$地区在$t$年的进口、出口及投资占当年总量的比例，$Treat_{it}$代表当年该国是否受到了南向政策或新南向政策的干预，受到干预取1，否则取0。$\lambda_{i}$和$\mu_{t}$分别为个体固定效应和时间固定效应，$Z$为控制变量，$\epsilon_{it}$为误差项。由于模型中存在时间固定效应和个体固定效应，模型\@ref(eq:mean)中交乘项由于多重共线性，已经被双向固定效应所替代。$\beta$就是我们关心的系数，如果此系数显著，则在平行趋势成立的条件下，南向政策或新南向政策对相关贸易比例变量产生了影响。
+在模型\@ref(eq:twdid)中，$Perc_{it}$表示台湾对$i$地区在$t$年的进口、出口及投资占当年总量的比例，$SouthboundState_{i}$代表$i$国或地区是否为受政策影响的个体，$Post_{it}$代表$i$国或地区在$t$年是否处于政策干预后，$SouthboundState_{it} \cdot Post_{it}$代表当年该国是否受到了南向政策或新南向政策的干预，受到干预取1，否则取0。$\lambda_{i}$和$\mu_{t}$分别为个体固定效应和时间固定效应，$Z$为控制变量，$\epsilon_{it}$为误差项。由于模型中存在时间固定效应和个体固定效应，模型\@ref(eq:mean)中交乘项由于多重共线性，已经被双向固定效应所替代。$\beta$就是我们关心的系数，如果此系数显著，则在平行趋势成立的条件下，南向政策或新南向政策对相关贸易比例变量产生了影响。
 
 双重差分法运用的前提是政策干预组和对照组需要满足平行趋势检验，即处理组和对照组的变化趋势在政策干预前没有显著性差异。参考[@beck2010big]的研究，本文对平行趋势检验回归模型设置如下：
 
