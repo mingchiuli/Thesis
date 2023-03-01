@@ -70,7 +70,8 @@ gene_state <- Vectorize(\\(cntry) {
 })
 
 ccp_world <- st_read('data/21ESRI/21ESRI.shp') |> 
-  mutate(State = gene_state(CNTRY_NAME))
+  mutate(State = gene_state(CNTRY_NAME)) |> 
+  filter(State != 'Antarctica')
   
 fn_state <- c('China', 'India', 'Pakistan', 'Bangladesh', 'Nepal', 'Sri Lanka', 'Maldives', 'Bhutan', 'Laos', 'Myanmar', 'Cambodia', 'Australia', 'New Zealand', 'Papua New Guinea', 'Palau', 'Kiribati', 'Maldives', 'Nauru', 'New Caledonia', 'Vanuatu', 'Samoa', 'Marshall Islands', 'Thailand', 'Malaysia', 'Indonesia', 'Philippines', 'Singapore', 'Vietnam', 'Brunei', 'Japan', 'South Korea', 'Hong Kong', 'USA', 'Macao', 'UK', 'France', 'Germany', 'Spain', 'Italy', 'Canada', 'Netherlands')
 fn_first_state <- c('Thailand','Malaysia', 'Indonesia', 'Philippines', 'Singapore', 'Vietnam', 'Brunei')
