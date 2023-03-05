@@ -6,5 +6,3 @@ out.rmd
 .DS_Store
 out.pdf
 out.log
-.Rdata
-.httr-oauth
