@@ -272,4 +272,53 @@ tw_data |>
 
 同时，新南向政策对比李登辉、陈水扁时期的南向政策，依旧有一些变化。首先，新南向政策更加体现“经济共同体意识”，有别于李、陈当局更单独侧重经贸领域，蔡英文当局更加强调共享资源、人才和市场的重要性。其次，蔡英文当局不仅强调经贸投资，更注重多层次双向发展，并扩大了合作范围，扩展到东盟10国、南亚6国和澳大利亚与新西兰。
 
+```{r 2000fdi, fig.cap='2008年以来台湾投资占比分布', echo=FALSE, warning=FALSE, fig.align = 'center'}
+
+base_fdi <- tw_data |> 
+  filter(Year >= 2000)
+
+er_fdi <- base_fdi |> 
+  filter(State %in% EURO) |> 
+  group_by(Year) |> 
+  mutate(sum_fdi = sum(FDIPerc))
+
+cn_fdi <- base_fdi |> 
+  filter(State == 'China') |>
+  group_by(Year) |> 
+  mutate(sum_fdi = sum(FDIPerc))
+
+us_fdi <- base_fdi |> 
+  filter(State == 'USA') |> 
+  group_by(Year) |> 
+  mutate(sum_fdi = sum(FDIPerc))
+
+nsbp_fdi <- base_fdi |> 
+  filter(State %in% NSBP) |> 
+  group_by(Year) |> 
+  mutate(sum_fdi = sum(FDIPerc))
+
+botc_fdi <- base_fdi |> 
+  filter(State == 'BritishOverseasTerritoriesintheCaribbean') |> 
+  group_by(Year) |> 
+  mutate(sum_fdi = sum(FDIPerc))
+
+hk_fdi <- base_fdi |> 
+  filter(State == 'Hong Kong') |> 
+  group_by(Year) |> 
+  mutate(sum_fdi = sum(FDIPerc))
+
+ggplot() + 
+  geom_line(aes(Year, sum_fdi, col = '欧盟'), data = er_fdi) +
+  geom_line(aes(Year, sum_fdi, col = '中国大陆'), data = cn_fdi) +
+  geom_line(aes(Year, sum_fdi, col = '美国'), data = us_fdi) +
+  geom_line(aes(Year, sum_fdi, col = '新南向国家'), data = nsbp_fdi) +
+  geom_line(aes(Year, sum_fdi, col = '中国香港'), data = hk_fdi) +
+  geom_line(aes(Year, sum_fdi, col = '加勒比海英国属地'), data = botc_fdi) +
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_continuous(breaks = seq(2000, 2019, 3)) +
+  ylab("百分位点") +
+  xlab("年份") +
+  labs(col = "地区")
+```
+
 总体而言，无论李登辉时期的南向政策，还是蔡英文时期的新南向政策，其出发点均旨在限制或抑制台湾企业界对大陆的进出口和投资倾向，消极应对大陆对台日益提升的贸易需求。可以说，新南向政策是李登辉时期“戒急用忍”经济战略的“卷土重来”。南向政策屡次被台湾当局提及并提出相应的配套政策，充分表明了其对东南亚及大洋洲地区经济战略的重视和对中国大陆对台湾地区经济吸引力的警惕态度。不论南向政策还是新南向政策，其议题本身都受到了台湾当局的重点关注，而且进行了实质性的预算支援。对于这方面的统计检验，现在主流文献对台湾南向政策的检验还有所欠缺，有待进一步加深研究。本文基于台湾进出口及投资的贸易数据，对南向政策及后续新南向政策台湾地区的进口、出口及投资均进行了计量统计模型的构建与检验，并且使用基于事件研究法的平行趋势检验对回归结果进行了加强，可以对现有台湾地区南向经济研究的空白领域进行补充。
