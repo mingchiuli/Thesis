@@ -46,7 +46,7 @@ tw_data <- read_csv('data/data.csv', show_col_types = FALSE)
 ASEAN <- c('Malaysia', 'Indonesia', 'Thailand', 'Philippines', 'Singapore', 'Vietnam', 'Brunei', 'Laos', 'Myanmar', 'Cambodia')
 NSBP <- c('India', 'Pakistan', 'Bangladesh', 'Nepal', 'Sri Lanka', 'Bhutan', 'Laos', 'Myanmar', 'Cambodia', 'Australia', 'New Zealand', 'Thailand', 'Malaysia', 'Indonesia', 'Philippines', 'Singapore', 'Vietnam', 'Brunei')
 
-gene_state <- Vectorize(\\(cntry) {
+gene_state <- Vectorize(function(cntry) {
   switch (cntry,
     'Trinidad & Tobago' = 'Trinidad',
     'St. Lucia' = 'Saint Lucia',
@@ -95,7 +95,7 @@ list.files(pattern = '*.Rmd', recursive = T) |>
   lapply(\(file) paste("```{r child = '", file, "'}\n```\n\\newpage\n", sep = '')) |> 
   as.character() |> 
   paste(collapse = '', sep = '') |> 
-  paste(header, '\n', init, '\n', arg = _, '# 参考文献', sep = '') |> 
+  paste(header, '\n', init, '\n', arg = _, '\n', '# 参考文献', sep = '') |> 
   writeLines('out.rmd')
 
 rmarkdown::render('out.rmd')

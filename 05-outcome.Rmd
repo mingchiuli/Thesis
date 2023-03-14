@@ -76,7 +76,7 @@ NSBP_data <- NSBP_data |>
   pull(nsbp_d) |> 
   unique() |> 
   na.omit() |> 
-  purrr::map(~ NSBP_data |>
+  purrr::map(~ NSBP_data |> 
                mutate(!! if_else(. < 0, str_c('D..', -.), str_c('D.', .)) := if_else(. == nsbp_d, 1, 0), .keep = "none")) |> 
   bind_cols(NSBP_data, other_table = _) |> 
   mutate(across(starts_with('D.'), ~ if_else(is.na(.), 0, .)))
@@ -93,7 +93,7 @@ reg3.5 <- plm(进口占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.
 
 reg3.6 <- plm(投资占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度+ 人口 + 生产总值, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
 
-gene_fig <- \(reg, title, subtitle, seq_1, seq_2, seq_3) {
+gene_fig <- function(reg, title, subtitle, seq_1, seq_2, seq_3) {
   coef <- as.data.frame(coeftest(reg, vcov.=vcovHC)[seq_1, 1 : 2])
   coef[["up"]] <- NA
   coef[["low"]] <- NA
