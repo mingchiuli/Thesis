@@ -310,10 +310,7 @@ ggplot() +
 \begin{landscape}
 ```{r 19932016map, echo=FALSE, fig.cap='1993年和2016年台湾地区进出口比重', warning=FALSE, fig.align='center',fig.width=16.5, fig.height=11.7}
 
-tw_data |> 
-  filter(Year %in% c(1994, 2016)) |> 
-  pull(Year) |> 
-  unique() |> 
+c(1994, 2016) |> 
   purrr::map(~ tw_data |> 
                filter(Year == .) |> 
                mutate(百分比变动 = (ExpPerc + InpPerc) * 100, .keep = "none")) |> 
