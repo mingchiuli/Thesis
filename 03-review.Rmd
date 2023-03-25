@@ -80,7 +80,7 @@ dependence_ASEAN <- dependence |>
 state_name <- Vectorize(\(state) {
   switch (state,
     'China' = '中国大陆',
-    'Japan' = '日本国',
+    'Japan' = '日本',
     'USA' = '美国',
     'Singapore' = '东盟',
     'France' = '欧盟'
