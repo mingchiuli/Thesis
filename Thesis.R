@@ -1,7 +1,7 @@
 header <- "---
 title: '“戒急用忍”的卷土重来——台湾“南向政策”与“新南向政策”效果评估'
 author:
-  - 李鸣玖
+  - 
 header-includes:
   - \\usepackage{lscape}
   - \\usepackage{ctex}
@@ -92,7 +92,7 @@ NAFTA <- c('USA', 'Canada', 'Mexico')
 ```"
 
 list.files(pattern = '*.Rmd', recursive = T) |> 
-  lapply(\(file) paste("```{r child = '", file, "'}\n```\n\\newpage\n", sep = '')) |> 
+  lapply(function(file) paste("```{r child = '", file, "'}\n```\n\\newpage\n", sep = '')) |> 
   as.character() |> 
   paste(collapse = '', sep = '') |> 
   paste(header, '\n', init, '\n', arg = _, '\n', '# 参考文献', sep = '') |> 
