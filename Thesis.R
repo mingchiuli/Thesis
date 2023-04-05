@@ -18,8 +18,8 @@ output:
     number_sections: yes
     toc_depth: 3
     toc: yes
-bibliography: ref.bib
-csl: chinese-gb7714-2015-author-date.csl
+bibliography: ref/ref.bib
+csl: ref/chinese-gb7714-2015-author-date.csl
 ---"
 
 init <- "```{r, include=FALSE}
@@ -92,14 +92,14 @@ EURO <- c('UK', 'Austria', 'Bulgaria', 'Croatia', 'Czech Republic', 'Belgium', '
 NAFTA <- c('USA', 'Canada', 'Mexico')
 ```"
 
-list.files(pattern = '*.Rmd', recursive = T) |> 
-  lapply(function(file) paste("```{r child = '", file, "'}\n```\n\\newpage\n", sep = '')) |> 
+list.files(path = 'content', pattern = '*.Rmd', recursive = T) |> 
+  lapply(function(file) paste("```{r child = 'content/", file, "'}\n```\n\\newpage\n", sep = '')) |> 
   as.character() |> 
   paste(collapse = '', sep = '') |> 
   paste(header, '\n', init, '\n', arg = _, '\n', '# 参考文献', sep = '') |> 
-  writeLines('out.rmd')
+  writeLines('out.Rmd')
 
-rmarkdown::render('out.rmd')
-file.remove('out.rmd', 'out.log')
+rmarkdown::render('out.Rmd')
+file.remove('out.Rmd', 'out.log')
 system2('open','out.pdf')
 
