@@ -2,7 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-out.rmd
+out.Rmd
 .DS_Store
 out.pdf
 out.log
