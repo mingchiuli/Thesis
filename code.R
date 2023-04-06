@@ -18,8 +18,9 @@ output:
     number_sections: yes
     toc_depth: 3
     toc: yes
+    keep_tex: false
 bibliography: ref/ref.bib
-csl: ref/chinese-gb7714-2015-author-date.csl
+csl: ref/chinese-gb7714-2015-numeric.csl
 ---"
 
 init <- "```{r, include=FALSE}
