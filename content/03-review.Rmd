@@ -70,6 +70,9 @@ dependence_China <- dependence |>
 dependence_Japan <- dependence |> 
   filter(State == 'Japan')
 dependence_USA <- dependence |>  
+  filter(State %in% NAFTA)|> 
+  group_by(Year) |>  
+  mutate(Export = sum(Export), Inport = sum(Inport)) |> 
   filter(State == 'USA')
 dependence_ASEAN <- dependence |> 
   filter(State %in% ASEAN) |> 
@@ -81,7 +84,7 @@ state_name <- Vectorize(\(state) {
   switch (state,
     'China' = '中国大陆',
     'Japan' = '日本',
-    'USA' = '美国',
+    'USA' = '北美自贸区',
     'Singapore' = '东盟',
     'France' = '欧盟'
   )
