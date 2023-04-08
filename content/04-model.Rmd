@@ -82,7 +82,7 @@ Y_{it} = a_{i} + \lambda_{t} + \beta \cdot D_{it} + \epsilon_{it} (\#eq:twfe)
 \begin{aligned}
 &\quad(\overline{y_{11}} - \overline{y_{12}}) - (\overline{y_{21}} - \overline{y_{22}})\\
 &=[(a_{1} + \lambda_{1} + \beta \cdot D_{11} + \epsilon_{11}) - (a_{1} + \lambda_{2} + \beta \cdot D_{12} + \epsilon_{12})] \\
-&\quad - [(a_{2} + \lambda_{1} + \beta \cdot D_{21} + \epsilon_{21}) - (a_{2} + \lambda_{2} + \beta \cdot D_{22} + \epsilon_{22})] \\
+&\quad \qquad - [(a_{2} + \lambda_{1} + \beta \cdot D_{21} + \epsilon_{21}) - (a_{2} + \lambda_{2} + \beta \cdot D_{22} + \epsilon_{22})] \\
 &=\beta \cdot (D_{11} - D_{12} - D_{21} + D_{22}) + \epsilon_{11} - \epsilon_{12} - \epsilon_{21} + \epsilon_{22}
 \end{aligned}
 \end{equation}
@@ -103,13 +103,13 @@ E[(\overline{y_{11}} - \overline{y_{12}}) - (\overline{y_{21}} - \overline{y_{22
 
 在模型\@ref(eq:twfe)中，如果个体i在t期受到干预，则$D_{it}$取1，否则取0。双向固定效应对于传统形式的DID模型而言，控制粒度更细，在控制了时间（年度）和个体的情况下去寻找政策产生的效应，而非仅仅控制政策前后和实验分组，具有更好的准确性。另外，对于非传统形式的DID，即多期DID，也适用于这种情况。
 
-于是，基于双向固定效应模型，我们的DID模型设置如下：
+于是，基于双向固定效应模型，对于新南向政策，我们的DID模型设置如下：
 
 \begin{equation}
-Perc_{it} = \beta \cdot Southbound_{i} \cdot Post_{it} + \gamma \cdot Z + \lambda_{i} + \mu_{t} + \epsilon_{it}(\#eq:twdid)
+Perc_{it} = \beta \cdot Southbound_{i} \cdot Post_{t} + \gamma \cdot Z + \lambda_{i} + \mu_{t} + \epsilon_{it}(\#eq:twdid)
 \end{equation}
 
-在模型\@ref(eq:twdid)中，$Perc_{it}$表示台湾对$i$地区在$t$年的进口、出口及投资占当年总量的比例，$Southbound_{i}$代表$i$国或地区是否为受政策影响的个体，$Post_{it}$代表$i$国或地区在$t$年是否处于政策干预后，$Southbound_{i} \cdot Post_{it}$代表当年该国是否受到了南向政策或新南向政策的干预，受到干预取1，否则取0。$\lambda_{i}$和$\mu_{t}$分别为个体固定效应和时间固定效应，$Z$为控制变量，$\epsilon_{it}$为误差项。由于模型中存在时间固定效应和个体固定效应，模型\@ref(eq:mean)中交乘项由于多重共线性，已经被双向固定效应所替代。$\beta$就是我们关心的系数，如果此系数显著，则在平行趋势成立的条件下，南向政策或新南向政策对相关贸易比例变量产生了影响。
+在模型\@ref(eq:twdid)中，$Perc_{it}$表示台湾对$i$地区在$t$年的进口、出口及投资占当年总量的比例，$Southbound_{i}$代表$i$国或地区是否为受政策影响的个体，$Post_{it}$代表$i$国或地区在$t$年是否处于政策干预后，$Southbound_{i} \cdot Post_{t}$代表当年该国是否受到了新南向政策的干预，受到干预取1，否则取0。$\lambda_{i}$和$\mu_{t}$分别为个体固定效应和时间固定效应，$Z$为控制变量，$\epsilon_{it}$为误差项。由于模型中存在时间固定效应和个体固定效应，模型\@ref(eq:mean)中交乘项由于多重共线性，已经被双向固定效应所替代。$\beta$就是我们关心的系数，如果此系数显著，则在平行趋势成立的条件下，南向政策或新南向政策对相关贸易比例变量产生了影响。
 
 在南向政策的实施中，因其涉及多期DID的情形，模型\@ref(eq:twdid)转化为：
 
@@ -166,7 +166,7 @@ Perc_{it} = \sum_{\tau = -\tau_{0}} ^ {-2} \alpha_{\tau} \cdot D_{it} + \sum_{\t
 
 根据黄奎博等（2014）的研究，2003年后台湾当局对南向政策便甚少提及，故本文以此作为南向政策终点的划分依据。根据该研究，南向政策时期，台湾当局主要做了两次调整，第一次在1994-1996年划定了首批国家，分别为泰国、马来西亚、印度尼西亚、菲律宾、新加坡、越南和文莱。Bing, et al.（2017）的研究将上述时期称为“Go South Policy1.1”，即GSP1.1[@bing2017taiwan]；第二次是1997-1999年，在7国的基础上增加至12国，在GSP1.1的基础上加入老挝、缅甸、柬埔寨、澳大利亚以及新西兰，对应为GSP1.2。南向政策最终在GSP1.2所涵盖范围的基础上，延长到2002年底为止[@黄奎博]。由于数据完整性的原因，我们在受政策干预12国的基础上加入了一部分与台湾贸易较为密切的国家或地区作为研究样本。分别为中国大陆、印度、巴基斯坦、孟加拉国、不丹、斯里兰卡、尼泊尔、马尔代夫、巴布达新几内亚、帕劳、基里巴斯、瑙鲁、新喀里多尼亚、瓦努阿图、萨摩亚、日本、韩国、中国香港、美国、中国澳门、英国、法国、德国、西班牙、意大利、加拿大和荷兰。在南向政策期间，这些国家的年度总进出口均占台湾年度对外总进出口的80%以上，具有较强的代表性。在后面的论述中，此阶段南向政策称为“一次南向”。
 
-台商向中国大陆投资的传统途径，或经过第三国向中国大陆投资，或须通过台湾当局的审查方可进行。2010年，马英九政府与大陆签署了《海峡两岸经济合作框架协议》，倡导放宽投资限制。故本文以马英九执政作为新南向研究时间起点，将新南向的研究时间划定为2008-2019年，以蔡英文当局正式提出新南向政策的2016年作为政策干预期。根据台湾当局“投资审查委员会”资料，新南向受政策干预国家有18个国家，被称为“新南向18国”，分别为：泰国、马来西亚、印度尼西亚、菲律宾、新加坡、越南、文莱、老挝、缅甸、柬埔寨、澳大利亚、新西兰、印度、巴基斯坦、孟加拉国、不丹、斯里兰卡和尼泊尔。在新南向政策的研究中，本文使用了全部的数据样本，共包含201个国家或地区的贸易数据。在后面的论述中，此阶段南向政策称为“二次南向”。
+台商向中国大陆投资的传统途径，或经过第三国向中国大陆投资，或须通过台湾当局的审查方可进行。2010年，马英九政府与大陆签署了《海峡两岸经济合作框架协议》，倡导放宽投资限制。故本文以马英九执政作为新南向研究时间起点，将新南向的研究时间划定为2008-2019年，以蔡英文当局正式提出新南向政策的2016年作为政策干预期。根据台湾当局“投资审查委员会”资料，新南向受政策干预国家有18个，被称为“新南向18国”，分别为：泰国、马来西亚、印度尼西亚、菲律宾、新加坡、越南、文莱、老挝、缅甸、柬埔寨、澳大利亚、新西兰、印度、巴基斯坦、孟加拉国、不丹、斯里兰卡和尼泊尔。在新南向政策的研究中，本文使用了全部的数据样本，共包含201个国家或地区的贸易数据。在后面的论述中，此阶段南向政策称为“二次南向”。
 
 ## 描述性统计
 
@@ -222,52 +222,52 @@ ggplot() +
   labs(col = "地区")
 ```
 
-图\@ref(fig:1981exp)展示了台湾地区对其主要贸易地区的出口比重随时间变化趋势。可以得知，在2000年以前北美自贸区占台湾对外出口的比重最多，而2001年前后香港地区取代了北美自贸区位居榜首，之后2004年前后中国大陆取代了香港地区，成为台湾最大对外出口国。从南向政策实施开始到1997年东南亚金融危机前，台湾对东盟出口比重总体上呈上升趋势，而东南亚金融危机发生后的1998年则呈下降趋势。新南向政策实施后，台湾对东盟出口比重总体上不升反降。从1981年到1984年，台湾对北美自贸区出口呈上升趋势，在1984年达到最高点越50%，之后呈下降趋势，直到1996年到1998年短暂上升，之后持续呈下降趋势，到2019年约只占15%。1984年至1992年期间台湾对北美出口比重下降期间，台湾地区对中国香港和欧盟及新南向国家的出口比重则有所上升。2000年到2010年，台湾地区对中国大陆的出口比重经历了一个较快增长的时期，到2010年对中国大陆的出口比重已达28%左右，同时期台湾对东盟出口比重呈现出螺旋式上升的过程，从2000年的13%增长到2014年接近20%。对于欧盟及日本而言，出口比重则缓慢下降，到2019年已降至10%以下。中国香港在1990年到2000年经历了出口比重上升后，在2000年到2010年又经历了出口比重的下降，最终回落到1990年的水平。
+图\@ref(fig:1981exp)展示了台湾地区对其主要贸易地区的出口比重随时间变化趋势。可以得知，在2000年以前北美自贸区占台湾对外出口的比重最多，而2001年前后香港地区取代了北美自贸区位居榜首，之后2004年前后中国大陆取代了香港地区，成为台湾最大对外出口国。从南向政策实施开始到1997年东南亚金融危机前，台湾对东盟出口比重总体上呈上升趋势，而东南亚金融危机发生后的1998年则呈下降趋势。新南向政策实施后，台湾对东盟出口比重总体上不升反降。从1981年到1984年，台湾对北美自贸区出口呈上升趋势，在1984年达到最高点约50%，之后呈下降趋势，直到1996年到1998年短暂上升，之后持续呈下降趋势，到2019年约只占15%。1984年至1992年期间台湾对北美出口比重下降期间，台湾地区对中国香港和欧盟及新南向国家的出口比重则有所上升。2000年到2010年，台湾地区对中国大陆的出口比重经历了一个较快增长的时期，到2010年对中国大陆的出口比重已达28%左右，同时期台湾对东盟出口比重呈现出螺旋式上升的过程，从2000年的13%增长到2014年接近20%。对于欧盟及日本而言，出口比重则缓慢下降，到2019年已降至10%以下。中国香港在1990年到2000年经历了出口比重上升后，在2000年到2010年又经历了出口比重的下降，最终回落到1990年的水平。
 
 ### 台湾进口比重分析
 
 ```{r 1981inp, fig.cap='台湾对外进口比重', echo=FALSE, warning=FALSE, fig.align = 'center'}
 
-base_inp <- tw_data |> 
+base_imp <- tw_data |> 
   filter(Year >= 1981)
 
-jan_inp <- base_inp |> 
+jan_imp <- base_imp |> 
   filter(State == 'Japan') |> 
   group_by(Year) |> 
-  mutate(sum_inp = sum(InpPerc))
+  mutate(sum_imp = sum(ImpPerc))
 
-er_inp <- base_inp |> 
+er_imp <- base_imp |> 
   filter(State %in% EURO) |> 
   group_by(Year) |> 
-  mutate(sum_inp = sum(InpPerc, na.rm = TRUE))
+  mutate(sum_imp = sum(ImpPerc, na.rm = TRUE))
 
-cn_inp <- base_inp |> 
+cn_imp <- base_imp |> 
   filter(State == 'China') |>
   group_by(Year) |> 
-  mutate(sum_inp = sum(InpPerc))
+  mutate(sum_imp = sum(ImpPerc))
 
-na_inp <- base_inp |> 
+na_imp <- base_imp |> 
   filter(State == 'USA') |> 
   group_by(Year) |> 
-  mutate(sum_inp = sum(InpPerc))
+  mutate(sum_imp = sum(ImpPerc))
 
-asean_inp <- base_inp |> 
+asean_imp <- base_imp |> 
   filter(State %in% ASEAN) |> 
   group_by(Year) |> 
-  mutate(sum_inp = sum(InpPerc, na.rm = TRUE))
+  mutate(sum_imp = sum(ImpPerc, na.rm = TRUE))
 
-hk_inp <- base_inp |> 
+hk_imp <- base_imp |> 
   filter(State == 'Hong Kong') |> 
   group_by(Year) |> 
-  mutate(sum_inp = sum(InpPerc))
+  mutate(sum_imp = sum(ImpPerc))
 
 ggplot() + 
-  geom_line(aes(Year, sum_inp, col = '欧盟'), data = er_inp) +
-  geom_line(aes(Year, sum_inp, col = '中国大陆'), data = cn_inp) +
-  geom_line(aes(Year, sum_inp, col = '北美自贸区'), data = na_inp) +
-  geom_line(aes(Year, sum_inp, col = '东盟'), data = asean_inp) +
-  geom_line(aes(Year, sum_inp, col = '中国香港'), data = hk_inp) +
-  geom_line(aes(Year, sum_inp, col = '日本'), data = jan_inp) +
+  geom_line(aes(Year, sum_imp, col = '欧盟'), data = er_imp) +
+  geom_line(aes(Year, sum_imp, col = '中国大陆'), data = cn_imp) +
+  geom_line(aes(Year, sum_imp, col = '北美自贸区'), data = na_imp) +
+  geom_line(aes(Year, sum_imp, col = '东盟'), data = asean_imp) +
+  geom_line(aes(Year, sum_imp, col = '中国香港'), data = hk_imp) +
+  geom_line(aes(Year, sum_imp, col = '日本'), data = jan_imp) +
   scale_y_continuous(labels = scales::percent) +
   scale_x_continuous(breaks = seq(1981, 2019, 3)) +
   ylab("百分位点") +
@@ -346,7 +346,7 @@ ggplot() +
 c(1994, 2016) |> 
   purrr::map(~ tw_data |> 
                filter(Year == .) |> 
-               mutate(百分比变动 = (ExpPerc + InpPerc) * 100, .keep = "none")) |> 
+               mutate(百分比变动 = (ExpPerc + ImpPerc) * 100, .keep = "none")) |> 
   reduce(~ .y - .x) |> 
   bind_cols(tw_data |> filter(Year == 1994)) |> 
   right_join(ccp_world, by = 'State') |> 
@@ -372,7 +372,7 @@ gene_fta <- function(state) {
            select(Year) |> 
            slice(1) |> 
            as.numeric() - 1) |> 
-  pull(Export + Inport) |> 
+  pull(Export + Import) |> 
   diff() |> 
   tibble(val = _) |> 
   bind_cols(tw_data |> 

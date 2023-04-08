@@ -81,12 +81,12 @@ fn_second_state <- c('Laos', 'Myanmar', 'Cambodia', 'Australia', 'New Zealand')
 
 fn_data <- tw_data |> 
   filter(Year < 2003, Year >= 1990, State %in% fn_state) |> 
-  rename(政策干预 = Treat, 出口占比 = ExpPerc, 进口占比 = InpPerc, 投资占比 = FDIPerc, 外交关系 = Diplomatic, 外交持续 = duDiplomatic, 世贸组织 = WTO_Y_IN_TW_IN, 亚太经合 = APEC, 开放度 = Openness, 人口 = LPop, 生产总值 = LGDP) |> 
+  rename(政策干预 = Treat, 出口占比 = ExpPerc, 进口占比 = ImpPerc, 投资占比 = FDIPerc, 外交关系 = Diplomatic, 外交持续 = duDiplomatic, 世贸组织 = WTO_Y_IN_TW_IN, 亚太经合 = APEC, 开放度 = Openness, 人口 = LPop, 生产总值 = LGDP) |> 
   mutate(fn_d = if_else(State %in% fn_first_state, Year - 1994, if_else(State %in% fn_second_state, Year - 1997, NA)))
   
 NSBP_data <- tw_data |> 
   filter(Year >= 2008) |> 
-  rename(政策干预 = Treat, 出口占比 = ExpPerc, 进口占比 = InpPerc, 投资占比 = FDIPerc, 外交关系 = Diplomatic, 外交持续 = duDiplomatic, 世贸组织 = WTO_Y_IN_TW_IN, 两岸协议 = ECFA, 开放度 = Openness, 人口 = LPop, 生产总值 = LGDP, 自贸协定 = FTA) |> 
+  rename(政策干预 = Treat, 出口占比 = ExpPerc, 进口占比 = ImpPerc, 投资占比 = FDIPerc, 外交关系 = Diplomatic, 外交持续 = duDiplomatic, 世贸组织 = WTO_Y_IN_TW_IN, 两岸协议 = ECFA, 开放度 = Openness, 人口 = LPop, 生产总值 = LGDP, 自贸协定 = FTA) |> 
   mutate(nsbp_d = if_else(State %in% NSBP, Year - 2016, NA))  
   
 EURO <- c('UK', 'Austria', 'Bulgaria', 'Croatia', 'Czech Republic', 'Belgium', 'Cyprus', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Ireland', 'Italy', 'Latvia', 'Lithuania', 'Luxembourg', 'Malta', 'Netherlands', 'Poland', 'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Spain', 'Sweden')
