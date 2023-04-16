@@ -37,7 +37,7 @@ c('tidyverse',
   'bookdown',
   'sf',
   'rlang') |> 
-  lapply(\\(pkg) {
+  lapply(function(pkg) {
     if (system.file(package = pkg) == '') {
       install.packages(pkg)
     }
