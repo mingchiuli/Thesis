@@ -16,7 +16,7 @@ output:
     latex_engine: xelatex
     fig_caption: yes
     number_sections: yes
-    toc_depth: 3
+    toc_depth: 2
     toc: yes
     keep_tex: false
 bibliography: ref/ref.bib
