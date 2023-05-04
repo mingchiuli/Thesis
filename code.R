@@ -18,7 +18,7 @@ output:
     number_sections: yes
     toc_depth: 2
     toc: yes
-    keep_tex: false
+    keep_tex: true
 bibliography: ref/ref.bib
 csl: ref/chinese-gb7714-2015-numeric.csl
 ---"

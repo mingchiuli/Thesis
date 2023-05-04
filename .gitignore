@@ -6,3 +6,5 @@ out.Rmd
 .DS_Store
 out.pdf
 out.log
+*.tex
+out_files/**
