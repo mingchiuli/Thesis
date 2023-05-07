@@ -16,8 +16,8 @@ Y_{it} = a_{0} + a_{1} \cdot du + a_{2} \cdot dt + a_{3} \cdot du \cdot dt + \ep
 
 对于模型\@ref(eq:mean)回归系数$a_{3}$的作用，可以通过表\@ref(tab:DID)进行分析：
 
-\begin{table}[h]
-\begin{center}
+\begin{table}[h]\centering
+\caption{DID分析}
 \begin{tabular}{|c|c|c|c|}
 \hline{}
  & 政策实施前 & 政策实施后 & Difference\\
@@ -29,8 +29,6 @@ Y_{it} = a_{0} + a_{1} \cdot du + a_{2} \cdot dt + a_{3} \cdot du \cdot dt + \ep
 Difference & $a_{1}$ & $a_{1} + a_{3}$ & $a_{3}$ \\
 \hline
 \end{tabular}
-\end{center}
-\caption{DID分析}
 \label{tab:DID}
 \end{table}
 
@@ -88,7 +86,7 @@ Y_{it} = \mu_{i} + \lambda_{t} + \beta \cdot D_{it} + \epsilon_{it} (\#eq:twfe)
 \begin{aligned}
 &\quad(\overline{y_{11}} - \overline{y_{12}}) - (\overline{y_{21}} - \overline{y_{22}})\\
 &=[(a_{1} + \lambda_{1} + \beta \cdot D_{11} + \epsilon_{11}) - (a_{1} + \lambda_{2} + \beta \cdot D_{12} + \epsilon_{12})] \\
-&\quad \qquad - [(a_{2} + \lambda_{1} + \beta \cdot D_{21} + \epsilon_{21}) - (a_{2} + \lambda_{2} + \beta \cdot D_{22} + \epsilon_{22})] \\
+&\quad \qquad- [(a_{2} + \lambda_{1} + \beta \cdot D_{21} + \epsilon_{21}) - (a_{2} + \lambda_{2} + \beta \cdot D_{22} + \epsilon_{22})] \\
 &=\beta \cdot (D_{11} - D_{12} - D_{21} + D_{22}) + \epsilon_{11} - \epsilon_{12} - \epsilon_{21} + \epsilon_{22}
 \end{aligned}
 \end{equation}
@@ -142,6 +140,7 @@ Perc_{it} = \sum_{\tau = -\tau_{0}} ^ {-2} \alpha_{\tau} \cdot D_{it} + \sum_{\t
 \begin{landscape}
 \vspace*{\fill}
 \begin{table}[hbp]\centering
+\caption{数据来源}
 \begin{tabular}{|c|c|c|}
 \hline{}
 变量 & 定义 & 数据来源\\
@@ -164,7 +163,6 @@ Perc_{it} = \sum_{\tau = -\tau_{0}} ^ {-2} \alpha_{\tau} \cdot D_{it} + \sum_{\t
 自贸协定 & 虚拟变量，某国家或地区某年是否与台湾地区达成自由贸易协定 & 台湾“财政部关务署”\\
 \hline
 \end{tabular}
-\caption{数据来源}
 \label{tab:data}
 \end{table}
 \vspace*{\fill}
@@ -369,7 +367,7 @@ c(1994, 2016) |>
 
 ### 台湾自贸协定的分析
 
-台湾地区对外自贸协定可分为经济合作协定（ECA）、自由贸易协定（FTA）以及两岸经济合作协议（ECFA），在台湾当局“经济部国际贸易局”网站^[https://fta.trade.gov.tw/。]中三者并列地位同等，本文将三者统称为自贸协定。截止到2019年，台湾与新加坡、巴拿马、危地马拉、洪都拉斯、尼加拉瓜、巴拉圭、新西兰、斯威士兰以及中国大陆建立了自贸协定。
+台湾地区对外自贸协定可分为经济合作协定（ECA）、自由贸易协定（FTA）以及两岸经济合作协议（ECFA），在台湾当局“经济部国际贸易局”网站^[网址：https://fta.trade.gov.tw/。]中三者并列地位同等，本文将三者统称为自贸协定。截止到2019年，台湾与新加坡、巴拿马、危地马拉、洪都拉斯、尼加拉瓜、巴拉圭、新西兰、斯威士兰以及中国大陆建立了自贸协定。
 
 ```{r fta, echo=FALSE, fig.cap='台湾对自贸协定国家进出口总额滞后差分', warning=FALSE,fig.width=4.41, fig.height=8.98}
 
