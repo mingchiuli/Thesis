@@ -161,6 +161,7 @@ Perc_{it} = \sum_{\tau = -\tau_{0}} ^ {-2} \alpha_{\tau} \cdot D_{it} + \sum_{\t
 亚太经合 & 虚拟变量，某国在某年是否处于亚太经济合作组织 & APEC\\
 世贸组织 & 虚拟变量，某国家或地区某年与台湾地区是否都加入了世界贸易组织 & WTO\\
 自贸协定 & 虚拟变量，某国家或地区某年是否与台湾地区达成自由贸易协定 & 台湾“财政部关务署”\\
+实际汇率 & 某国家或地区某年的实际有效汇率（Reer） & 布鲁盖尔研究所\\
 \hline
 \end{tabular}
 \label{tab:data}
@@ -354,7 +355,7 @@ c(1994, 2016) |>
                filter(Year == .) |> 
                mutate(百分比变动 = (ExpPerc + ImpPerc) * 100, .keep = "none")) |> 
   reduce(~ .y - .x) |> 
-  bind_cols(tw_data |> filter(Year == 1994)) |> 
+  bind_cols(tw_data |> filter(Year == 1994), other_table = _) |> 
   right_join(ccp_world, by = 'State') |> 
   ggplot() +
     geom_sf(aes(fill = 百分比变动, geometry = geometry)) +

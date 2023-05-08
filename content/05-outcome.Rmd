@@ -18,13 +18,13 @@ rse1.2 <- sqrt(diag(vcovHC(reg1.2, cluster = "group")))
 reg1.3 <- plm(投资占比 ~ 政策干预, data = fn_data, effect = "twoways", model="within", index =  c("State", "Year"))
 rse1.3 <- sqrt(diag(vcovHC(reg1.3, cluster = "group")))
 
-reg1.4 <- plm(出口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
+reg1.4 <- plm(出口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
 rse1.4 <- sqrt(diag(vcovHC(reg1.4, cluster = "group")))
 
-reg1.5 <- plm(进口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
+reg1.5 <- plm(进口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
 rse1.5 <- sqrt(diag(vcovHC(reg1.5, cluster = "group")))
 
-reg1.6 <- plm(投资占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
+reg1.6 <- plm(投资占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
 rse1.6 <- sqrt(diag(vcovHC(reg1.6, cluster = "group")))
 
 stargazer(reg1.1, reg1.2, reg1.3, reg1.4, reg1.5, reg1.6, se=list(rse1.1, rse1.2, rse1.3, rse1.4, rse1.5, rse1.6), type = "latex", no.space=TRUE, omit.stat=c("f", "adj.rsq"), label = "tab:fntable", title = "一次南向基准回归", dep.var.caption = "被解释变量", notes.label = "备注：", header=FALSE, add.lines=list(c('时间固定效应', '是','是', '是','是', '是','是'), c('个体固定效应', '是','是', '是','是', '是','是')), notes = "括号内为标准误，已经过聚类调整")
@@ -47,13 +47,13 @@ rse2.2 <- sqrt(diag(vcovHC(reg2.2, cluster = "group")))
 reg2.3 <- plm(投资占比 ~ 政策干预, data = NSBP_data, effect = "twoways", model="within", index =  c("State", "Year"))
 rse2.3 <- sqrt(diag(vcovHC(reg2.3, cluster = "group")))
 
-reg2.4 <- plm(出口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
+reg2.4 <- plm(出口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
 rse2.4 <- sqrt(diag(vcovHC(reg2.4, cluster = "group")))
 
-reg2.5 <- plm(进口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
+reg2.5 <- plm(进口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
 rse2.5 <- sqrt(diag(vcovHC(reg2.5, cluster = "group")))
 
-reg2.6 <- plm(投资占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
+reg2.6 <- plm(投资占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
 rse2.6 <- sqrt(diag(vcovHC(reg2.6, cluster = "group")))
 
 stargazer(reg2.1, reg2.2, reg2.3, reg2.4, reg2.5, reg2.6, se=list(rse2.1, rse2.2, rse2.3, rse2.4, rse2.5, rse2.6), type = "latex", no.space=TRUE, omit.stat=c("f", "adj.rsq"), label = "tab:NSBPtable", title = "二次南向基准回归", dep.var.caption = "被解释变量", notes.label = "备注：", header=FALSE, add.lines=list(c('时间固定效应', '是','是', '是','是', '是','是'), c('个体固定效应', '是','是', '是','是', '是','是')), notes = "括号内为标准误，已经过聚类调整")
@@ -86,17 +86,17 @@ NSBP_data <- NSBP_data |>
   bind_cols(NSBP_data, other_table = _) |> 
   mutate(across(starts_with('D.'), ~ if_else(is.na(.), 0, .)))
 
-reg3.1 <- plm(出口占比 ~ d..7 + d..6 + d..5 + d..4 + d..3 + d..2 + d.0 + d.1 + d.2 + d.3 + d.4 + d.5 + d.6 + d.7 + d.8 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值, data = fn_data, effect = "twoways", model="within", index = c("State", "Year"))
+reg3.1 <- plm(出口占比 ~ d..7 + d..6 + d..5 + d..4 + d..3 + d..2 + d.0 + d.1 + d.2 + d.3 + d.4 + d.5 + d.6 + d.7 + d.8 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index = c("State", "Year"))
 
-reg3.2 <- plm(进口占比 ~ d..7 + d..6 + d..5 + d..4 + d..3 + d..2 + d.0 + d.1 + d.2 + d.3 + d.4 + d.5 + d.6 + d.7 + d.8 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值, data = fn_data, effect = "twoways", model="within", index = c("State", "Year"))
+reg3.2 <- plm(进口占比 ~ d..7 + d..6 + d..5 + d..4 + d..3 + d..2 + d.0 + d.1 + d.2 + d.3 + d.4 + d.5 + d.6 + d.7 + d.8 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index = c("State", "Year"))
 
-reg3.3 <- plm(投资占比 ~ d..7 + d..6 + d..5 + d..4 + d..3 + d..2 + d.0 + d.1 + d.2 + d.3 + d.4 + d.5 + d.6 + d.7 + d.8 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值, data = fn_data, effect = "twoways", model="within", index = c("State", "Year"))
+reg3.3 <- plm(投资占比 ~ d..7 + d..6 + d..5 + d..4 + d..3 + d..2 + d.0 + d.1 + d.2 + d.3 + d.4 + d.5 + d.6 + d.7 + d.8 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index = c("State", "Year"))
 
-reg3.4 <- plm(出口占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
+reg3.4 <- plm(出口占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
 
-reg3.5 <- plm(进口占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
+reg3.5 <- plm(进口占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
 
-reg3.6 <- plm(投资占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度+ 人口 + 生产总值, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
+reg3.6 <- plm(投资占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度+ 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
 
 gene_fig <- function(reg, title, subtitle, seq_1, seq_2, seq_3) {
   coef <- as.data.frame(coeftest(reg, vcov.=vcovHC)[seq_1, 1 : 2])
