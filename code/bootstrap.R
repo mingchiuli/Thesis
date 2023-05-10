@@ -24,19 +24,10 @@ csl: ref/chinese-gb7714-2015-numeric.csl
 ---"
 
 init <- "```{r, include=FALSE}
-c('tidyverse', 
-  'stargazer', 
-  'plm', 
-  'sandwich', 
-  'lmtest', 
-  'ggpubr', 
-  'showtext', 
-  'rticles',
-  'maps', 
-  'see',
-  'bookdown',
-  'sf',
-  'rlang') |> 
+c('tidyverse', 'stargazer', 'plm', 
+  'sandwich', 'lmtest', 'ggpubr', 
+  'showtext', 'rticles','maps', 
+  'see','bookdown','sf','rlang') |> 
   lapply(function(pkg) {
     if (system.file(package = pkg) == '') {
       install.packages(pkg)
@@ -44,7 +35,12 @@ c('tidyverse',
     library(pkg, character.only = TRUE)
   })
 showtext_auto()
-tw_data <- read_csv('data/data.csv', show_col_types = FALSE)
+
+tw_data <- read_csv('data/data.csv', show_col_types = FALSE) |> 
+  group_by(Year) |> 
+  mutate(双边占比 = (Export + Import) / sum(Export + Import, na.rm = TRUE)) |> 
+  ungroup()
+
 ASEAN <- c('Malaysia', 'Indonesia', 'Thailand', 'Philippines', 'Singapore', 'Vietnam', 'Brunei', 'Laos', 'Myanmar', 'Cambodia')
 NSBP <- c('India', 'Pakistan', 'Bangladesh', 'Nepal', 'Sri Lanka', 'Bhutan', 'Laos', 'Myanmar', 'Cambodia', 'Australia', 'New Zealand', 'Thailand', 'Malaysia', 'Indonesia', 'Philippines', 'Singapore', 'Vietnam', 'Brunei')
 
