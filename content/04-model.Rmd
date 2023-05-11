@@ -162,7 +162,7 @@ Perc_{it} = \sum_{\tau = -\tau_{0}} ^ {-2} \alpha_{\tau} \cdot D_{it} + \sum_{\t
 亚太经合 & 虚拟变量，某国在某年是否处于亚太经济合作组织 & APEC\\
 世贸组织 & 虚拟变量，某国家或地区某年与台湾地区是否都加入了世界贸易组织 & WTO\\
 自贸协定 & 虚拟变量，某国家或地区某年是否与台湾地区达成自由贸易协定 & 台湾“财政部关务署”\\
-实际汇率 & 某国家或地区某年的实际有效汇率（Reer） & 布鲁盖尔研究所（Bruegel AISBL）\\
+实际汇率 & 某国家或地区某年的实际有效汇率 & 布鲁盖尔研究所 \\
 \hline
 \end{tabular}
 \label{tab:data}
@@ -188,33 +188,33 @@ base_exp <- tw_data |>
 jan_exp <- base_exp |> 
   filter(State == 'Japan') |> 
   group_by(Year) |> 
-  mutate(sum_exp = sum(ExpPerc))
+  mutate(sum_exp = sum(进口占比))
 
 er_exp <- base_exp |> 
   filter(State %in% EURO) |> 
   group_by(Year) |> 
-  mutate(sum_exp = sum(ExpPerc, na.rm = TRUE))
+  mutate(sum_exp = sum(进口占比, na.rm = TRUE))
 
 cn_exp <- base_exp |> 
   filter(State == 'China') |>
   group_by(Year) |> 
-  mutate(sum_exp = sum(ExpPerc))
+  mutate(sum_exp = sum(进口占比))
 
 na_exp <- base_exp |> 
   filter(State == 'USA') |> 
   group_by(Year) |> 
-  mutate(sum_exp = sum(ExpPerc))
+  mutate(sum_exp = sum(进口占比))
 
 asean_exp <- base_exp |> 
   filter(State %in% ASEAN) |> 
   group_by(Year) |> 
-  mutate(sum_exp = sum(ExpPerc, na.rm = TRUE))
+  mutate(sum_exp = sum(进口占比, na.rm = TRUE))
 
 
 hk_exp <- base_exp |> 
   filter(State == 'Hong Kong') |> 
   group_by(Year) |> 
-  mutate(sum_exp = sum(ExpPerc))
+  mutate(sum_exp = sum(进口占比))
 
 ggplot() + 
   geom_line(aes(Year, sum_exp, col = '欧盟'), data = er_exp) +
@@ -242,32 +242,32 @@ base_imp <- tw_data |>
 jan_imp <- base_imp |> 
   filter(State == 'Japan') |> 
   group_by(Year) |> 
-  mutate(sum_imp = sum(ImpPerc))
+  mutate(sum_imp = sum(出口占比))
 
 er_imp <- base_imp |> 
   filter(State %in% EURO) |> 
   group_by(Year) |> 
-  mutate(sum_imp = sum(ImpPerc, na.rm = TRUE))
+  mutate(sum_imp = sum(出口占比, na.rm = TRUE))
 
 cn_imp <- base_imp |> 
   filter(State == 'China') |>
   group_by(Year) |> 
-  mutate(sum_imp = sum(ImpPerc))
+  mutate(sum_imp = sum(出口占比))
 
 na_imp <- base_imp |> 
   filter(State == 'USA') |> 
   group_by(Year) |> 
-  mutate(sum_imp = sum(ImpPerc))
+  mutate(sum_imp = sum(出口占比))
 
 asean_imp <- base_imp |> 
   filter(State %in% ASEAN) |> 
   group_by(Year) |> 
-  mutate(sum_imp = sum(ImpPerc, na.rm = TRUE))
+  mutate(sum_imp = sum(出口占比, na.rm = TRUE))
 
 hk_imp <- base_imp |> 
   filter(State == 'Hong Kong') |> 
   group_by(Year) |> 
-  mutate(sum_imp = sum(ImpPerc))
+  mutate(sum_imp = sum(出口占比))
 
 ggplot() + 
   geom_line(aes(Year, sum_imp, col = '欧盟'), data = er_imp) +
@@ -295,37 +295,37 @@ base_fdi <- tw_data |>
 jan_fdi <- base_fdi |> 
   filter(State == 'Japan') |> 
   group_by(Year) |> 
-  mutate(sum_fdi = sum(FDIPerc, na.rm = TRUE))
+  mutate(sum_fdi = sum(投资占比, na.rm = TRUE))
 
 er_fdi <- base_fdi |> 
   filter(State %in% EURO) |> 
   group_by(Year) |> 
-  mutate(sum_fdi = sum(FDIPerc, na.rm = TRUE))
+  mutate(sum_fdi = sum(投资占比, na.rm = TRUE))
 
 cn_fdi <- base_fdi |> 
   filter(State == 'China') |>
   group_by(Year) |> 
-  mutate(sum_fdi = sum(FDIPerc, na.rm = TRUE))
+  mutate(sum_fdi = sum(投资占比, na.rm = TRUE))
 
 na_fdi <- base_fdi |> 
   filter(State %in% NAFTA) |> 
   group_by(Year) |> 
-  mutate(sum_fdi = sum(FDIPerc, na.rm = TRUE))
+  mutate(sum_fdi = sum(投资占比, na.rm = TRUE))
 
 asean_fdi <- base_fdi |> 
   filter(State %in% ASEAN) |> 
   group_by(Year) |> 
-  mutate(sum_fdi = sum(FDIPerc, na.rm = TRUE))
+  mutate(sum_fdi = sum(投资占比, na.rm = TRUE))
 
 botc_fdi <- base_fdi |> 
   filter(State == 'BritishOverseasTerritoriesintheCaribbean') |> 
   group_by(Year) |> 
-  mutate(sum_fdi = sum(FDIPerc, na.rm = TRUE))
+  mutate(sum_fdi = sum(投资占比, na.rm = TRUE))
 
 hk_fdi <- base_fdi |> 
   filter(State == 'Hong Kong') |> 
   group_by(Year) |> 
-  mutate(sum_fdi = sum(FDIPerc, na.rm = TRUE))
+  mutate(sum_fdi = sum(投资占比, na.rm = TRUE))
 
 ggplot() + 
   geom_line(aes(Year, sum_fdi, col = '欧盟'), data = er_fdi) +
@@ -342,19 +342,19 @@ ggplot() +
   labs(col = "地区")
 ```
 
-图\@ref(fig:1981fdi)展示了台湾地区对主要贸易地区的直接投资比重随时间的变化趋势。由图可以得知，台湾对其贸易伙伴的投资具有较强的波动性。1980年代，台湾对外主要投资在东盟与北美自贸区之间交织波动，例如1982年，台湾对东盟投资占比超过75%，对北美自贸区占比低于25%，而到了1985年台湾对北美自贸区投资占比接近80%，而此时对东盟投资占比则低于12.5%，体现出台湾地区投资极大的不确定性。从南向政策实施开始到1997年东南亚金融危机前，台湾对东盟投资比重总体上呈上升趋势，而东南亚金融危机发生后则急剧下降，可见东南亚金融危机对南向政策实施的效果影响颇大。新南向政策实施后，台湾对东盟投资占比也呈现出强烈的波动性。从1990年开始，台湾对大陆的投资呈现出震荡波动，总体增长的趋势，2010年投资比重超过75%，而从2011年开始，台湾对大陆的投资比重则不断下降。伴随着对大陆投资比重的下降，台湾对东盟以及加勒比海英国属地的间接投资也震荡上升，呈现出一定的周期性。总体来看，从2010年以来，部分原属中国大陆的投资比重受到东盟、间接投资（加勒比海英国属地）以及欧盟的蚕食，到2019年台湾对大陆的投资比重大约37.5%，台湾对东盟的投资比重则达到了25%左右。台湾对北美自贸区的投资比重从1985年到1994年急剧下降，此后始终在5%左右的水平徘徊。对于中国香港而言，投资比重从1981年的超过25%开始就开始降低，最终维持在5%左右波动。总之，对于台湾对外直接投资比重而言，变化趋势不稳定是其主要特征，而加勒比海英国属地则在投资转移的过程中扮演了一个重要的角色。
+图\@ref(fig:1981fdi)展示了台湾地区对主要贸易地区的直接投资比重随时间的变化趋势。由图可以得知，台湾对其贸易伙伴的投资具有较强的波动性。1980年代，台湾对外主要投资在东盟与北美自贸区之间交织波动，例如1982年，台湾对东盟投资占比超过75%，对北美自贸区占比低于25%，而到了1985年台湾对北美自贸区投资占比接近80%，而此时对东盟投资占比则低于12.5%，体现出台湾地区投资极大的不确定性。从南向政策实施开始到1997年东南亚金融危机前，台湾对东盟投资比重总体上呈上升趋势，而东南亚金融危机发生后则急剧下降，可见东南亚金融危机对南向政策实施的效果影响较大。新南向政策实施后，台湾对东盟投资占比也呈现出强烈的波动性。台湾对大陆投资占比随着陈水扁政府上台就呈现上升趋势，到2010年已超过75%，而之后开始呈现出下降趋势。伴随着对中国大陆投资比重的下降，台湾对东盟以及加勒比海英国属地的间接投资也震荡上升，呈现出一定的周期性。总体来看，从2010年以来，部分原属中国大陆的投资比重受到东盟、间接投资（加勒比海英国属地）以及欧盟的蚕食，到2019年台湾对大陆的投资比重大约37.5%，台湾对东盟的投资比重则达到了25%左右。台湾对北美自贸区的投资比重从1985年到1994年急剧下降，此后始终在5%左右的水平徘徊。对于中国香港而言，投资比重从1981年的超过25%开始就开始降低，最终维持在5%左右波动。总之，对于台湾对外直接投资比重而言，变化趋势不稳定是其主要特征，而加勒比海英国属地则在投资转移的过程中扮演了一个重要的角色。
 
 ### 台湾对外贸易区位因素分析
 
 图\@ref(fig:19942016map)^[数据来源：台湾财政部，图中贸易数据未包含中国香港和中国澳门。]展示了从1994年到2016年台湾对外贸易进出口总比例累积变化地图。从1994年到2016年，从一次南向的起点到二次南向的起点，台湾对外出口分布已经产生了很大的区位变化。其中，中国大陆（+44.0%）、韩国（+5.7%）、越南（+3.6%）、新加坡（+2.7%）、菲律宾（+2.2%）、印度（+1.1%）、沙特阿拉伯（+1.0%）、科威特（+1.0%）、卡塔尔（+0.9%）、阿联酋（+0.6%）位居台湾进出口总比例累积增长的前十，而美国（-23.4%）、日本（-15.0%）、中国香港（-10.0%）、德国（-3.2%）、英国（-2.0%）、加拿大（-1.8%）、南非（-1.3%）、印尼（-1.1%）、意大利（-0.9%）、法国（-0.8%）位居台湾进出口总比例累积下降的前十。结合图形可以看出，比重波动较为明显的地区有中国大陆、新加坡、美国、日本、韩国、越南、德国、菲律宾、印度等国家或地区。从台湾进出口总比重的变化来看，台湾进出口重心从欧洲和北美洲逐渐转移到了东亚和东南亚。从细节来看，在东亚范围内，台湾对日本的部分进出口份额一定程度上受到中国大陆以及韩国所威胁，2016年台湾对大陆的进出口比重比1993年的比重高出40%以上，美国则下降超过20%。从地理位置上解释上述变化，东亚及东南亚国家具有较密集的人口分布和较大的消费潜力，且距离台湾地区距离较近，具有运输成本上的优势。另外，在这个时间段东南亚及东亚诸国也有着较快的经济增长速度，对于进出口贸易是利好因素。
 
 \begin{landscape}
-```{r 19942016map, echo=FALSE, fig.cap='1994年到2016年台湾地区进出口比重累积变化', warning=FALSE, fig.align='center', fig.width=16.5, fig.height=11.7}
+```{r 19942016map, echo=FALSE, fig.cap='1994年到2016年台湾地区进出口双边贸易额比重累积变化', warning=FALSE, fig.align='center', fig.width=16.5, fig.height=11.7}
 
 c(1994, 2016) |> 
   purrr::map(~ tw_data |> 
                filter(Year == .) |> 
-               mutate(百分比变动 = (ExpPerc + ImpPerc) * 100, .keep = "none")) |> 
+               mutate(百分比变动 = (进口占比 + 出口占比) * 100, .keep = "none")) |> 
   reduce(~ .y - .x) |> 
   bind_cols(tw_data |> filter(Year == 1994), other_table = _) |> 
   right_join(ccp_world, by = 'State') |> 
@@ -376,7 +376,7 @@ c(1994, 2016) |>
 gene_fta <- function(state) {
   tw_data |> 
   filter(State == state, Year >= tw_data |> 
-           filter((FTA == 1 & State == state) | (ECFA == 1 & State == state)) |> 
+           filter((自贸协定 == 1 & State == state) | (两岸协议 == 1 & State == state)) |> 
            select(Year) |> 
            slice(1) |> 
            as.numeric() - 1) |> 
@@ -384,7 +384,7 @@ gene_fta <- function(state) {
   diff() |> 
   tibble(val = _) |> 
   bind_cols(tw_data |> 
-           filter((FTA == 1 & State == state) | (ECFA == 1 & State == state)) |> 
+           filter((自贸协定 == 1 & State == state) | (两岸协议 == 1 & State == state)) |> 
            select(Year))
 }
 

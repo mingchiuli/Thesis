@@ -46,8 +46,9 @@ NSBP <- c('India', 'Pakistan', 'Bangladesh', 'Nepal', 'Sri Lanka', 'Bhutan', 'La
 
 tw_data <- read_csv('data/data.csv', show_col_types = FALSE) |> 
   group_by(Year) |> 
-  mutate(双边占比 = (Export + Import) / sum(Export + Import, na.rm = TRUE), 进口占比 = Import / sum(Import, na.rm = TRUE), 出口占比 = Export / sum(Export, na.rm = TRUE), 投资占比 = FDI / sum(FDI, na.rm = TRUE)) |> 
-  ungroup()
+  mutate(双边占比 = (Export + Import) / sum(Export + Import, na.rm = TRUE), 进口占比 = Import / sum(Import, na.rm = TRUE), 出口占比 = Export / sum(Export, na.rm = TRUE), 投资占比 = FDI / sum(FDI, na.rm = TRUE), 生产总值 = log(GDP), 人口 = log(Pop), 人均产出 = log(GDPper)) |> 
+  ungroup() |> 
+  rename(政策干预 = Treat, 外交关系 = Diplomatic, 外交持续 = duDiplomatic, 世贸组织 = WTO_Y_IN_TW_IN, 亚太经合 = APEC, 开放度 = Openness, 实际汇率 = Reer3, 自贸协定 = FTA, 两岸协议 = ECFA)
 
 gene_state <- Vectorize(function(cntry) {
   switch (cntry,
@@ -78,12 +79,10 @@ ccp_world <- st_read('data/21ESRI/21ESRI.shp') |>
 
 fn_data <- tw_data |> 
   filter(Year < 2003, Year >= 1990, State %in% fn_state) |> 
-  rename(政策干预 = Treat, 外交关系 = Diplomatic, 外交持续 = duDiplomatic, 世贸组织 = WTO_Y_IN_TW_IN, 亚太经合 = APEC, 开放度 = Openness, 人口 = LPop, 生产总值 = LGDP, 实际汇率 = Reer3) |> 
   mutate(fn_d = if_else(State %in% fn_first_state, Year - 1994, if_else(State %in% fn_second_state, Year - 1997, NA)))
   
 NSBP_data <- tw_data |> 
   filter(Year >= 2008) |> 
-  rename(政策干预 = Treat, 外交关系 = Diplomatic, 外交持续 = duDiplomatic, 世贸组织 = WTO_Y_IN_TW_IN, 两岸协议 = ECFA, 开放度 = Openness, 人口 = LPop, 生产总值 = LGDP, 自贸协定 = FTA, 实际汇率 = Reer3) |> 
   mutate(nsbp_d = if_else(State %in% NSBP, Year - 2016, NA))  
 ```"
 
