@@ -371,7 +371,7 @@ c(1994, 2016) |>
 
 台湾地区对外自贸协定可分为经济合作协定（ECA）、自由贸易协定（FTA）以及两岸经济合作协议（ECFA），在台湾当局“经济部国际贸易局”网站^[网址：https://fta.trade.gov.tw/。]中三者并列地位同等，本文将三者统称为自贸协定。截止到2019年，台湾与新加坡、巴拿马、危地马拉、洪都拉斯、尼加拉瓜、巴拉圭、新西兰、斯威士兰以及中国大陆建立了自贸协定。
 
-```{r fta, echo=FALSE, fig.cap='台湾对自贸协定国家进出口总额滞后差分', warning=FALSE,fig.width=4.41, fig.height=8.98}
+```{r fta, echo=FALSE, fig.cap='台湾对自贸协定国家进出口双边贸易额滞后差分', warning=FALSE,fig.width=4.41, fig.height=8.98}
 
 gene_fta <- function(state) {
   tw_data |> 
