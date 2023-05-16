@@ -36,7 +36,7 @@ c('tidyverse', 'stargazer', 'plm',
   })
 showtext_auto()
 
-fn_state <- c('China', 'India', 'Pakistan', 'Bangladesh', 'Nepal', 'Sri Lanka', 'Maldives', 'Bhutan', 'Laos', 'Myanmar', 'Cambodia', 'Australia', 'New Zealand', 'Papua New Guinea', 'Palau', 'Kiribati', 'Maldives', 'Nauru', 'New Caledonia', 'Vanuatu', 'Samoa', 'Marshall Islands', 'Thailand', 'Malaysia', 'Indonesia', 'Philippines', 'Singapore', 'Vietnam', 'Brunei', 'Japan', 'South Korea', 'Hong Kong', 'USA', 'Macao', 'UK', 'France', 'Germany', 'Spain', 'Italy', 'Canada', 'Netherlands')
+fn_state <- c('China', 'India', 'Pakistan', 'Bangladesh', 'Nepal', 'Sri Lanka', 'Maldives', 'Bhutan', 'Laos', 'Myanmar', 'Cambodia', 'Australia', 'New Zealand', 'Papua New Guinea', 'Palau', 'Kiribati', 'Maldives', 'Nauru', 'New Caledonia', 'Vanuatu', 'Samoa', 'Marshall Islands', 'Thailand', 'Malaysia', 'Indonesia', 'Philippines', 'Singapore', 'Vietnam', 'Brunei', 'Japan', 'South Korea', 'Hong Kong', 'USA', 'Macao', 'UK', 'France', 'Germany', 'Spain', 'Italy', 'Canada', 'Netherlands', 'Panama', 'Bahamas', 'Guatemala', 'Honduras')
 fn_first_state <- c('Thailand','Malaysia', 'Indonesia', 'Philippines', 'Singapore', 'Vietnam', 'Brunei')
 fn_second_state <- c('Laos', 'Myanmar', 'Cambodia', 'Australia', 'New Zealand')
 EURO <- c('UK', 'Austria', 'Bulgaria', 'Croatia', 'Czech Republic', 'Belgium', 'Cyprus', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Ireland', 'Italy', 'Latvia', 'Lithuania', 'Luxembourg', 'Malta', 'Netherlands', 'Poland', 'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Spain', 'Sweden')
