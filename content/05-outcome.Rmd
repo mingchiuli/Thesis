@@ -2,9 +2,9 @@
 
 ## 基准回归检验
 
-表\@ref(tab:fntable)为一次南向的基准回归结果，均对应模型\@ref(eq:twmultidid)。在回归模型中，我们使用了三种标准误识别回归系数的显著性，其中“政策干预”拟合系数下汇报了对应的标准误。回归（1）、（2）、（3）、（4）为双向固定效应模型未加入控制变量的情形。从政策干预的回归系数来看，一次南向政策干预对出口占比具有正向影响，对进口占比具有正向影响，对双边贸易额占比具有正向影响，对投资占比具有负向影响，部分回归系数在5\%的显著性水平上显著；回归（5）、（6）、（7）、（8）为双向固定效应模型同时加入控制变量的情形。从政策干预的回归系数来看，政策干预对出口占比具有负向影响，对进口占比具有负向影响，对双边贸易额占比具有负向影响，对投资占比具有负向影响，但回归系数亦均不显著。政策干预不显著的原因可能在于，尽管GSP1.1的执行使台湾对东盟投资与出口有了一定的促进，但1997年东南亚地区出现金融危机，对台湾在该地区的进出口及投资都造成了一定的冲击。而1997年，南向政策国家恰好从7国扩张到12国，致使南向政策的综合效应不显著。
+表\@ref(tab:fntableExIm)为一次南向进出口的基准回归结果，均对应模型\@ref(eq:twmultidid)。在回归模型中，我们使用了三种标准误识别回归系数的显著性，其中“政策干预”拟合系数下汇报了对应的标准误。回归（1）、（2）、（3）为双向固定效应模型未加入控制变量的情形。从政策干预的回归系数来看，一次南向政策干预对出口占比具有正向影响，对进口占比具有正向影响，对双边贸易额占比具有正向影响；回归（4）、（5）、（6）、为双向固定效应模型同时加入控制变量的情形。从政策干预的回归系数来看，政策干预对出口占比具有负向影响，对进口占比具有负向影响，对双边贸易额占比具有负向影响，但回归系数亦均不显著。表\@ref(tab:fntableInvest)为一次南向投资的基准回归结果，均对应模型\@ref(eq:twmultidid)。回归（1）、（2）为双向固定效应模型未加入控制变量的情形。从政策干预的回归系数来看，一次南向政策干预对投资占比具有负向影响，对对台投资占比具有正向影响；回归（3）、（4）为双向固定效应模型同时加入控制变量的情形。从政策干预的回归系数来看，一次南向政策干预对投资占比具有负向影响，对对台投资占比具有正向影响，但回归系数亦均不显著。政策干预不显著的原因可能在于，尽管GSP1.1的执行使台湾对东盟投资与出口有了一定的促进，南向政策国家从7国扩张到12国。但1997年东南亚地区出现金融危机，对台湾在该地区的进出口及投资都造成了一定的冲击，最终造成了南向政策实施效果的不显著。
 
-在5%的显著性水平上，贸易伙伴开放度的提升对进口占比、出口占比与双边贸易额占比具有正向显著的作用，贸易伙伴生产总值的提升对进口占比与双边贸易额占比具有正向显著的效应，持续性的外交关系对进口占比、出口占比与双边贸易额占比具有负向显著的效应，对投资占比具有正向显著的效应，而贸易伙伴实际汇率的提升对进口占比具有显著负向的效应。分析上述系数的显著性，从对外贸易的引力模型出发考虑，贸易伙伴国内生产总值的提升对贸易具有促进作用，而开放度的提升显然也是有利于贸易的因素，但对于台湾地区而言，台湾的“外交关系”具有非常特殊的意味，其政治象征远大于实际意义。从历史上看，例如冈比亚、中非、马其顿、尼加拉瓜等国，都曾经在大陆和台湾之间反复建交，而这些国家往往是台湾当局推行“金元外交”争取的对象。即便台湾当局较为重视维护与这些国家或地区的“外交关系”，可能在南向政策实施期间有意加强了从该国进口项目的进口强度，但对进出口的增长力度仍不乐观。但对于投资项目而言，其受到台湾投审会的统一管理，对于向“邦交国”所在地进行的投资，可能更容易通过审批。从总体来看，台湾对外进出口品的依赖更多源自与台湾具有密切经贸交流，以及自身禀赋较为丰富的国家或地区，如中国大陆、日本、美国、中国香港、新加坡和韩国等，而非其基于政治考量刻意维系的“邦交国”。贸易伙伴实际有效汇率的提升对进口占比具有显著负向的效应，这符合本币贬值不利进口的贸易规律。
+在5%的显著性水平上，贸易伙伴开放度的提升对进口占比、出口占比与双边贸易额占比具有正向显著的作用，贸易伙伴生产总值的提升对进口占比与双边贸易额占比具有正向显著的效应，持续性的外交关系对进口占比、出口占比与双边贸易额占比具有负向显著的效应，对投资占比具有正向显著的效应，而贸易伙伴实际汇率的提升对进口占比与对台投资占比具有显著负向的效应。分析上述系数的显著性，从对外贸易的引力模型出发考虑，贸易伙伴国内生产总值的提升对贸易具有促进作用，而开放度的提升显然也是有利于贸易的因素，但对于台湾地区而言，台湾的“外交关系”具有非常特殊的意味，其政治象征远大于实际意义。从历史上看，例如冈比亚、中非、马其顿、尼加拉瓜等国，都曾经在大陆和台湾之间反复建交，而这些国家往往是台湾当局推行“金元外交”争取的对象。即便台湾当局较为重视维护与这些国家或地区的“外交关系”，可能在南向政策实施期间有意加强了从该国进口项目的进口强度，但对进出口的增长力度仍不乐观。但对于投资项目而言，其受到台湾投审会的统一管理，对于向“邦交国”所在地进行的投资，可能更容易通过审批。从总体来看，台湾对外进出口品的依赖更多源自与台湾具有密切经贸交流，以及自身禀赋较为丰富的国家或地区，如中国大陆、日本、美国、中国香港、新加坡和韩国等，而非其基于政治考量刻意维系的“邦交国”。贸易伙伴实际有效汇率的提升对进口占比具有显著负向的效应，这符合本币贬值不利进口的贸易规律。本币贬值使外资收益减少，也不利于对台投资比例的增长。
 
 ```{r, echo=FALSE, warning=FALSE, results='asis'}
 
@@ -18,50 +18,59 @@ r1.2 <- plm(进口占比 ~ 政策干预, data = fn_data, effect = "twoways", mod
 rse1.2 <- sqrt(diag(plm::vcovHC(r1.2, type = "HC0", cluster = "group", method = "arellano")))
 rse1.21 <- sqrt(diag(plm::vcovHC(r1.2, type = "HC0", method = "white1")))
 
-
 r1.12 <- plm(双边占比 ~ 政策干预, data = fn_data, effect = "twoways", model="within", index =  c("State", "Year"))
 rse1.12 <- sqrt(diag(plm::vcovHC(r1.12, type = "HC0", cluster = "group", method = "arellano")))
 rse1.121 <- sqrt(diag(plm::vcovHC(r1.12, type = "HC0", method = "white1")))
-
 
 r1.3 <- plm(投资占比 ~ 政策干预, data = fn_data, effect = "twoways", model="within", index =  c("State", "Year"))
 rse1.3 <- sqrt(diag(plm::vcovHC(r1.3, cluster = "group", method = "arellano")))
 rse1.31 <- sqrt(diag(plm::vcovHC(r1.3, type = "HC0", method = "white1")))
 
-
-r1.4 <- plm(出口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
-rse1.4 <- sqrt(diag(plm::vcovHC(r1.4, type = "HC0", cluster = "group", method = "arellano")))
+r1.4 <- plm(对台投资 ~ 政策干预, data = fn_data, effect = "twoways", model="within", index =  c("State", "Year"))
+rse1.4 <- sqrt(diag(plm::vcovHC(r1.4, cluster = "group", method = "arellano")))
 rse1.41 <- sqrt(diag(plm::vcovHC(r1.4, type = "HC0", method = "white1")))
 
-
-r1.5 <- plm(进口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
+r1.5 <- plm(出口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
 rse1.5 <- sqrt(diag(plm::vcovHC(r1.5, type = "HC0", cluster = "group", method = "arellano")))
 rse1.51 <- sqrt(diag(plm::vcovHC(r1.5, type = "HC0", method = "white1")))
 
-
-r1.45 <- plm(双边占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
-rse1.45 <- sqrt(diag(plm::vcovHC(r1.45, type = "HC0", cluster = "group", method = "arellano")))
-rse1.451 <- sqrt(diag(plm::vcovHC(r1.45, type = "HC0", method = "white1")))
-
-
-r1.6 <- plm(投资占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
+r1.6 <- plm(进口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
 rse1.6 <- sqrt(diag(plm::vcovHC(r1.6, type = "HC0", cluster = "group", method = "arellano")))
 rse1.61 <- sqrt(diag(plm::vcovHC(r1.6, type = "HC0", method = "white1")))
 
+r1.56 <- plm(双边占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
+rse1.56 <- sqrt(diag(plm::vcovHC(r1.56, type = "HC0", cluster = "group", method = "arellano")))
+rse1.561 <- sqrt(diag(plm::vcovHC(r1.56, type = "HC0", method = "white1")))
 
-stargazer(r1.1, r1.2, r1.12, r1.3, r1.4, r1.5, r1.45, r1.6, se=list(rse1.1, rse1.2, rse1.12, rse1.3, rse1.4, rse1.5, rse1.45, rse1.6), type = "latex", no.space=TRUE, omit.stat=c("f", "adj.rsq"), label = "tab:fntable", title = "一次南向基准回归", dep.var.caption = "被解释变量", notes.label = "备注：", header=FALSE, add.lines=list(c('时间固定效应', '是','是', '是','是', '是','是', '是','是'), c('个体固定效应', '是','是', '是','是', '是','是',  '是','是')), notes = "括号内为标准误，已经过聚类调整", font.size = "footnotesize")
+r1.7 <- plm(投资占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
+rse1.7 <- sqrt(diag(plm::vcovHC(r1.7, type = "HC0", cluster = "group", method = "arellano")))
+rse1.71 <- sqrt(diag(plm::vcovHC(r1.7, type = "HC0", method = "white1")))
+
+r1.8 <- plm(对台投资 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index= c("State", "Year"))
+rse1.8 <- sqrt(diag(plm::vcovHC(r1.8, type = "HC0", cluster = "group", method = "arellano")))
+rse1.81 <- sqrt(diag(plm::vcovHC(r1.8, type = "HC0", method = "white1")))
 
 
-# stargazer(r1.1, r1.2, r1.12, r1.3, r1.4, r1.5, r1.45, r1.6, se=list(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL), type = "latex")
-# 
-# stargazer(r1.1, r1.2, r1.12, r1.3, r1.4, r1.5, r1.45, r1.6, se=list(rse1.11, rse1.21, rse1.121, rse1.31, rse1.41, rse1.51, rse1.451, rse1.61), type = "latex")
+stargazer(r1.1, r1.2, r1.12, r1.5, r1.6, r1.56, se=list(rse1.1, rse1.2, rse1.12, rse1.5, rse1.6, rse1.56), type = "latex", no.space=TRUE, omit.stat=c("f", "adj.rsq"), label = "tab:fntableExIm", title = "一次南向进出口基准回归", dep.var.caption = "被解释变量", notes.label = "备注：", header=FALSE, add.lines=list(c('时间固定效应', '是','是','是', '是','是', '是'), c('个体固定效应', '是', '是','是', '是','是', '是')), notes = "括号内为标准误，已经过聚类调整", font.size = "footnotesize")
 
+
+stargazer(r1.3, r1.4, r1.7, r1.8, se=list(rse1.3, rse1.4, rse1.7, rse1.8), type = "latex", no.space=TRUE, omit.stat=c("f", "adj.rsq"), label = "tab:fntableInvest", title = "一次南向投资基准回归", dep.var.caption = "被解释变量", notes.label = "备注：", header=FALSE, add.lines=list(c('时间固定效应', '是','是','是', '是'), c('个体固定效应', '是', '是','是', '是')), notes = "括号内为标准误，已经过聚类调整", font.size = "footnotesize")
+
+
+
+# stargazer(r1.1, r1.2, r1.12, r1.5, r1.6, r1.56, se=list(NULL, NULL, NULL, NULL, NULL, NULL), type = "latex")
+
+# stargazer(r1.3, r1.4, r1.7, r1.8, se=list(NULL, NULL, NULL, NULL), type = "latex")
+
+# stargazer(r1.1, r1.2, r1.12, r1.5, r1.6, r1.56, se=list(rse1.11, rse1.21, rse1.121, rse1.51, rse1.61, rse1.561), type = "latex")
+
+# stargazer(r1.3, r1.4, r1.7, r1.8, se=list(rse1.31, rse1.41, rse1.71, rse1.81), type = "latex")
 
 ```
 
-表\@ref(tab:NSBPtable)为二次南向的基准回归结果，均对应模型\@ref(eq:twdid)。在回归模型中，我们使用了三种标准误识别回归系数的显著性，其中“政策干预”拟合系数下汇报了对应的标准误。回归（1）、（2）、（3）、（4）为双向固定效应模型未加入控制变量的情形。从政策干预的回归系数来看，二次南向政策干预对出口占比具有正向影响，对进口占比具有正向影响，对双边贸易额占比具有正向影响，对投资占比具有正向影响，但回归系数均不显著。回归（5）、（6）、（7）、（8）为双向固定效应模型同时加入控制变量的情形。从政策干预的回归系数来看，政策干预对出口占比具有负向影响，对进口占比具有负向影响，对双边贸易额占比具有负向影响，对投资占比具有正向影响，但回归系数亦均不显著。结合图\@ref(fig:1981exp)、图\@ref(fig:1981inp)和图\@ref(fig:1981fdi)进行分析，二次南向实施后，台湾对东盟的进口比重不升反降、而投资比重变化则呈现出震荡的趋势，均未显示出良好的政策效果。
+表\@ref(tab:NSBPtableExIm)二次南向进出口的基准回归结果，均对应模型\@ref(eq:twdid)。回归（1）、（2）、（3）为双向固定效应模型未加入控制变量的情形。从政策干预的回归系数来看，二次南向政策干预对出口占比具有正向影响，对进口占比具有正向影响，对双边贸易额占比具有正向影响；回归（4）、（5）、（6）、为双向固定效应模型同时加入控制变量的情形。从政策干预的回归系数来看，政策干预对出口占比具有负向影响，对进口占比具有负向影响，对双边贸易额占比具有负向影响，但回归系数亦均不显著。表\@ref(tab:NSBPtableInvest)为二次南向投资的基准回归结果，均对应模型\@ref(eq:twdid)。回归（1）、（2）为双向固定效应模型未加入控制变量的情形。从政策干预的回归系数来看，二次南向政策干预对投资占比具有正向影响，对对台投资占比具有负向影响；回归（3）、（4）为双向固定效应模型同时加入控制变量的情形。从政策干预的回归系数来看，一次南向政策干预对投资占比具有正向影响，对对台投资占比具有负向影响，但回归系数亦均不显著。结合图\@ref(fig:1981exp)、图\@ref(fig:1981inp)和图\@ref(fig:1981fdi)进行分析，二次南向实施后，台湾对东盟的进口比重不升反降、而投资比重变化则呈现出震荡的趋势，均未显示出良好的政策效果。
 
-在5%的显著性水平上，贸易伙伴生产总值的提升对出口占比、进口占比和双边贸易额占比具有显著的正向作用，海峡两岸签订ECFA协议对出口占比、进口占比与双边贸易额占比具有显著正向的作用，对投资占比的提升具有显著负向的作用。分析上述系数的显著性，贸易伙伴国内生产总值的提升有利于拉动国内消费与扩大国内生产规模，对进出口均有促进作用。海峡两岸ECFA协议的签订涉及货品贸易、服务贸易、投资保障，涵盖商品贸易协议和服务贸易协议，具有实实在在的税收减免，故对台湾进口与出口均有提升作用。这进一步证明，对于台湾而言，远离大陆的经济战略并非理智，与大陆构建良好的经贸关系对台湾而言经济极为关键。
+在5%的显著性水平上，贸易伙伴生产总值的提升对出口占比、进口占比和双边贸易额占比具有显著的正向作用，海峡两岸签订ECFA协议对出口占比、进口占比与双边贸易额占比具有显著正向的作用，对投资占比具有显著负向的作用，对对台投资占比具有显著的正向作用。贸易伙伴开放度的提升对对台投资占比你具有显著的正向作用。分析上述系数的显著性，贸易伙伴国内生产总值的提升有利于拉动国内消费与扩大国内生产规模，对进出口均有促进作用。海峡两岸ECFA协议的签订涉及货品贸易、服务贸易、投资保障，涵盖商品贸易协议和服务贸易协议，具有实实在在的税收减免，故对台湾进口、出口以及对台投资均有提升作用。这进一步证明，对于台湾而言，远离大陆的经济战略并非理智，与大陆构建良好的经贸关系对台湾而言经济极为关键。
 
 然而，ECFA协议的签订系数的回归结果却显著为负。通过分析图\@ref(fig:1981fdi)可知，2010年后台湾对大陆投资占比就早已呈现出下降的趋势，早于二次南向的实施，基本与ECFA的签订处于同一时期。此时台湾对未来新南向国家以及登记为“加勒比海英国属地”地区的投资占比则有所增加，而2010年对大陆投资比例恰恰达到了历史的高点，超过了80%，至此开始持续下降。在对外投资方面，对大陆释放出较多友好姿态的马英九政府执政时期，台湾对大陆投资比例却呈现出先短暂上升后持续下降的趋势。从这里可以看出，蔡英文政府所希望实现的投资脱钩大陆，以及相比马英九政府对外贸易政策的“革新”，实则是一个“政治谎言”。根据图\@ref(fig:19942016map)所示，新南向政策启动时，台湾出口分布就南向政策启动时已经发生了很大的变化。因此，在马英九政府执政后期，台湾当局就已经开始进行对外经济地区多样化的探索，并且产生了一定的效果。同时也说明，ECFA协议的实施对于台湾对外直接投资而言并未显示出良好的政策效果。
 
@@ -86,32 +95,48 @@ rse2.3 <- sqrt(diag(plm::vcovHC(r2.3, type = "HC0", cluster = "group", method = 
 rse2.31 <- sqrt(diag(plm::vcovHC(r2.3, type = "HC0", method = "white1")))
 
 
-r2.4 <- plm(出口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
+r2.4 <- plm(对台投资 ~ 政策干预, data = NSBP_data, effect = "twoways", model="within", index =  c("State", "Year"))
 rse2.4 <- sqrt(diag(plm::vcovHC(r2.4, type = "HC0", cluster = "group", method = "arellano")))
 rse2.41 <- sqrt(diag(plm::vcovHC(r2.4, type = "HC0", method = "white1")))
 
 
-r2.5 <- plm(进口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
+
+r2.5 <- plm(出口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
 rse2.5 <- sqrt(diag(plm::vcovHC(r2.5, type = "HC0", cluster = "group", method = "arellano")))
 rse2.51 <- sqrt(diag(plm::vcovHC(r2.5, type = "HC0", method = "white1")))
 
 
-r2.45 <- plm(双边占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
-rse2.45 <- sqrt(diag(plm::vcovHC(r2.45, type = "HC0", cluster = "group", method = "arellano")))
-rse2.451 <- sqrt(diag(plm::vcovHC(r2.45, type = "HC0", method = "white1")))
-
-
-r2.6 <- plm(投资占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
+r2.6 <- plm(进口占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
 rse2.6 <- sqrt(diag(plm::vcovHC(r2.6, type = "HC0", cluster = "group", method = "arellano")))
 rse2.61 <- sqrt(diag(plm::vcovHC(r2.6, type = "HC0", method = "white1")))
 
 
-stargazer(r2.1, r2.2, r2.12, r2.3, r2.4, r2.5, r2.45, r2.6, se=list(rse2.1, rse2.2, rse2.12, rse2.3, rse2.4, rse2.5, rse2.45, rse2.6), type = "latex", no.space=TRUE, omit.stat=c("f", "adj.rsq"), label = "tab:NSBPtable", title = "二次南向基准回归", dep.var.caption = "被解释变量", notes.label = "备注：", header=FALSE, add.lines=list(c('时间固定效应', '是','是', '是','是', '是','是',  '是','是'), c('个体固定效应', '是','是', '是','是', '是','是',  '是','是')), notes = "括号内为标准误，已经过聚类调整", font.size = "footnotesize")
+r2.56 <- plm(双边占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
+rse2.56 <- sqrt(diag(plm::vcovHC(r2.56, type = "HC0", cluster = "group", method = "arellano")))
+rse2.561 <- sqrt(diag(plm::vcovHC(r2.56, type = "HC0", method = "white1")))
 
 
-# stargazer(r2.1, r2.2, r2.12, r2.3, r2.4, r2.5, r2.45, r2.6, se=list(rse2.11, rse2.21, rse2.121, rse2.31, rse2.41, rse2.51, rse2.451, rse2.61), type = "latex")
-# 
-# stargazer(r2.1, r2.2, r2.12, r2.3, r2.4, r2.5, r2.45, r2.6, se=list(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL), type = "latex")
+r2.7 <- plm(投资占比 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
+rse2.7 <- sqrt(diag(plm::vcovHC(r2.7, type = "HC0", cluster = "group", method = "arellano")))
+rse2.71 <- sqrt(diag(plm::vcovHC(r2.7, type = "HC0", method = "white1")))
+
+r2.8 <- plm(对台投资 ~ 政策干预 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index= c("State", "Year"))
+rse2.8 <- sqrt(diag(plm::vcovHC(r2.8, type = "HC0", cluster = "group", method = "arellano")))
+rse2.81 <- sqrt(diag(plm::vcovHC(r2.8, type = "HC0", method = "white1")))
+
+
+stargazer(r2.1, r2.2, r2.12, r2.5, r2.6, r2.56, se=list(rse2.1, rse2.2, rse2.12, rse2.5, rse2.6, rse2.56), type = "latex", no.space=TRUE, omit.stat=c("f", "adj.rsq"), label = "tab:NSBPtableExIm", title = "二次南向进出口基准回归", dep.var.caption = "被解释变量", notes.label = "备注：", header=FALSE, add.lines=list(c('时间固定效应', '是', '是','是', '是','是', '是'), c('个体固定效应', '是', '是','是', '是','是', '是')), notes = "括号内为标准误，已经过聚类调整", font.size = "footnotesize")
+
+stargazer(r2.3, r2.4, r2.7, r2.8, se=list(rse2.3, rse2.4, rse2.7, rse2.8), type = "latex", no.space=TRUE, omit.stat=c("f", "adj.rsq"), label = "tab:NSBPtableInvest", title = "二次南向投资基准回归", dep.var.caption = "被解释变量", notes.label = "备注：", header=FALSE, add.lines=list(c('时间固定效应', '是', '是','是', '是'), c('个体固定效应', '是', '是','是', '是')), notes = "括号内为标准误，已经过聚类调整", font.size = "footnotesize")
+
+
+# stargazer(r2.1, r2.2, r2.12, r2.5, r2.6, r2.56, se=list(NULL, NULL, NULL, NULL, NULL, NULL), type = "latex")
+
+# stargazer(r2.3, r2.4, r2.7, r2.8, se=list(NULL, NULL, NULL, NULL), type = "latex")
+
+# stargazer(r2.1, r2.2, r2.12, r2.5, r2.6, r2.56, se=list(rse2.11, rse2.21, rse2.121, rse2.51, rse2.61, rse2.561), type = "latex")
+
+# stargazer(r2.3, r2.4, r2.7, r2.8, se=list(rse2.31, rse2.41, rse2.71, rse2.81), type = "latex")
 
 ```
 
@@ -123,24 +148,6 @@ stargazer(r2.1, r2.2, r2.12, r2.3, r2.4, r2.5, r2.45, r2.6, se=list(rse2.1, rse2
 
 ```{r parallel, fig.cap='动态性检验', echo=FALSE, fig.height=9, warning=FALSE}
 
-fn_data <- fn_data |> 
-  pull(fn_d) |> 
-  unique() |> 
-  na.omit() |> 
-  purrr::map(~ fn_data |> 
-               mutate(!! if_else(. < 0, str_c('d..', -.), str_c('d.', .)) := if_else(. == fn_d, 1, 0), .keep = "none")) |> 
-  bind_cols(fn_data, other_table = _) |> 
-  mutate(across(starts_with('d.'), ~ if_else(is.na(.), 0, .)))
-
-NSBP_data <- NSBP_data |> 
-  pull(nsbp_d) |> 
-  unique() |> 
-  na.omit() |> 
-  purrr::map(~ NSBP_data |> 
-               mutate(!! if_else(. < 0, str_c('D..', -.), str_c('D.', .)) := if_else(. == nsbp_d, 1, 0), .keep = "none")) |> 
-  bind_cols(NSBP_data, other_table = _) |> 
-  mutate(across(starts_with('D.'), ~ if_else(is.na(.), 0, .)))
-
 reg3.1 <- plm(出口占比 ~ d..7 + d..6 + d..5 + d..4 + d..3 + d..2 + d.0 + d.1 + d.2 + d.3 + d.4 + d.5 + d.6 + d.7 + d.8 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index = c("State", "Year"))
 
 reg3.2 <- plm(进口占比 ~ d..7 + d..6 + d..5 + d..4 + d..3 + d..2 + d.0 + d.1 + d.2 + d.3 + d.4 + d.5 + d.6 + d.7 + d.8 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index = c("State", "Year"))
@@ -149,13 +156,17 @@ reg3.12 <- plm(双边占比 ~ d..7 + d..6 + d..5 + d..4 + d..3 + d..2 + d.0 + d.
 
 reg3.3 <- plm(投资占比 ~ d..7 + d..6 + d..5 + d..4 + d..3 + d..2 + d.0 + d.1 + d.2 + d.3 + d.4 + d.5 + d.6 + d.7 + d.8 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index = c("State", "Year"))
 
-reg3.4 <- plm(出口占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
+reg3.4 <- plm(对台投资 ~ d..7 + d..6 + d..5 + d..4 + d..3 + d..2 + d.0 + d.1 + d.2 + d.3 + d.4 + d.5 + d.6 + d.7 + d.8 + 世贸组织 + 外交持续 + 外交关系 + 亚太经合 + 开放度 + 人口 + 生产总值 + 实际汇率, data = fn_data, effect = "twoways", model="within", index = c("State", "Year"))
 
-reg3.5 <- plm(进口占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
+reg3.5 <- plm(出口占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
 
-reg3.45 <- plm(双边占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
+reg3.6 <- plm(进口占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
 
-reg3.6 <- plm(投资占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度+ 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
+reg3.56 <- plm(双边占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度 + 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
+
+reg3.7 <- plm(投资占比 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度+ 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
+
+reg3.8 <- plm(对台投资 ~ D..8 + D..7 + D..6 + D..5 + D..4 + D..3 + D..2 + D.0 + D.1 + D.2 + D.3 + 世贸组织 + 外交持续 + 外交关系 + 两岸协议 + 自贸协定 + 开放度+ 人口 + 生产总值 + 实际汇率, data = NSBP_data, effect = "twoways", model="within", index = c("State", "Year"))
 
 gene_fig <- function(reg, title, subtitle, seq_1, seq_2, seq_3) {
   coef <- as.data.frame(coeftest(reg, vcov.=plm::vcovHC(reg, type = "HC0", cluster = "group", method = "arellano"))[seq_1, 1 : 2])
@@ -206,13 +217,16 @@ p1 <- gene_fig(reg3.1, "一次南向", "出口", 1:15, c(-7:-2, 0:8), seq(-7, 8,
 p2 <- gene_fig(reg3.2, NA, "进口", 1:15, c(-7:-2, 0:8), seq(-7, 8, 3))
 p12 <- gene_fig(reg3.12, NA, "双边", 1:15, c(-7:-2, 0:8), seq(-7, 8, 3))
 p3 <- gene_fig(reg3.3, NA, "投资", 1:15, c(-7:-2, 0:8), seq(-7, 8, 3))
-p4 <- gene_fig(reg3.4, "二次南向", "出口", 1:11, c(-8:-2, 0:3), seq(-8, 3, 1))
-p5 <- gene_fig(reg3.5, NA, "进口", 1:11, c(-8:-2, 0:3), seq(-8, 3, 1))
-p45 <- gene_fig(reg3.45, NA, "双边", 1:11, c(-8:-2, 0:3), seq(-8, 3, 1))
+p4 <- gene_fig(reg3.4, NA, "对台投资", 1:15, c(-7:-2, 0:8), seq(-7, 8, 3))
 
-p6 <- gene_fig(reg3.6, NA, "投资", 1:11, c(-8:-2, 0:3), seq(-8, 3, 1))
+p5 <- gene_fig(reg3.5, "二次南向", "出口", 1:11, c(-8:-2, 0:3), seq(-8, 3, 1))
+p6 <- gene_fig(reg3.6, NA, "进口", 1:11, c(-8:-2, 0:3), seq(-8, 3, 1))
+p56 <- gene_fig(reg3.56, NA, "双边", 1:11, c(-8:-2, 0:3), seq(-8, 3, 1))
 
-ggarrange(p1, p4, p2, p5, p12, p45, p3, p6, common.legend = TRUE, nrow = 4, ncol = 2, legend = "top")
+p7 <- gene_fig(reg3.7, NA, "投资", 1:11, c(-8:-2, 0:3), seq(-8, 3, 1))
+p8 <- gene_fig(reg3.8, NA, "对台投资", 1:11, c(-8:-2, 0:3), seq(-8, 3, 1))
+
+ggarrange(p1, p5, p2, p6, p12, p56, p3, p7, p4, p8, common.legend = TRUE, nrow = 5, ncol = 2, legend = "top")
 ```
 
 
