@@ -40,9 +40,10 @@ ggplot() +
   geom_point(aes(x = 10, y = 25)) +
   geom_point(aes(x = 10, y = 30)) +
   geom_line(aes(x = 10, y = c(25, 30), col = "实验组")) +
+  geom_line(aes(x = 5, y = c(15, 20), col = "实验组")) +
   stat_function(fun = as_function(~ 2 * . + 5), xlim = c(0, 5), aes(col = "实验组")) +
   stat_function(fun = as_function(~ 2 * . + 5), xlim = c(5, 10), linetype = "dashed", aes(col = "实验组")) +
-  stat_function(fun = as_function(~ 3 * .), xlim = c(5, 10), aes(col = "实验组")) +
+  stat_function(fun = as_function(~ 2 * . + 10), xlim = c(5, 10), aes(col = "实验组")) +
   stat_function(fun = as_function(~ 2 * . + 1), xlim = c(0, 10), aes(col = "对照组")) + 
   geom_vline(xintercept = 5, linetype = "dashed") +
   scale_colour_manual(name = "分类",values = c("实验组" = "black", "对照组" = "gray")) +
