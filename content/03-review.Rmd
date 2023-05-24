@@ -160,7 +160,7 @@ bind_rows(dependence_China, dependence_Japan, dependence_USA, dependence_ASEAN, 
 
 \begin{figure}
     \centering 
-    \includegraphics[width=0.6\linewidth]{figure/GSP1.1} 
+    \includegraphics[width=0.8\linewidth]{figure/GSP1.1} 
     \caption{政策时间轴}
     \label{fig:GSP1.1}
 \end{figure}
@@ -169,7 +169,7 @@ bind_rows(dependence_China, dependence_Japan, dependence_USA, dependence_ASEAN, 
 
 \begin{figure}
     \centering 
-    \includegraphics[width=0.6\linewidth]{figure/GSP1.2}
+    \includegraphics[width=0.8\linewidth]{figure/GSP1.2}
     \caption{政策时间轴}
     \label{fig:GSP1.2}
 \end{figure}
@@ -178,7 +178,7 @@ bind_rows(dependence_China, dependence_Japan, dependence_USA, dependence_ASEAN, 
 
 \begin{figure}
     \centering 
-    \includegraphics[width=0.6\linewidth]{figure/GSP2.0} 
+    \includegraphics[width=0.8\linewidth]{figure/GSP2.0} 
     \caption{政策时间轴}
     \label{fig:GSP2.0}
 \end{figure}
@@ -199,7 +199,7 @@ bind_rows(dependence_China, dependence_Japan, dependence_USA, dependence_ASEAN, 
 
 \begin{figure}
     \centering 
-    \includegraphics[width=0.6\linewidth]{figure/GSP3.0} 
+    \includegraphics[width=0.8\linewidth]{figure/GSP3.0} 
     \caption{政策时间轴}
     \label{fig:GSP3.0}
 \end{figure}
