@@ -48,7 +48,9 @@ ggplot() +
   geom_vline(xintercept = 5, linetype = "dashed") +
   scale_colour_manual(name = "分类",values = c("实验组" = "black", "对照组" = "gray")) +
   ylab("数量值") +
-  xlab("时间")
+  xlab("时间") +
+  theme_bw() +
+  theme(legend.position = 'top')
 
 ```
 
@@ -118,7 +120,7 @@ Perc_{it} = \beta \cdot Southbound_{i} \cdot Post_{t} + \gamma \cdot Z + \lambda
 
 在模型\@ref(eq:twdid)中，$Perc_{it}$表示台湾对$i$地区在$t$年的进口、出口、双边贸易额及投资占当年总量的比例，$Southbound_{i}$代表$i$国或地区是否为受政策影响的个体，$Post_{it}$代表$i$国或地区在$t$年是否处于政策干预后，$Southbound_{i} \cdot Post_{t}$代表当年该国是否受到了新南向政策的干预，受到干预取1，否则取0。$\lambda_{i}$和$\mu_{t}$分别为个体固定效应和时间固定效应，$Z$为控制变量，$\epsilon_{it}$为误差项。$\beta$就是我们关心的系数，如果此系数显著，则在平行趋势成立的条件下，则认为南向政策或新南向政策对构建的相关贸易变量产生了影响。
 
-在南向政策的实施中，因其涉及涉及两个政策干涉时间点，适用于多期DID的情形，模型\@ref(eq:twdid)转化为：
+在南向政策的实施中，因其涉及涉及两个政策干涉时间点，DID产生多干预时点的情形，模型\@ref(eq:twdid)转化为：
 
 \begin{equation}
 Perc_{it} = \beta \cdot Treat_{it} + \gamma \cdot Z + \lambda_{i} + \mu_{t} + \epsilon_{it}(\#eq:twmultidid)
@@ -129,54 +131,64 @@ Perc_{it} = \beta \cdot Treat_{it} + \gamma \cdot Z + \lambda_{i} + \mu_{t} + \e
 进一步的，在运用DID模型探讨政策效果的基础上，我们还希望探究政策实施对被解释变量影响的动态性。双重差分法运用有效的前提是政策干预组和对照组需要满足平行趋势检验，即处理组和对照组的变化趋势在政策干预前没有显著性差异。参考Beck, et al.  (2010)研究中的平行趋势检验设定[@beck2010big]，本文对政策实施动态性回归模型设置如下：
 
 \begin{equation}
-Perc_{it} = \sum_{\tau = -\tau_{0}} ^ {-2} \alpha_{\tau} \cdot D_{\tau it} + \sum_{\tau = 0} ^ {\tau_{1}} \alpha_{\tau} \cdot D_{\tau it} + \gamma \cdot Z_{it} + \lambda_{i} + \mu_{t} + \epsilon_{it}(\#eq:twevent)
+Perc_{it} = \sum_{\tau = -\tau_{0}} ^ {-2} \alpha_{\tau} \cdot D_{it}^{\tau} + \sum_{\tau = 0} ^ {\tau_{1}} \alpha_{\tau} \cdot D_{it}^{\tau} + \gamma \cdot Z_{it} + \lambda_{i} + \mu_{t} + \epsilon_{it}(\#eq:twevent)
 \end{equation}
 
 模型\@ref(eq:twevent)基于事件研究法，将研究范围分为政策干预前共$\tau_{0}$期和政策干预后共$\tau_{1}$期，$\tau=-1$代表政策干预的前一期，作为研究基准期。$D_{\tau it}$是个体在某年是否受政策干预的虚拟变量，以政策干预的前一年为基期，如果观测值所处年份距离政策干预${k}$年，则$\alpha_{k}$对应的$D_{kit}$取1，其他所有$D_{\tau it}$取0。如果回归结果在95%的置信区间上满足回归系数从$\alpha_{-\tau_{0}}$到$\alpha_{-2}$都不显著异于0，则被解释变量的在政策干预前年份的效应的与基期没有显著性差异。在验证平行趋势检验的方法中，本文将回归系数的95%置信区间使用误差棒的形式在图形中绘出，若在基期前所有误差棒都穿过0，则平行趋势假设得到满足。同时，若在基期前某年开始误差棒均不穿过0，则认为政策干预具有显著的预期效应；若在基期后某年误差棒不穿过0，则认为在该期政策干预具有显著的滞后效应。
 
+在上述研究的基础上，本文希望进一步探究对于南向政策和新南向政策的核心实施国家的政策干预效应。对于新南向政策的核心实施国家，本文参考2016年9月19日台湾当局“外交部长”李大维参加相关会议论坛提出的国家进行划分。对于南向政策时期的研究，本文将GSP1.1所涉及国家设置为“重点国家”。模型设置如下：
+
+\begin{equation}
+Perc_{it} = \beta \cdot Treat_{it} \cdot G_{i} + \alpha \cdot G_{i} + \gamma \cdot Z + \lambda_{i} + \mu_{t} + \epsilon_{it}(\#eq:twdidheter)
+\end{equation}
+
+模型\@ref(eq:twdidheter)使用异质性分析的思路，将政策干预个体分为核心国家与非核心国家，如果个体$i$属于设定的核心国家，则$G_{i}$取1，否则取0。通过观察回归系数$\alpha$的显著性可得出政策干预核心国家的实施效果。若$\alpha$在95%的置信区间上显著异于0，则说明政策干预对核心国家是有效的。
+
 ## 变量和数据来源
 
-我们从台湾“财政部”、“投资审查委员会”获得了台湾地区对世界各国家或地区的进口、出口及对外直接投资（FDI）数据，从世界银行数据库和布鲁盖尔研究所获得了控制变量的相关数据，相关信息如表\@ref(tab:data)所示。
+我们从台湾“财政部”、“投资审查委员会”获得了台湾对世界各国家或地区的进口、出口及对外直接投资（FDI）数据，从世界银行数据库和布鲁盖尔研究所获得了控制变量的相关数据，相关信息如表\@ref(tab:data)所示。
 
-\begin{landscape}
-\vspace*{\fill}
-\begin{table}[hbp]\centering \small
+\begin{table}[hbp]\centering \footnotesize
 \caption{数据来源}
 \begin{tabular}{|c|c|c|}
 \hline{}
 变量 & 定义 & 数据来源\\
 \hline
 被解释变量 (Perc) & & \\
-出口占比 & 台湾地区对某贸易伙伴在某年的出口额占比 & 台湾“财政部”\\
-进口占比 & 台湾地区对某贸易伙伴在某年的进口额占比 & 台湾“财政部”\\
-双边占比 & 台湾地区对某贸易伙伴在某年的双边贸易额占比 & 台湾“财政部”\\
-投资占比 & 台湾地区对某贸易伙伴在某年的对外直接投资额占比 & 台湾“投审会”\\
-对台投资 & 某贸易伙伴对台湾地区在某年的投资额占比 & 台湾“投审会”\\
+出口占比 & 台湾对某贸易伙伴在某年的出口额占比 & 台湾“财政部”\\
+进口占比 & 台湾对某贸易伙伴在某年的进口额占比 & 台湾“财政部”\\
+双边占比 & 台湾对某贸易伙伴在某年的双边贸易额占比 & 台湾“财政部”\\
+投资占比 & 台湾对某贸易伙伴在某年的对外直接投资额占比 & 台湾“投审会”\\
+对台投资 & 某贸易伙伴对台湾在某年的投资额占比 & 台湾“投审会”\\
 政策干预变量 (Treat) & & \\
-政策干预 & 虚拟变量，某国家或地区某年是否为台湾地区设置的“南向国家” & 台湾“投审会”\\
+政策干预 & 虚拟变量，某国家或地区某年是否为台湾设置的“南向国家” & 台湾“投审会”\\
+一次核心 & 虚拟变量，南向政策时期某国家或地区是否为核心“南向国家” & 正文定义\\
+一次非核心 & 虚拟变量，南向政策时期某国家或地区是否为非核心“南向国家” & 正文定义\\
+二次核心 & 虚拟变量，新南向政策时期某国家或地区是否为核心“南向国家” & 正文定义\\
+二次非核心 & 虚拟变量，新南向政策时期某国家或地区是否为非核心“南向国家” & 正文定义\\
 控制变量 (Z) & & \\
-外交关系 & 虚拟变量，某国家或地区某年是否为台湾地区“邦交国” & 台湾“外交部”\\
-外交持续 & 某国家或地区在某年对台湾地区“外交关系”处于连续的第几年 & 台湾“外交部”\\
+外交关系 & 虚拟变量，某国家或地区某年是否为台湾“邦交国” & 台湾“外交部”\\
+外交持续 & 某国家或地区在某年对台湾“外交关系”处于连续的第几年 & 台湾“外交部”\\
 人口 & 某国家或地区某年的总人口取自然对数 & 世界银行\\
 生产总值 & 某国家或地区某年的国内生产总值取自然对数 & 世界银行\\
 开放度 & 某国家或地区某年的贸易开放度 & 世界银行\\
 两岸协议 & 虚拟变量，中国大陆和台湾在某年是否达成《海峡两岸经济合作框架协议》 & 新华社\\
 亚太经合 & 虚拟变量，某国在某年是否处于亚太经济合作组织 & APEC\\
-世贸组织 & 虚拟变量，某国家或地区某年与台湾地区是否都加入了世界贸易组织 & WTO\\
-自贸协定 & 虚拟变量，某国家或地区某年是否与台湾地区达成自由贸易协定（排除中国大陆） & 台湾“财政部关务署”\\
-实际汇率 & 某国家或地区某年的实际有效汇率 & 布鲁盖尔研究所 \\
+世贸组织 & 虚拟变量，某国家或地区某年与台湾是否都加入了世界贸易组织 & WTO\\
+自贸协定 & 虚拟变量，某国家或地区某年是否与台湾达成自由贸易协定（排除中国大陆） & 台湾“财政部关务署”\\
+实际汇率 & 某国家或地区某年的实际有效汇率 & 布鲁盖尔研究所\\
 \hline
 \end{tabular}
 \label{tab:data}
 \end{table}
-\vspace*{\fill}
-\end{landscape}
 
 ## 研究范围
 
 根据黄奎博等(2014)的研究，2003年后台湾当局对南向政策便甚少提及，故本文以此作为南向政策终点的划分依据。根据该研究，南向政策时期，台湾当局主要做了两次调整，第一次在1994-1996年划定了首批国家，分别为泰国、马来西亚、印度尼西亚、菲律宾、新加坡、越南和文莱。Bing, et al. (2017)的研究将上述时期称为“Go South Policy1.1”，即GSP1.1[@bing2017taiwan]；第二次是1997-1999年，在7国的基础上增加至12国，在GSP1.1的基础上加入老挝、缅甸、柬埔寨、澳大利亚以及新西兰，对应为GSP1.2。南向政策最终在GSP1.2所涵盖范围的基础上，延长到2002年底为止[@黄奎博]。由于数据完整性的原因，我们在受政策干预12国的基础上加入了一部分国家或地区作为研究样本，分别为中国大陆、印度、巴基斯坦、孟加拉国、不丹、斯里兰卡、尼泊尔、马尔代夫、巴布达新几内亚、帕劳、基里巴斯、瑙鲁、新喀里多尼亚、瓦努阿图、萨摩亚、日本、韩国、中国香港、美国、中国澳门、英国、法国、德国、西班牙、意大利、加拿大、荷兰、巴拿马、巴哈马、危地马拉和洪都拉斯。在南向政策期间，台湾对这些国家或地区的年度总进出口额均占台湾年度对外总进出口额的80%以上，具有较强的代表性。在之后的研究中，将此研究阶段的南向政策统称为“一次南向”。
 
 台商向中国大陆投资的传统途径，或经过第三国向中国大陆投资，或须通过台湾当局的审查方可进行。2010年，马英九政府与大陆签署了《海峡两岸经济合作框架协议》，倡导放宽投资限制。马英九政府执政时期的经济政策同蔡英文政府力推南向经济形成了鲜明的反差。本文参考段哲哲等(2020)的研究，以马英九执政作起点为新南向研究时间起点，将新南向的研究时间划定为2008-2019年，以蔡英文当局正式提出新南向政策的2016年作为政策干预起点。根据台湾当局“投资审查委员会”资料，新南向受政策干预国家有18个，分别为：泰国、马来西亚、印度尼西亚、菲律宾、新加坡、越南、文莱、老挝、缅甸、柬埔寨、澳大利亚、新西兰、印度、巴基斯坦、孟加拉国、不丹、斯里兰卡和尼泊尔。在新南向政策的研究中，本文使用了全部的数据样本，共包含201个国家或地区的数据。在之后的研究中，将此研究阶段的南向政策统称为“二次南向”。
+
+2016年9月19日，台湾当局“外交部长”李大维出席相关会议表示，未来政府推动的新南向政策将会把菲律宾、越南、印尼、马来西亚、泰国、印度等6个国家设置为“重点国家”，优先为这些国家新南向政策的实施提供相关资源^[自由时报。获取时间：2023.2.21，https://news.ltn.com.tw/news/politics/breakingnews/1830719。]。本文依据资料，将一次南向期间的政策实施重点国家设置为GSP1.1对应国家，分别为泰国、马来西亚、印度尼西亚、菲律宾、新加坡、越南和文莱；将二次南向期间的政策实施重点国家设置为菲律宾、越南、印尼、马来西亚、泰国和印度。
 
 \begin{figure}
     \centering 
@@ -199,7 +211,7 @@ base_exp <- tw_data |>
 jan_exp <- base_exp |> 
   filter(State == 'Japan') |> 
   group_by(Year) |> 
-  mutate(sum_exp = sum(出口占比))
+  mutate(sum_exp = sum(出口占比, na.rm = TRUE))
 
 er_exp <- base_exp |> 
   filter(State %in% EURO) |> 
@@ -209,12 +221,12 @@ er_exp <- base_exp |>
 cn_exp <- base_exp |> 
   filter(State == 'China') |>
   group_by(Year) |> 
-  mutate(sum_exp = sum(出口占比))
+  mutate(sum_exp = sum(出口占比, na.rm = TRUE))
 
 na_exp <- base_exp |> 
   filter(State == 'USA') |> 
   group_by(Year) |> 
-  mutate(sum_exp = sum(出口占比))
+  mutate(sum_exp = sum(出口占比, na.rm = TRUE))
 
 asean_exp <- base_exp |> 
   filter(State %in% ASEAN) |> 
@@ -225,7 +237,7 @@ asean_exp <- base_exp |>
 hk_exp <- base_exp |> 
   filter(State == 'Hong Kong') |> 
   group_by(Year) |> 
-  mutate(sum_exp = sum(出口占比))
+  mutate(sum_exp = sum(出口占比, na.rm = TRUE))
 
 ggplot() + 
   geom_line(aes(Year, sum_exp, col = '欧盟'), data = er_exp) +
@@ -234,14 +246,24 @@ ggplot() +
   geom_line(aes(Year, sum_exp, col = '东盟'), data = asean_exp) +
   geom_line(aes(Year, sum_exp, col = '中国香港'), data = hk_exp) +
   geom_line(aes(Year, sum_exp, col = '日本'), data = jan_exp) +
+  geom_point(aes(Year, sum_exp, col = '欧盟', shape = '欧盟'), size = 1, data = er_exp) +
+  geom_point(aes(Year, sum_exp, col = '中国大陆', shape = '中国大陆'), size = 1, data = cn_exp) +
+  geom_point(aes(Year, sum_exp, col = '北美自贸区', shape = '北美自贸区'), size = 1, data = na_exp) +
+  geom_point(aes(Year, sum_exp, col = '东盟', shape = '东盟'), size = 1, data = asean_exp) +
+  geom_point(aes(Year, sum_exp, col = '中国香港', shape = '中国香港'), size = 1, data = hk_exp) +
+  geom_point(aes(Year, sum_exp, col = '日本', shape = '日本'), size = 1, data = jan_exp) +
   scale_y_continuous(labels = scales::percent) +
   scale_x_continuous(breaks = seq(1981, 2019, 3)) +
+  scale_color_manual(name = "地区", values = rep(c("blue", "red", "#097403", "#D5CE18", "#FF0099", "#00CCCC"))) +
+  scale_shape_manual(name = "地区", values = c(0, 1, 2, 3, 4, 5)) + 
   ylab("百分位点") +
   xlab("年份") +
-  labs(col = "地区")
+  labs(col = "地区") +
+  theme_bw() +
+  theme(legend.position = 'top')
 ```
 
-图\@ref(fig:1981exp)展示了台湾地区对其主要贸易地区的出口比重随时间变化趋势。可以得知，在2000年以前北美自贸区占台湾对外出口的比重最大，而2001年前后香港地区取代了北美自贸区位居榜首，之后2004年前后中国大陆取代了香港地区，成为台湾最大对外出口地区。从南向政策实施开始到1997年东南亚金融危机前，台湾对东盟出口比重总体上呈上升趋势，而东南亚金融危机发生后的1998年则呈下降趋势。新南向政策实施后，台湾对东盟出口比重总体上不升反降。从1981年到1984年，台湾对北美自贸区出口呈上升趋势，在1984年达到最高点约50%，之后呈下降趋势，直到1996年到1998年短暂上升，之后持续呈下降趋势，到2019年约只占15%，这展现出随时间发生的贸易转移现象。1984年至1992年期间台湾对北美出口比重下降期间，台湾地区对中国香港和欧盟及新南向国家的出口比重则有所上升。2000年到2010年，台湾地区对中国大陆的出口比重经历了一个较快增长的时期，到2010年对中国大陆的出口比重已达28%左右，同时期台湾对东盟出口比重呈现出螺旋式上升的过程，从2000年的13%增长到2014年接近20%。对于欧盟及日本而言，出口比重则缓慢下降，到2019年已降至10%以下。中国香港在1990年到2000年经历了出口比重上升后，在2000年到2010年又经历了出口比重的下降，最终回落到1990年的水平。
+图\@ref(fig:1981exp)展示了台湾对其主要贸易地区的出口比重随时间变化趋势。可以得知，在2000年以前北美自贸区占台湾对外出口的比重最大，而2001年前后香港地区取代了北美自贸区位居榜首，之后2004年前后中国大陆取代了香港地区，成为台湾最大对外出口地区。从南向政策实施开始到1997年东南亚金融危机前，台湾对东盟出口比重总体上呈上升趋势，而东南亚金融危机发生后的1998年则呈下降趋势。新南向政策实施后，台湾对东盟出口比重总体上不升反降。从1981年到1984年，台湾对北美自贸区出口呈上升趋势，在1984年达到最高点约50%，之后呈下降趋势，直到1996年到1998年短暂上升，之后持续呈下降趋势，到2019年约只占15%，这展现出随时间发生的贸易转移现象。1984年至1992年期间台湾对北美出口比重下降期间，台湾对中国香港和欧盟及新南向国家的出口比重则有所上升。2000年到2010年，台湾对中国大陆的出口比重经历了一个较快增长的时期，到2010年对中国大陆的出口比重已达28%左右，同时期台湾对东盟出口比重呈现出螺旋式上升的过程，从2000年的13%增长到2014年接近20%。对于欧盟及日本而言，出口比重则缓慢下降，到2019年已降至10%以下。中国香港在1990年到2000年经历了出口比重上升后，在2000年到2010年又经历了出口比重的下降，最终回落到1990年的水平。
 
 ### 台湾进口比重区域分析
 
@@ -253,7 +275,7 @@ base_imp <- tw_data |>
 jan_imp <- base_imp |> 
   filter(State == 'Japan') |> 
   group_by(Year) |> 
-  mutate(sum_imp = sum(进口占比))
+  mutate(sum_imp = sum(进口占比, na.rm = TRUE))
 
 er_imp <- base_imp |> 
   filter(State %in% EURO) |> 
@@ -263,12 +285,12 @@ er_imp <- base_imp |>
 cn_imp <- base_imp |> 
   filter(State == 'China') |>
   group_by(Year) |> 
-  mutate(sum_imp = sum(进口占比))
+  mutate(sum_imp = sum(进口占比, na.rm = TRUE))
 
 na_imp <- base_imp |> 
   filter(State == 'USA') |> 
   group_by(Year) |> 
-  mutate(sum_imp = sum(进口占比))
+  mutate(sum_imp = sum(进口占比, na.rm = TRUE))
 
 asean_imp <- base_imp |> 
   filter(State %in% ASEAN) |> 
@@ -278,7 +300,7 @@ asean_imp <- base_imp |>
 hk_imp <- base_imp |> 
   filter(State == 'Hong Kong') |> 
   group_by(Year) |> 
-  mutate(sum_imp = sum(进口占比))
+  mutate(sum_imp = sum(进口占比, na.rm = TRUE))
 
 ggplot() + 
   geom_line(aes(Year, sum_imp, col = '欧盟'), data = er_imp) +
@@ -287,14 +309,24 @@ ggplot() +
   geom_line(aes(Year, sum_imp, col = '东盟'), data = asean_imp) +
   geom_line(aes(Year, sum_imp, col = '中国香港'), data = hk_imp) +
   geom_line(aes(Year, sum_imp, col = '日本'), data = jan_imp) +
+  geom_point(aes(Year, sum_imp, col = '欧盟', shape = '欧盟'), size = 1, data = er_imp) +
+  geom_point(aes(Year, sum_imp, col = '中国大陆', shape = '中国大陆'), size = 1, data = cn_imp) +
+  geom_point(aes(Year, sum_imp, col = '北美自贸区', shape = '北美自贸区'), size = 1, data = na_imp) +
+  geom_point(aes(Year, sum_imp, col = '东盟', shape = '东盟'), size = 1, data = asean_imp) +
+  geom_point(aes(Year, sum_imp, col = '中国香港', shape = '中国香港'), size = 1, data = hk_imp) +
+  geom_point(aes(Year, sum_imp, col = '日本', shape = '日本'), size = 1, data = jan_imp) +
   scale_y_continuous(labels = scales::percent) +
   scale_x_continuous(breaks = seq(1981, 2019, 3)) +
+  scale_color_manual(name = "地区", values = rep(c("blue", "red", "#097403", "#D5CE18", "#FF0099", "#00CCCC"))) +
+  scale_shape_manual(name = "地区", values = c(0, 1, 2, 3, 4, 5)) + 
   ylab("百分位点") +
   xlab("年份") +
-  labs(col = "地区")
+  labs(col = "地区") +
+  theme_bw() +
+  theme(legend.position = 'top')
 ```
 
-图\@ref(fig:1981inp)展示了台湾地区对主要贸易地区的进口比重随时间变化趋势。可以得知，在2013年以前，日本是台湾地区最大的进口国，之后中国大陆取代了日本。在2000年以前，台湾对欧盟、东盟以及中国大陆的进口比重总体呈上升趋势，而对日本以及北美自贸区国家的进口比重则总体呈现出下降趋势，从占比20%以上均下降到不足20%。对于东盟而言，台湾进口比重呈现出缓慢上升的趋势，从1981年占比6%左右上升到2000年左右的15%，2002到2008年则从15%下降到11%，再缓慢调整到2019年的12%。中国大陆自从1991年开始，进口比重就呈现出持续上升的趋势，在2019年台湾地区对中国大陆的进口比重超过了20%，成为台湾最大进口地区。中国香港自1990年后进口比重总体呈现出缓慢下降的趋势。
+图\@ref(fig:1981inp)展示了台湾对主要贸易地区的进口比重随时间变化趋势。可以得知，在2013年以前，日本是台湾最大的进口国，之后中国大陆取代了日本。在2000年以前，台湾对欧盟、东盟以及中国大陆的进口比重总体呈上升趋势，而对日本以及北美自贸区国家的进口比重则总体呈现出下降趋势，从占比20%以上均下降到不足20%。对于东盟而言，台湾进口比重呈现出缓慢上升的趋势，从1981年占比6%左右上升到2000年左右的15%，2002到2008年则从15%下降到11%，再缓慢调整到2019年的12%。中国大陆自从1991年开始，进口比重就呈现出持续上升的趋势，在2019年台湾对中国大陆的进口比重超过了20%，成为台湾最大进口地区。中国香港自1990年后进口比重总体呈现出缓慢下降的趋势。
 
 ### 台湾对外直接投资比重区域分析
 
@@ -346,37 +378,53 @@ ggplot() +
   geom_line(aes(Year, sum_fdi, col = '中国香港'), data = hk_fdi) +
   geom_line(aes(Year, sum_fdi, col = '加勒比海英国属地'), data = botc_fdi) +
   geom_line(aes(Year, sum_fdi, col = '日本'), data = jan_fdi) +
+  geom_point(aes(Year, sum_fdi, col = '欧盟', shape = '欧盟'), size = 1, data = er_fdi) +
+  geom_point(aes(Year, sum_fdi, col = '中国大陆', shape = '中国大陆'), size = 1, data = cn_fdi) +
+  geom_point(aes(Year, sum_fdi, col = '北美自贸区', shape = '北美自贸区'), size = 1, data = na_fdi) +
+  geom_point(aes(Year, sum_fdi, col = '东盟', shape = '东盟'), size = 1, data = asean_fdi) +
+  geom_point(aes(Year, sum_fdi, col = '中国香港', shape = '中国香港'), size = 1, data = hk_fdi) +
+  geom_point(aes(Year, sum_fdi, col = '日本', shape = '日本'), size = 1, data = jan_fdi) +
+  geom_point(aes(Year, sum_fdi, col = '加勒比海英国属地', shape = '加勒比海英国属地'), size = 1, data = botc_fdi) +
   scale_y_continuous(labels = scales::percent) +
   scale_x_continuous(breaks = seq(1981, 2019, 3)) +
+  scale_color_manual(name = "地区", values = c("blue", "red", "#097403", "#D5CE18", "#FF0099", "#00CCCC", "#000000")) +
+  scale_shape_manual(name = "地区", values = c(0, 1, 2, 3, 4, 5, 6)) + 
   ylab("百分位点") +
   xlab("年份") +
-  labs(col = "地区")
+  labs(col = "地区") +
+  theme_bw() +
+  theme(legend.position = 'top')
 ```
 
-图\@ref(fig:1981fdi)展示了台湾地区对主要贸易地区的直接投资比重随时间的变化趋势。由图可以得知，台湾对其贸易伙伴的投资具有较强的波动性。1980年代，台湾对外主要投资在东盟与北美自贸区之间交织波动，例如1982年，台湾对东盟投资占比超过75%，对北美自贸区占比低于25%，而到了1985年台湾对北美自贸区投资占比接近80%，而此时对东盟投资占比则低于12.5%，体现出台湾地区投资极大的不确定性。从南向政策实施开始到1997年东南亚金融危机前，台湾对东盟投资比重总体上呈上升趋势，而东南亚金融危机发生后则急剧下降，可见东南亚金融危机对南向政策实施的效果影响较大。新南向政策实施后，台湾对东盟投资占比也呈现出强烈的波动性。
+图\@ref(fig:1981fdi)展示了台湾对主要贸易地区的直接投资比重随时间的变化趋势。由图可以得知，台湾对其贸易伙伴的投资具有较强的波动性。1980年代，台湾对外主要投资在东盟与北美自贸区之间交织波动，例如1982年，台湾对东盟投资占比超过75%，对北美自贸区占比低于25%，而到了1985年台湾对北美自贸区投资占比接近80%，而此时对东盟投资占比则低于12.5%，体现出台湾投资极大的不确定性。从南向政策实施开始到1997年东南亚金融危机前，台湾对东盟投资比重总体上呈上升趋势，而东南亚金融危机发生后则急剧下降，可见东南亚金融危机对南向政策实施的效果影响较大。新南向政策实施后，台湾对东盟投资占比也呈现出强烈的波动性。
 
 台湾对大陆投资占比随着陈水扁政府上台就呈现上升趋势，到2010年已超过75%，而之后开始呈现出下降趋势。伴随着对中国大陆投资比重的下降，台湾对东盟以及加勒比海英国属地的间接投资也震荡上升，呈现出一定的周期性。由于台湾对大陆的投资受到台湾当局有关部门的监管，存在一定数量经由英属维尔京群岛、开曼群岛、萨摩亚、毛里求斯和巴巴多斯等自由港的第三地转投资。从2015年开始，大陆商务部开始提供批准台商投资金额和经过第三地转投资金额，具体数据如图\@ref(fig:invest)所示。总体来看，不管何种统计指标，台湾对大陆投资都显示出一定下降趋势。
 
 ```{r invest, fig.cap='大陆实际使用台资金额趋势图', echo=FALSE, warning=FALSE, fig.align = 'center'}
-
- read_csv('../data/invest.csv', show_col_types = FALSE) |>
-   ggplot() +
-     geom_line(aes(Year, Num, col = "经第三地调整")) +
-     geom_line(aes(Year, Raw, col = "未经第三地调整")) +
-     ylab("金额（单位：亿美元）") +
-     xlab("年份") +
-     scale_x_continuous(breaks = seq(2010, 2020, 1)) +
-     labs(col = "类型")
+read_csv('../data/invest.csv', show_col_types = FALSE) |>
+  ggplot() +
+    geom_line(aes(Year, Num, col = "经第三地调整")) +
+    geom_line(aes(Year, Raw, col = "未经第三地调整")) +
+    geom_point(aes(Year, Num, col = '经第三地调整', shape = '经第三地调整'), size = 1) +
+    geom_point(aes(Year, Raw, col = '未经第三地调整', shape = '未经第三地调整'), size = 1) +
+    ylab("金额（单位：亿美元）") +
+    xlab("年份") +
+    scale_x_continuous(breaks = seq(2010, 2020, 1)) +
+    scale_color_manual(name = "地区", values = rep(c("blue", "red"))) +
+    scale_shape_manual(name = "地区", values = c(0, 1)) + 
+    labs(col = "类型") +
+    theme_bw() +
+    theme(legend.position = 'top')
 ```
 
 总体来看，从2010年以来，部分原属中国大陆的投资比重受到东盟、间接投资（加勒比海英国属地）以及欧盟的蚕食，到2019年台湾对大陆的投资比重大约为37.5%，台湾对东盟的投资比重则达到了25%左右。台湾对北美自贸区的投资比重从1985年到1994年急剧下降，此后始终在5%左右的水平徘徊。对于中国香港而言，投资比重从1981年的超过25%开始就开始降低，最终维持在5%左右波动。总之，对于台湾对外直接投资比重而言，变化趋势不稳定是其主要特征，而加勒比海英国属地则在投资转移的过程中扮演了一个重要的角色。
 
 ### 台湾对外贸易区位因素分析
 
-图\@ref(fig:19942016map)^[数据来源：台湾财政部，图中贸易数据未包含中国香港和中国澳门。]展示了从1994年到2016年台湾对外贸易进出口总比例累积变化地图。从1994年到2016年，从一次南向的起点到二次南向的起点，台湾对外出口分布已经产生了很大的区位变化。其中，中国大陆（+44.0%）、韩国（+5.7%）、越南（+3.6%）、新加坡（+2.7%）、菲律宾（+2.2%）、印度（+1.1%）、沙特阿拉伯（+1.0%）、科威特（+1.0%）、卡塔尔（+0.9%）、阿联酋（+0.6%）位居台湾进出口总比例累积增长的前十，而美国（-23.4%）、日本（-15.0%）、中国香港（-10.0%）、德国（-3.2%）、英国（-2.0%）、加拿大（-1.8%）、南非（-1.3%）、印尼（-1.1%）、意大利（-0.9%）、法国（-0.8%）位居台湾进出口总比例累积下降的前十。结合图形可以看出，比重波动较为明显的地区有中国大陆、新加坡、美国、日本、韩国、越南、德国、菲律宾、印度等国家或地区。从台湾进出口总比重的变化来看，台湾进出口重心从欧洲和北美洲逐渐转移到了东亚和东南亚。从细节来看，在东亚范围内，台湾对日本的部分进出口份额一定程度上受到中国大陆以及韩国所威胁，2016年台湾对大陆的进出口比重比1993年的比重高出40%以上，美国则下降超过20%。东亚及东南亚国家具有较密集的人口分布和较大的消费潜力，且距离台湾地区距离较近，具有运输成本上的优势。另外，在这个时间段东南亚及东亚诸国也有着较快的经济增长速度，对于进出口贸易是利好因素。
+图\@ref(fig:19942016map)^[数据来源：台湾财政部，图中贸易数据未包含中国香港和中国澳门。]展示了从1994年到2016年台湾对外贸易进出口总比例累积变化地图。从1994年到2016年，从一次南向的起点到二次南向的起点，台湾对外出口分布已经产生了很大的区位变化。其中，中国大陆（+44.0%）、韩国（+5.7%）、越南（+3.6%）、新加坡（+2.7%）、菲律宾（+2.2%）、印度（+1.1%）、沙特阿拉伯（+1.0%）、科威特（+1.0%）、卡塔尔（+0.9%）、阿联酋（+0.6%）位居台湾进出口总比例累积增长的前十，而美国（-23.4%）、日本（-15.0%）、中国香港（-10.0%）、德国（-3.2%）、英国（-2.0%）、加拿大（-1.8%）、南非（-1.3%）、印尼（-1.1%）、意大利（-0.9%）、法国（-0.8%）位居台湾进出口总比例累积下降的前十。结合图形可以看出，比重波动较为明显的地区有中国大陆、新加坡、美国、日本、韩国、越南、德国、菲律宾、印度等国家或地区。从台湾进出口总比重的变化来看，台湾进出口重心从欧洲和北美洲逐渐转移到了东亚和东南亚。从细节来看，在东亚范围内，台湾对日本的部分进出口份额一定程度上受到中国大陆以及韩国所威胁，2016年台湾对大陆的进出口比重比1993年的比重高出40%以上，美国则下降超过20%。东亚及东南亚国家具有较密集的人口分布和较大的消费潜力，且距离台湾距离较近，具有运输成本上的优势。另外，在这个时间段东南亚及东亚诸国也有着较快的经济增长速度，对于进出口贸易是利好因素。
 
 \begin{landscape}
-```{r 19942016map, echo=FALSE, fig.cap='1994年到2016年台湾地区进出口双边贸易额比重累积变化', warning=FALSE, fig.align='center', fig.width=16.5, fig.height=11.7}
+```{r 19942016map, echo=FALSE, fig.cap='1994年到2016年台湾进出口双边贸易额比重累积变化', warning=FALSE, fig.align='center', fig.width=16.5, fig.height=11.7}
 
 c(1994, 2016) |> 
   purrr::map(~ tw_data |> 
@@ -390,15 +438,16 @@ c(1994, 2016) |>
     scale_fill_distiller(palette = "Set2", direction = 1) +
     xlab("经度") +
     ylab("纬度") +
+    theme_bw() +
     theme(legend.position = "top")
 ```
 \end{landscape}
 
 ### 台湾自贸协定的分析
 
-台湾地区对外贸易协定可分为经济合作协定（ECA）、自由贸易协定（FTA）以及两岸经济合作协议（ECFA），在台湾当局“经济部国际贸易局”网站^[网址：https://fta.trade.gov.tw/。]中三者并列地位同等，故本文将三者统称为自贸协定。截止到2019年，台湾与新加坡、巴拿马、危地马拉、洪都拉斯、尼加拉瓜、巴拉圭、新西兰、斯威士兰以及中国大陆建立了自贸协定。
+台湾对外贸易协定可分为经济合作协定（ECA）、自由贸易协定（FTA）以及两岸经济合作协议（ECFA），在台湾当局“经济部国际贸易局”网站^[网址：https://fta.trade.gov.tw/。]中三者并列地位同等，故本文将三者统称为自贸协定。截止到2019年，台湾与新加坡、巴拿马、危地马拉、洪都拉斯、尼加拉瓜、巴拉圭、新西兰、斯威士兰以及中国大陆建立了自贸协定。
 
-```{r fta, echo=FALSE, fig.cap='台湾对自贸协定国家进出口双边贸易额滞后差分', warning=FALSE,fig.width=4.41, fig.height=8.98}
+```{r fta, echo=FALSE, fig.cap='台湾对自贸协定国家进出口双边贸易额滞后差分', warning=FALSE}
 
 gene_fta <- function(state) {
   tw_data |> 
@@ -415,7 +464,7 @@ gene_fta <- function(state) {
            select(Year))
 }
 
-pfta_eca <- ggplot() + 
+ggplot() + 
   geom_line(aes(Year, val, col = '新加坡'), data = gene_fta('Singapore')) +
   geom_line(aes(Year, val, col = '巴拿马'), data = gene_fta('Panama')) +
   geom_line(aes(Year, val, col = '危地马拉'), data = gene_fta('Guatemala')) +
@@ -424,22 +473,22 @@ pfta_eca <- ggplot() +
   geom_line(aes(Year, val, col = '巴拉圭'), data = gene_fta('Paraguay')) +
   geom_line(aes(Year, val, col = '新西兰'), data = gene_fta('New Zealand')) +
   geom_line(aes(Year, val, col = '斯威士兰'), data = gene_fta('Swaziland')) +
+  geom_point(aes(Year, val, col = "新加坡", shape = "新加坡"), size = 1, data = gene_fta('Singapore')) +
+  geom_point(aes(Year, val, col = "巴拿马", shape = "巴拿马"), size = 1, data = gene_fta('Panama')) +
+  geom_point(aes(Year, val, col = "危地马拉", shape = "危地马拉"), size = 1, data = gene_fta('Guatemala')) +
+  geom_point(aes(Year, val, col = "洪都拉斯", shape = "洪都拉斯"), size = 1, data = gene_fta('Honduras')) +
+  geom_point(aes(Year, val, col = "尼加拉瓜", shape = "尼加拉瓜"), size = 1, data = gene_fta('Nicaragua')) +
+  geom_point(aes(Year, val, col = "巴拉圭", shape = "巴拉圭"), size = 1, data = gene_fta('Paraguay')) +
+  geom_point(aes(Year, val, col = "新西兰", shape = "新西兰"), size = 1, data = gene_fta('New Zealand')) +
+  geom_point(aes(Year, val, col = "斯威士兰", shape = "斯威士兰"), size = 1, data = gene_fta('Swaziland')) +
   scale_x_continuous(breaks = seq(1981, 2019, 2)) +
+  scale_color_manual(name = "地区", values = c("blue", "red", "#097403", "#D5CE18", "#FF0099", "#00CCCC", "#000000", "#996633")) +
+  scale_shape_manual(name = "地区", values = c(0, 1, 2, 3, 4, 5, 6, 7)) +
   ylab("数额（千美元）") +
   xlab("年份") +
-  labs(col = "地区")
-
-
-pecfa <- ggplot() + 
-  geom_line(aes(Year, val, col = '中国大陆'), data = gene_fta('China')) +
-  scale_x_continuous(breaks = seq(1981, 2019, 1)) +
-  ylab("数额（千美元）") +
-  xlab("年份") +
-  labs(col = "地区")
-
-ggarrange(pfta_eca, pecfa, legend = "top", nrow = 2, ncol = 1)
+  labs(col = "地区") +
+  theme_bw() +
+  theme(legend.position = "top")
 ```
 
-图\@ref(fig:fta)为台湾对与其达成自贸协定的9个国家或地区滞后差分随年份的变化示意图，对于某个地区来说，台湾地区与其达成自贸协定为起点年份。其中，某年度对应的数额代表该年度进出口总额与上一年度进出口总额的差值。从上方的图中可以看到，在与台湾达成自贸协定后，巴拿马和危地马拉在多数年份保持了对台贸易总额的增长，而尼加拉瓜和洪都拉斯贸易总额增长较不明显。对于新西兰与新加坡而言，在与台湾达成自贸协定后，贸易总额都经历了先增后减再增的过程，呈现出震荡波动趋势。斯威士兰和巴拉圭由于协定实施年份较短，均是在与上年度进出口总额接近的水平上徘徊。
-
-从下方的图可以看出自从2010年ECFA协议实施以来，台湾和中国大陆之间的贸易总额基本处于持续增长的状态，且增长的幅度远大于与台湾达成自贸协定的其他国家和地区，从中可以看出中国大陆与其他地区相比对台湾经济产生的巨大影响力。
+图\@ref(fig:fta)为台湾对与其达成自贸协定的8个国家或地区（除中国大陆）滞后差分随年份的变化示意图，对于某个地区来说，台湾与其达成自贸协定为起点年份。其中，某年度对应的数额代表该年度进出口总额与上一年度进出口总额的差值。从上方的图中可以看到，在与台湾达成自贸协定后，巴拿马和危地马拉在多数年份保持了对台贸易总额的增长，而尼加拉瓜和洪都拉斯贸易总额增长较不明显。对于新西兰与新加坡而言，在与台湾达成自贸协定后，贸易总额都经历了先增后减再增的过程，呈现出震荡波动趋势。斯威士兰和巴拉圭由于协定实施年份较短，均是在与上年度进出口总额接近的水平上徘徊。
