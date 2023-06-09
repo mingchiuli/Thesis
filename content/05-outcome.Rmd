@@ -407,7 +407,7 @@ ggarrange(p3.1, p3.5, p3.2, p3.6, p3.12, p3.56, p3.3, p3.7, p3.4, p3.8, common.l
 
 
 \begin{table}[!htbp] \centering 
-  \caption{政策核心国家进出口检验} 
+  \caption{政策核心与非核心国家进出口检验} 
   \label{tab:southtableExImHeter} 
 \footnotesize 
 \begin{tabular}{@{\extracolsep{5pt}}lcccccc} 
@@ -458,7 +458,7 @@ ggarrange(p3.1, p3.5, p3.2, p3.6, p3.12, p3.56, p3.3, p3.7, p3.4, p3.8, common.l
 
 
 \begin{table}[!htbp] \centering 
-  \caption{政策核心国家投资检验} 
+  \caption{政策核心与非核心国家投资检验} 
   \label{tab:southtableInvestHeter} 
 \footnotesize 
 \begin{tabular}{@{\extracolsep{5pt}}lcccc} 
