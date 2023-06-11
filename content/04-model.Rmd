@@ -146,7 +146,7 @@ Perc_{it} = \beta \cdot Treat_{it} \cdot G_{i} + \alpha \cdot G_{i} + \gamma \cd
 
 ## 数据来源
 
-我们从台湾“财政部”、“投资审查委员会”获得了台湾对世界各国家或地区的进口、出口及对外直接投资（FDI）数据，从世界银行数据库和布鲁盖尔研究所获得了控制变量的相关数据，相关信息如表\@ref(tab:data)所示。
+我们从台湾“财政部”、“投资审查委员会”获得了台湾对世界各国家或地区的进口、出口及对外直接投资（FDI）等数据，从世界银行数据库和布鲁盖尔研究所获得了控制变量的相关数据，相关信息如表\@ref(tab:data)所示。
 
 \begin{table}[hbp]\centering \footnotesize
 \caption{数据来源}
