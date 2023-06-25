@@ -149,7 +149,10 @@ list.files(path = 'content', pattern = '*.Rmd', recursive = T) |>
   paste(header, '\n', init, '\n', arg = _, '\n', '# 参考文献', sep = '') |> 
   writeLines('out.Rmd')
 
+if (Sys.getenv("RSTUDIO_PANDOC") == '') {
+  Sys.setenv(RSTUDIO_PANDOC='/Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools')
+}
+
 rmarkdown::render('out.Rmd')
 file.remove('out.Rmd', 'out.log')
 system2('open','out.pdf')
-
